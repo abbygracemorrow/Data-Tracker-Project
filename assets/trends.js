@@ -158,15 +158,16 @@
   {
     const days = [];
     for (let i = 1; i < dates.length; i++) {
-      const prev = new Map(at(dates[i - 1]).map((r) => [r.item_id, r.regular]));
-      const diffs = at(dates[i]).filter((r) => r.regular != null && prev.get(r.item_id) != null).map((r) => r.regular - prev.get(r.item_id));
+      const daily = (d) => at(d).filter((r) => r.level !== "eia");   // EIA is weekly, so only AAA's daily items count here
+      const prev = new Map(daily(dates[i - 1]).map((r) => [r.item_id, r.regular]));
+      const diffs = daily(dates[i]).filter((r) => r.regular != null && prev.get(r.item_id) != null).map((r) => r.regular - prev.get(r.item_id));
       if (diffs.length) days.push({ date: dates[i], from: dates[i - 1], avg: mean(diffs), n: diffs.length,
         up: diffs.filter((d) => d > 0).length, down: diffs.filter((d) => d < 0).length });
     }
     if (!days.length) {
       finding("The day with the biggest move will show after a second day of data",
         `A move needs two days; the history has ${nDays} so far.`,
-        `for each pair of consecutive dates in history.csv, average the change in <code>regular</code> over the items present on both dates.`,
+        `for each pair of consecutive dates in history.csv, average the change in <code>regular</code> over the AAA items present on both dates.`,
         (el) => { el.innerHTML = '<p class="empty-note">Waiting for more days of history.</p>'; });
     } else {
       const big = days.reduce((m, d) => (Math.abs(d.avg) > Math.abs(m.avg) ? d : m));
@@ -175,7 +176,7 @@
         `Comparing each run with the one before it, the largest average change in the regular price came on ${fmtDate(big.date)} (vs. ${fmtDate(big.from)}):
          ${signed(big.avg)} per gallon averaged over ${big.n} items, with ${big.up} rising and ${big.down} falling.
          Across all ${days.length} day-to-day comparisons, the average daily move was ${signed(mean(days.map((d) => d.avg)))}.`,
-        `for each pair of consecutive dates, take every item_id with a <code>regular</code> price on both dates, compute new − old, and average those changes. The heading names the date whose average has the largest absolute value.`,
+        `for each pair of consecutive dates, take every AAA item_id (<code>level</code> is not <code>eia</code>, because EIA only updates weekly) with a <code>regular</code> price on both dates, compute new − old, and average those changes. The heading names the date whose average has the largest absolute value.`,
         (el) => GP.columnChart(el, days.map((d) => ({ label: d3.timeFormat("%b %-d")(d3.timeParse("%Y-%m-%d")(d.date)), value: +d.avg.toFixed(4),
           color: d.avg > 0 ? UP : DOWN, tip: `<div class="t-title">${fmtDate(d.date)}</div>Average change ${signed(d.avg)}<br>${d.up} up · ${d.down} down · ${d.n} items` })),
           { yFormat: (v) => signed(v, 3), aria: "Average daily change" }));
@@ -244,6 +245,31 @@
           { name: "Max − min", short: "Max − min", color: SERIES[0], points: spread.map((s) => ({ date: s.date, value: s.gap })) },
           { name: "Standard deviation", short: "Std. deviation", color: SERIES[1], points: spread.map((s) => ({ date: s.date, value: s.sd })) },
         ], { height: 260, zero: true, aria: "Spread between states over time" }));
+    }
+  }
+
+  // 8. The two sources side by side: AAA (daily) vs. EIA (weekly) for the same states
+  {
+    const day = [...dates].reverse().find((d) => at(d, "eia").length && at(d, "state").length);
+    const pairs = day ? at(day, "eia").filter((e) => e.state && /^EIA-[a-z-]+$/.test(e.item_id) && GP.STATE_NAMES[e.state] === e.item.replace(" (EIA weekly)", "") && e.regular != null)
+      .map((e) => ({ e, a: at(day, "state").find((r) => r.item_id === e.state) })).filter((p) => p.a && p.a.regular != null)
+      .map((p) => ({ ...p, d: +(p.a.regular - p.e.regular).toFixed(4) })).sort((x, y) => y.d - x.d) : [];
+    const usA = day && (byDate.get(day) || []).find((r) => r.item_id === "US");
+    const usE = day && (byDate.get(day) || []).find((r) => r.item_id === "EIA-US");
+    if (pairs.length) {
+      const avgAbs = mean(pairs.map((p) => Math.abs(p.d)));
+      const far = pairs.reduce((m, p) => (Math.abs(p.d) > Math.abs(m.d) ? p : m));
+      finding(
+        `AAA and the EIA agree to within ${cents(avgAbs)} a gallon on average for the states both track`,
+        `The tracker has two independent sources: AAA's daily averages and the EIA's weekly survey (prices for the week of ${fmtDate(pairs[0].e.price_date)}).
+         On ${fmtDate(day)}, for the ${pairs.length} states that both report, AAA's regular price was on average ${cents(avgAbs)} away from the EIA's.
+         The widest gap was in ${esc(GP.STATE_NAMES[far.e.state])}: AAA ${money(far.a.regular)} vs. EIA ${money(far.e.regular)}.
+         ${usA && usE && usA.regular != null && usE.regular != null ? `For the whole U.S., AAA said ${money(usA.regular)} and the EIA said ${money(usE.regular)}.` : ""}`,
+        `on ${day}, match each EIA state row (<code>level = eia</code>, e.g. <code>EIA-california</code>) with the AAA state row for the same state (<code>CA</code>);
+         difference = AAA <code>regular</code> − EIA <code>regular</code>. The average uses the absolute differences.`,
+        (el) => GP.barChart(el, pairs.map((p) => ({ label: GP.STATE_NAMES[p.e.state], value: p.d, color: p.d > 0 ? UP : DOWN,
+          tip: `<div class="t-title">${esc(GP.STATE_NAMES[p.e.state])}</div>AAA ${money(p.a.regular)}<br>EIA ${money(p.e.regular)} (week of ${fmtDate(p.e.price_date)})` })),
+          { left: 130, valueFormat: (v) => signed(v, 3), tickFormat: (v) => signed(v, 2), aria: "AAA minus EIA by state" }));
     }
   }
 })();

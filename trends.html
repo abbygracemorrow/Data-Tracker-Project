@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trends · Gas Price Tracker</title>
+<meta name="author" content="Abby Morrow">
 <meta name="description" content="Daily AAA gas prices for every U.S. state and 470+ metro areas.">
 <meta name="theme-color" content="#7ea7bf">
 <link rel="manifest" href="manifest.webmanifest">
@@ -57,7 +58,8 @@
 
   <div id="findings"></div>
 </main>
-<footer>Prices: <a href="https://gasprices.aaa.com/">AAA Gas Prices</a>, collected once a day by a GitHub Actions pipeline. Every number on this site is computed in your browser from <a href="data/history.csv">data/history.csv</a> and <a href="data/status.json">data/status.json</a>.</footer>
+<footer>Prices: <a href="https://gasprices.aaa.com/">AAA Gas Prices</a> (daily) and the <a href="https://www.eia.gov/petroleum/gasdiesel/">U.S. EIA</a> (weekly), collected once a day by a GitHub Actions pipeline. Every number on this site is computed in your browser from <a href="data/history.csv">data/history.csv</a> and <a href="data/status.json">data/status.json</a>.
+<span class="byline">Built by Abby Morrow</span></footer>
 <script src="assets/vendor/d3.min.js"></script>
 <script src="assets/common.js"></script>
 <script src="assets/trends.js"></script>

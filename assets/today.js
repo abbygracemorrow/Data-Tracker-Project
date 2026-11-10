@@ -18,7 +18,7 @@
 
   // ------------------------------------------------------------- tiles
   const shortDate = (iso) => (iso ? d3.timeFormat("%b %-d")(d3.timeParse("%Y-%m-%d")(iso)) : "–");
-  const nat = data.latest.get("US");
+  const nat = data.latest.get("US") || data.latest.get("EIA-US");   // EIA is the backup if AAA failed
   const natChange = GP.change(data, "US");
   const okSources = st.sources.filter((s) => s.ok).length;
   const tiles = [
@@ -30,13 +30,24 @@
     { label: "Prices as of", value: shortDate((nat || {}).price_date || data.latestDate),
       sub: `the date AAA posted these averages (downloaded ${shortDate(st.latest_date || data.latestDate)})` },
     { label: "Items in latest run", value: st.items, sub: "1 national, states and metro areas" },
-    { label: "Days with data", value: st.days_with_success, sub: "since " + fmtDate(st.first_run_date) },
+    { label: "Days with data", value: st.days_with_success, sub: `<span id="first-run">since ${fmtDate(st.first_run_date)} (UTC)</span>` },
     { label: "Sources OK", value: `${okSources} / ${st.sources.length}`, sub: okSources === st.sources.length ? "all sources succeeded" : `${st.sources.length - okSources} failed` },
     { label: "New today", value: st.new_today.length, sub: st.new_today.slice(0, 3).map((i) => esc(i.item)).join(", ") || "no items appeared" },
     { label: "Gone today", value: st.gone_today.length, sub: st.gone_today.slice(0, 3).map((i) => esc(i.item)).join(", ") || "no items disappeared" },
   ];
   document.getElementById("tiles").innerHTML = tiles.map((t) =>
     `<div class="tile ${t.cls || ""}"><div class="label">${t.label}</div><div class="value" ${t.small ? 'style="font-size:1.05rem"' : ""}>${t.value}</div><div class="sub">${t.sub}</div></div>`).join("");
+
+  // The first run's time in the visitor's own time zone (history dates are UTC dates, so an
+  // evening run in the Americas is already the next day in UTC). Read from data/source_log.csv.
+  fetch("data/source_log.csv", { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((text) => {
+    const first = d3.csvParse(text).map((l) => l.run_time).filter(Boolean).sort()[0];
+    if (!first) return;
+    const t = new Date(first);
+    document.getElementById("first-run").textContent = "since " +
+      t.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) + ", your time";
+    document.getElementById("first-run").title = `First run ${first} (UTC date ${st.first_run_date})`;
+  }).catch(() => {});
 
   // ------------------------------------------------------------- sources
   document.getElementById("sources-summary").textContent =
@@ -63,7 +74,7 @@
 
   // ------------------------------------------------------------- all items table
   const allTable = document.getElementById("all-table");
-  const levelOrder = { national: 0, state: 1, metro: 2 };
+  const levelOrder = { national: 0, state: 1, metro: 2, eia: 3 };
   function drawAll() {
     const lvl = document.getElementById("all-level").value;
     const rows = [...data.latest.values()].filter((r) => !lvl || r.level === lvl)
