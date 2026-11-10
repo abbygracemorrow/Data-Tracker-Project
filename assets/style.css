@@ -325,11 +325,18 @@ footer { border: 0; background: none; }
 }
 
 /* footer: a small stars-and-stripes ribbon above the byline */
-footer::before { content: ""; display: block; width: 132px; height: 14px; margin: 0 auto .9rem; border-radius: 3px;
-  background:
-    radial-gradient(circle at 7px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 17px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 27px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 37px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 12px 9px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 22px 9px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 32px 9px, #fffaf0 1.3px, transparent 1.8px),
-    linear-gradient(#1f3b57, #1f3b57) 0 0 / 44px 100% no-repeat,
-    repeating-linear-gradient(180deg, #c8322b 0 2px, #fffaf0 2px 4px);
-  box-shadow: 0 2px 6px rgba(31, 59, 87, .15); }
+footer::before { content: ""; display: block; width: 120px; height: 6px; margin: 0 auto 1rem; border-radius: 3px;
+  background: linear-gradient(90deg, var(--red) 0 33.3%, #fffaf0 33.3% 66.6%, var(--sky-ink) 66.6% 100%);
+  box-shadow: 0 0 0 1px rgba(31, 59, 87, .12); }
 @media (max-width: 700px) { .page-head { padding-bottom: 6rem; } }
-@media (max-width: 700px) { .page-head .scene .flag { display: none; } }
+
+/* flag colors without the flag: red and navy accents */
+.tile { border-top-color: var(--sky-ink); }
+.tile:nth-child(odd) { border-top-color: var(--red); }
+.finding:nth-of-type(odd) { border-left-color: var(--red); }
+.finding:nth-of-type(even) { border-left-color: var(--sky-ink); }
+
+/* Today banner: the pump and the GAS sign side by side at the roadside */
+.roadside { display: flex; align-items: flex-end; gap: 1.6rem; }
+.roadside .pump-holder .sign { height: 180px; margin: 0 0 -3.6rem; }
+@media (max-width: 900px) { .roadside .pump-holder { display: none; } }

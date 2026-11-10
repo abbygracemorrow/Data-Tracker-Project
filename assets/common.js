@@ -31,19 +31,19 @@
   const DIVERGING = ["#1d5a85", "#4f8fbd", "#a9cbe2", "#efe7d6", "#efb3a6", "#d5574a", "#9c2420"];
   const UP = "#c8322b", DOWN = "#2c7bb6", NODATA = "#e9e0cc";
 
-  /** An original motel-style sign: letters in round discs, alternating sky blue and cream with red rims.
+  /** An original motel-style sign: cream letters in red round discs (bubbles) with cream rims.
       vertical: stacked on a pole with a starburst on top (for page banners);
       horizontal: a row of discs (for the logo). */
   function signSVG(word, vertical) {
     const letters = [...word];
-    const fills = ["#b3cfdd", "#f6eedf"];
+    const fills = ["#c8322b", "#c8322b"];
     if (!vertical) {
       const r = 17, gap = 3, w = letters.length * (2 * r + gap) + 4;
       return `<svg viewBox="0 0 ${w} ${2 * r + 6}" aria-hidden="true">` + letters.map((ch, i) => {
         const cx = 2 + r + i * (2 * r + gap);
         return `<circle cx="${cx}" cy="${r + 3}" r="${r}" fill="${fills[i % 2]}" stroke="#fffaf0" stroke-width="3"/>
           <text x="${cx}" y="${r + 3}" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="20"
-            fill="#fffaf0" stroke="#1f3b57" stroke-width="1.1" paint-order="stroke">${ch}</text>`;
+            fill="#fffaf0" stroke="#7d1d18" stroke-width="0.8" paint-order="stroke">${ch}</text>`;
       }).join("") + "</svg>";
     }
     const r = 30, step = 70, top = 78, h = top + letters.length * step + 30, cx = 46, pole = 98;
@@ -61,7 +61,7 @@
         return `<g stroke="#fffaf0" stroke-width="2"><line x1="${cx + r - 2}" x2="${pole}" y1="${cy - 12}" y2="${cy - 12}"/><line x1="${cx + r - 2}" x2="${pole}" y1="${cy + 12}" y2="${cy + 12}"/></g>
           <circle cx="${cx}" cy="${cy}" r="${r}" fill="${fills[i % 2]}" stroke="#fffaf0" stroke-width="5"/>
           <text x="${cx}" y="${cy}" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="36"
-            fill="#fffaf0" stroke="#1f3b57" stroke-width="1.6" paint-order="stroke">${ch}</text>`;
+            fill="#fffaf0" stroke="#7d1d18" stroke-width="1.2" paint-order="stroke">${ch}</text>`;
       }).join("")}
     </svg>`;
   }
@@ -98,53 +98,6 @@
     </svg>`;
   }
 
-  /** A weathered, gently waving American flag on a wooden pole (original drawing).
-      Faded colors, a soft wave that grows away from the pole, and a grainy, sun-bleached texture. */
-  function flagSVG(px, py) {
-    const W = 132, H = 74, step = 4;
-    const wave = (x, y) => 4.2 * Math.sin((x / W) * Math.PI * 2.1 + y / 40) * (0.25 + x / W) + (x / W) * 7;
-    const edge = (y) => d3.range(0, W + 0.1, step).map((x) => [x, y + wave(x, y)]);
-    const band = (y0, y1, x1 = W) => {
-      const top = edge(y0).filter(([x]) => x <= x1), bot = edge(y1).filter(([x]) => x <= x1).reverse();
-      return "M" + [...top, ...bot].map(([x, y]) => `${(px + x).toFixed(1)},${(py + y).toFixed(1)}`).join("L") + "Z";
-    };
-    const sh = H / 13;
-    const stripes = d3.range(13).map((k) => `<path d="${band(k * sh, (k + 1) * sh + 0.4)}" fill="${k % 2 ? "#f0e4cc" : "#b4544b"}"/>`).join("");
-    const cw = W * 0.4, ch = sh * 7;
-    const stars = [];
-    for (let r = 0; r < 5; r++) for (let c = 0; c < (r % 2 ? 5 : 6); c++) {
-      const x = 5 + c * 9 + (r % 2 ? 4.5 : 0), y = 4.5 + r * 7.6;
-      stars.push(`<circle cx="${(px + x).toFixed(1)}" cy="${(py + y + wave(x, y)).toFixed(1)}" r="1.25" fill="#efe5cf"/>`);
-    }
-    const outline = band(0, H);
-    return `<g class="flag">
-      <defs>
-        <clipPath id="flag-clip"><path d="${outline}"/></clipPath>
-        <filter id="weather" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/>
-          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.27  0 0 0 0 0.2  0 0 0 0.55 0"/>
-        </filter>
-        <linearGradient id="fold" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#000" stop-opacity=".0"/><stop offset=".3" stop-color="#000" stop-opacity=".10"/>
-          <stop offset=".55" stop-color="#fff" stop-opacity=".10"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity=".06"/>
-        </linearGradient>
-        <linearGradient id="pole" x1="0" x2="1"><stop offset="0" stop-color="#8a6a4c"/><stop offset=".5" stop-color="#b08b64"/><stop offset="1" stop-color="#6e5238"/></linearGradient>
-      </defs>
-      <rect x="${px - 5}" y="${py - 6}" width="4.5" height="${330 - py + 16}" rx="2" fill="url(#pole)"/>
-      <circle cx="${px - 2.8}" cy="${py - 8}" r="4" fill="#c9a86a"/>
-      <g opacity=".93">
-        ${stripes}
-        <path d="${band(0, ch, cw)}" fill="#34475f"/>
-        ${stars.join("")}
-        <g clip-path="url(#flag-clip)">
-          <rect x="${px}" y="${py - 10}" width="${W}" height="${H + 30}" fill="url(#fold)"/>
-          <rect x="${px}" y="${py - 10}" width="${W}" height="${H + 30}" filter="url(#weather)" opacity=".55"/>
-        </g>
-      </g>
-      <ellipse cx="${px - 3}" cy="${336}" rx="16" ry="4" fill="#8f7259" opacity=".35"/>
-    </g>`;
-  }
-
   /** The desert-sunset scene behind every page banner (original drawing). */
   function sceneSVG() {
     return `<svg class="scene" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
@@ -172,7 +125,6 @@
         <line x1="1104" y1="356" x2="1124" y2="369"/><line x1="1150" y1="386" x2="1182" y2="406"/>
       </g>
       <path d="M1045 318 L708 440" stroke="#fffaf0" stroke-width="2" opacity=".7"/>
-      ${flagSVG(905, 168)}
     </svg>`;
   }
 
