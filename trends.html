@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trends · Gas Price Tracker</title>
+<meta name="description" content="Daily AAA gas prices for every U.S. state and 470+ metro areas.">
+<meta name="theme-color" content="#0d366b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html"><img src="assets/icons/icon-192.png" alt="">Gas Price Tracker</a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Today</a>
+      <a href="browse.html">Browse</a>
+      <a href="trends.html" aria-current="page">Trends</a>
+    </nav>
+    <button id="install-btn" type="button">Install app</button>
+  </div>
+</header>
+<div class="offline-banner">You are offline. Showing the data this device loaded last time.</div>
+<main>
+  <div class="page-head">
+    <h1>Trends</h1>
+    <p>A report on the history the pipeline has built. Every number and chart on this page is computed in your browser from
+      <a href="data/history.csv">data/history.csv</a>, so the page updates as the history grows. History so far:
+      <strong id="span-days">–</strong>.</p>
+  </div>
+
+  <section class="card">
+    <h2>Prices over time</h2>
+    <div class="explorer">
+      <div>
+        <div class="controls" style="flex-direction:column;align-items:stretch">
+          <label>Value <select id="ex-col"></select></label>
+          <label>Find items <input type="search" id="ex-q" placeholder="Type a city or state…"></label>
+        </div>
+        <div class="picker" id="ex-picker"></div>
+        <p class="muted small">Pick up to 8 items. <button class="btn" type="button" id="ex-clear">Clear</button></p>
+      </div>
+      <div>
+        <div class="chips" id="ex-chips"></div>
+        <div class="chart" id="ex-chart"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="findings"></div>
+</main>
+<footer>Prices: <a href="https://gasprices.aaa.com/">AAA Gas Prices</a>, collected once a day by a GitHub Actions pipeline. Every number on this site is computed in your browser from <a href="data/history.csv">data/history.csv</a> and <a href="data/status.json">data/status.json</a>.</footer>
+<script src="assets/vendor/d3.min.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/trends.js"></script>
+</body>
+</html>
