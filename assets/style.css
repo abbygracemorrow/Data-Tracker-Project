@@ -336,3 +336,35 @@ footer::before { content: ""; display: block; width: 120px; height: 6px; margin:
 .finding:nth-of-type(odd) { border-left-color: var(--red); }
 .finding:nth-of-type(even) { border-left-color: var(--sky-ink); }
 
+
+/* =====================================================================
+   Smooth scrolling: nothing ends in a hard line. The nav bar fades into the page,
+   the banner fades out instead of being cut, cards are borderless, accent bars
+   fade at their ends, and sections ease into view as you scroll.
+   ===================================================================== */
+.topbar { background: rgba(250, 246, 244, .86); border-bottom: 0; box-shadow: none; }
+.topbar::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 22px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(250, 246, 244, .86), rgba(250, 246, 244, 0)); }
+
+.page-head { clip-path: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 72%, rgba(0, 0, 0, .55) 86%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 0, #000 72%, rgba(0, 0, 0, .55) 86%, transparent 100%); }
+
+.card { border: 0; box-shadow: 0 2px 6px rgba(70, 40, 60, .03), 0 18px 40px -24px rgba(70, 40, 60, .22); }
+.tile { border: 0; box-shadow: 0 2px 6px rgba(70, 40, 60, .03), 0 14px 30px -20px rgba(70, 40, 60, .24); }
+.tile::before { display: block; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; border-radius: 0;
+  background: linear-gradient(90deg, rgba(31, 59, 87, 0), var(--sky-ink) 30%, var(--sky-ink) 70%, rgba(31, 59, 87, 0)); }
+.tile:nth-child(odd)::before { background: linear-gradient(90deg, rgba(164, 60, 47, 0), var(--red) 30%, var(--red) 70%, rgba(164, 60, 47, 0)); }
+.tile { position: relative; overflow: hidden; }
+.tile.hero { box-shadow: 0 2px 6px rgba(70, 40, 60, .03), 0 16px 34px -20px rgba(126, 45, 34, .45); }
+.tile.hero::before { height: 4px; background: linear-gradient(90deg, rgba(164, 60, 47, 0), var(--red) 20%, var(--red) 80%, rgba(164, 60, 47, 0)); }
+.table-wrap { border: 0; box-shadow: none; }
+.finding { border-left: 0; }
+
+/* sections ease into view as they scroll in */
+.js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+.js-reveal .reveal.in { opacity: 1; transform: none; }
+.finding { position: relative; }
+.finding::before { content: ""; position: absolute; left: 0; top: 10%; bottom: 10%; width: 3px;
+  background: linear-gradient(180deg, rgba(164, 60, 47, 0), var(--red), rgba(164, 60, 47, 0)); }
+.finding:nth-of-type(even)::before { background: linear-gradient(180deg, rgba(31, 59, 87, 0), var(--sky-ink), rgba(31, 59, 87, 0)); }

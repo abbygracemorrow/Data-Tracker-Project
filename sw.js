@@ -1,7 +1,7 @@
 /* Service worker: makes the site installable and lets it open offline.
    Strategy: network first for everything (so online visitors always get fresh data),
    falling back to the cached copy when the network is unavailable. */
-const CACHE = "gas-tracker-v13";
+const CACHE = "gas-tracker-v14";
 const SHELL = [
   "./", "index.html", "browse.html", "trends.html", "manifest.webmanifest",
   "assets/style.css", "assets/common.js", "assets/today.js", "assets/browse.js", "assets/trends.js",

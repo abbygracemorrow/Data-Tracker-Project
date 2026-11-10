@@ -79,25 +79,14 @@
 
   /** The desert-sunset scene behind every page banner (original drawing). */
   function sceneSVG() {
-    // sunset clouds: soft clumps lit pink-orange on top, with lavender undersides
-    const cloud = (cx, cy, w, k = 1) => [[-0.42, 0.25, 0.26, 0.5], [-0.15, 0, 0.32, 0.75], [0.16, 0.12, 0.3, 0.6], [0.42, 0.3, 0.22, 0.42]]
-      .map(([dx, dy, rx, ry]) => `<ellipse cx="${(cx + dx * w).toFixed(0)}" cy="${(cy + dy * 22 * k).toFixed(0)}" rx="${(rx * w).toFixed(0)}" ry="${(ry * 22 * k).toFixed(0)}"/>`).join("");
     return `<svg class="scene" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
         <radialGradient id="sun" cx="0.62" cy="0.7" r="0.42"><stop offset="0" stop-color="#ffd7a3" stop-opacity=".95"/><stop offset=".5" stop-color="#ffb489" stop-opacity=".35"/><stop offset="1" stop-color="#ffb489" stop-opacity="0"/></radialGradient>
-        <linearGradient id="cloud-lit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffbb8c"/><stop offset=".55" stop-color="#f08a7a"/><stop offset="1" stop-color="#b9739a"/></linearGradient>
-        <linearGradient id="cloud-far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6a48e"/><stop offset="1" stop-color="#a77aa8"/></linearGradient>
         <linearGradient id="peak" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd2ad"/><stop offset=".55" stop-color="#f6b394"/><stop offset="1" stop-color="#d98877"/></linearGradient>
         <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9ab86"/><stop offset="1" stop-color="#cc8a6d"/></linearGradient>
         <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7f88"/><stop offset="1" stop-color="#5d5460"/></linearGradient>
-        <filter id="soft"><feGaussianBlur stdDeviation="3.5"/></filter>
-        <filter id="haze"><feGaussianBlur stdDeviation="8"/></filter>
       </defs>
       <rect width="1440" height="440" fill="url(#sun)"/>
-      <g fill="url(#cloud-far)" opacity=".55" filter="url(#haze)">${cloud(220, 70, 260, 0.8)}${cloud(1180, 60, 300, 0.7)}${cloud(700, 150, 340, 0.6)}</g>
-      <g fill="url(#cloud-lit)" opacity=".85" filter="url(#soft)">
-        ${cloud(1010, 95, 230)}${cloud(1290, 140, 200, 0.9)}${cloud(420, 165, 210, 0.8)}${cloud(860, 200, 260, 0.7)}${cloud(140, 210, 180, 0.6)}
-      </g>
       <path d="M0 292 L140 270 L260 284 L380 258 L500 278 L620 262 L720 280 L800 266 L1440 290 L1440 320 L0 320 Z" fill="#c487a2" opacity=".75"/>
       <path d="M700 300 L820 268 L880 236 L930 214 L962 206 L1000 210 L1040 226 L1090 250 L1150 270 L1230 286 L1300 300 Z" fill="url(#peak)"/>
       <path d="M962 206 L955 236 L938 262 L952 290 L930 300 L1000 300 L985 268 L1002 240 L1000 210 Z" fill="#c9786a" opacity=".55"/>
@@ -421,8 +410,22 @@
     console.error(err);
   }
 
+  /** Sections fade gently into view as they scroll in (skipped if the visitor prefers reduced motion). */
+  function revealOnScroll() {
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.documentElement.classList.add("js-reveal");
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
+    const watch = (el) => { if (!el.dataset.reveal) { el.dataset.reveal = "1"; el.classList.add("reveal"); io.observe(el); } };
+    const scan = () => document.querySelectorAll("main .card, main .grid-2 > *").forEach(watch);
+    scan();
+    new MutationObserver(scan).observe(document.querySelector("main") || document.body, { childList: true, subtree: true });
+  }
+
   setupChrome();
   drawSigns();
+  revealOnScroll();
   window.GP = { NUMERIC, LABELS, STATE_NAMES, SERIES, PRICE_RAMP, DIVERGING, UP, DOWN, NODATA, signSVG, loadData, change, moves,
     money, signed, pct, dirClass, arrow, fmtDate, fmtTime, esc, tooltip, barChart, lineChart, columnChart, showError };
 })();
