@@ -431,8 +431,22 @@ date,item_id,item,source,level,state,regular,midgrade,premium,diesel,regular_yes
 2026-11-10,PA-williamsport,"Williamsport, PA",aaa_pa,metro,PA,4.2483,4.5515,5.0497,6.4858,4.2682,4.3692,4.3508,3.0747,3.9446,2026-11-09
 2026-11-10,PA-york,"York, PA",aaa_pa,metro,PA,4.3175,4.6729,5.1395,6.5744,4.3205,4.3544,4.3446,3.2406,4.0439,2026-11-09
 2026-11-10,RI,Rhode Island,aaa_states,state,RI,4.0039,4.7813,5.1305,6.1765,,,,,,2026-11-09
+2026-11-10,RI-providence-fall-river-warwick-ri-only,"Providence-Fall River-Warwick (RI only), RI",aaa_ri,metro,RI,4.0039,4.7813,5.1305,6.1765,4.0243,4.1199,4.2989,2.9512,3.7846,2026-11-09
 2026-11-10,SC,South Carolina,aaa_states,state,SC,3.4999,3.9318,4.3417,5.6337,,,,,,2026-11-09
+2026-11-10,SC-aiken-edgfield-county,"Aiken-Edgfield County, SC",aaa_sc,metro,SC,3.3731,3.8169,4.2801,5.5717,3.4061,3.5966,4.0916,2.7452,3.3757,2026-11-09
+2026-11-10,SC-charleston-north-charleston,"Charleston-North Charleston, SC",aaa_sc,metro,SC,3.5189,3.9926,4.3898,5.7325,3.5389,3.7077,4.0493,2.6788,3.4828,2026-11-09
+2026-11-10,SC-columbia,"Columbia, SC",aaa_sc,metro,SC,3.5350,3.9805,4.3898,5.6731,3.5456,3.6681,4.0737,2.7353,3.4023,2026-11-09
+2026-11-10,SC-florence,"Florence, SC",aaa_sc,metro,SC,3.5645,4.0552,4.5088,5.6175,3.5845,3.7429,3.9913,2.6452,3.4427,2026-11-09
+2026-11-10,SC-greenville,"Greenville, SC",aaa_sc,metro,SC,3.3649,3.7627,4.1334,5.5322,3.3773,3.5013,4.0567,2.7307,3.3341,2026-11-09
+2026-11-10,SC-hilton-head-bluffton,"Hilton Head-Bluffton, SC",aaa_sc,metro,SC,3.7296,4.1434,4.6407,5.7797,3.7548,3.8577,4.0915,2.8129,3.4938,2026-11-09
+2026-11-10,SC-myrtle-beach,"Myrtle Beach, SC",aaa_sc,metro,SC,3.4436,3.9338,4.3379,5.6672,3.4469,3.6152,3.9500,2.5928,3.3951,2026-11-09
+2026-11-10,SC-rock-hill,"Rock Hill, SC",aaa_sc,metro,SC,3.3866,3.8371,4.2097,5.5291,3.4056,3.5620,4.0631,2.6861,3.3870,2026-11-09
+2026-11-10,SC-spartanburg,"Spartanburg, SC",aaa_sc,metro,SC,3.3913,3.8089,4.2125,5.4650,3.4127,3.5618,4.0579,2.7556,3.3775,2026-11-09
+2026-11-10,SC-sumter,"Sumter, SC",aaa_sc,metro,SC,3.7561,4.1613,4.5361,5.7754,3.7592,3.8513,4.0654,2.7814,3.4090,2026-11-09
 2026-11-10,SD,South Dakota,aaa_states,state,SD,3.9237,4.1604,4.7345,5.8508,,,,,,2026-11-09
+2026-11-10,SD-north-sioux-city,"North Sioux City, SD",aaa_sd,metro,SD,3.8046,3.8490,4.3657,5.8890,3.8665,3.9890,4.2282,2.8147,3.4615,2026-11-09
+2026-11-10,SD-rapid-city,"Rapid City, SD",aaa_sd,metro,SD,3.9418,4.1685,4.7237,5.9813,3.9589,4.0741,4.1900,2.9421,3.5271,2026-11-09
+2026-11-10,SD-sioux-falls,"Sioux Falls, SD",aaa_sd,metro,SD,3.8220,4.3321,4.8103,5.6831,3.8267,4.0056,4.2064,2.7620,3.3874,2026-11-09
 2026-11-10,TN,Tennessee,aaa_states,state,TN,3.5962,4.0539,4.4687,5.8245,,,,,,2026-11-09
 2026-11-10,TN-chattanooga-tn-only,"Chattanooga (TN only), TN",aaa_tn,metro,TN,3.3375,3.7514,4.1166,5.4603,3.3584,3.5081,3.8965,2.5066,3.2859,2026-11-09
 2026-11-10,TN-clarksville-hopkinsville-tn-only,"Clarksville-Hopkinsville (TN only), TN",aaa_tn,metro,TN,3.3803,3.8667,4.2213,5.7606,3.4190,3.5150,3.9120,2.5317,3.4570,2026-11-09
