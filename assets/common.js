@@ -298,23 +298,60 @@
     window.addEventListener("online", setOffline);
     window.addEventListener("offline", setOffline);
     setOffline();
+    // Install button. Chrome and Edge fire "beforeinstallprompt", so the button installs in one
+    // click. Safari has no such event: Apple only lets the visitor install from the browser's own
+    // menu, so on Safari the button opens short instructions instead.
     let deferred;
     const btn = document.getElementById("install-btn");
+    const ua = navigator.userAgent;
+    const installed = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+    const isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari = /safari/i.test(ua) && !/chrome|chromium|crios|fxios|edg|opr|android/i.test(ua);
+    if (btn && !installed && (isIOS || isSafari)) btn.style.display = "inline-block";
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferred = e;
       if (btn) btn.style.display = "inline-block";
     });
+    window.addEventListener("appinstalled", () => { if (btn) btn.style.display = "none"; });
     if (btn) btn.addEventListener("click", async () => {
-      if (!deferred) return;
-      deferred.prompt();
-      await deferred.userChoice;
-      deferred = null;
-      btn.style.display = "none";
+      if (deferred) {
+        deferred.prompt();
+        await deferred.userChoice;
+        deferred = null;
+        btn.style.display = "none";
+        return;
+      }
+      installHelp(isIOS);
     });
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
     }
+  }
+
+  /** Step-by-step install instructions for Safari (iPhone/iPad, or Mac). */
+  function installHelp(isIOS) {
+    let dlg = document.getElementById("install-help");
+    if (!dlg) {
+      dlg = document.createElement("dialog");
+      dlg.id = "install-help";
+      dlg.className = "install-help";
+      document.body.appendChild(dlg);
+      dlg.addEventListener("click", (e) => { if (e.target === dlg || e.target.closest("[data-close]")) dlg.close(); });
+    }
+    const share = `<svg width="16" height="18" viewBox="0 0 16 20" aria-hidden="true" style="vertical-align:-3px"><path d="M8 1v12M4 5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 8H1.5v10.5h13V8H13" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>`;
+    const steps = isIOS
+      ? [`Tap the <strong>Share</strong> button ${share} in Safari's toolbar.`,
+         "Scroll down and tap <strong>Add to Home Screen</strong>.",
+         "Tap <strong>Add</strong>. Gas Price Tracker now opens from your home screen like an app, even offline."]
+      : [`In Safari's menu bar, click <strong>File</strong> → <strong>Add to Dock…</strong> (or click the <strong>Share</strong> button ${share} → <strong>Add to Dock</strong>).`,
+         "Click <strong>Add</strong>.",
+         "Gas Price Tracker now opens from your Dock and Launchpad in its own window, even offline. (Needs macOS Sonoma or later.)"];
+    dlg.innerHTML = `<div class="kicker">Install the app</div><h2>Add Gas Price Tracker to your ${isIOS ? "Home Screen" : "Dock"}</h2>
+      <p>Safari installs web apps from its own menu, so there's no one-click button here. It takes three steps:</p>
+      <ol>${steps.map((x) => `<li>${x}</li>`).join("")}</ol>
+      <button type="button" class="btn" data-close>Got it</button>`;
+    dlg.showModal();
   }
 
   function showError(err) {

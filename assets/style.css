@@ -205,3 +205,11 @@ footer .byline { display: block; margin-top: .3rem; font-family: var(--display);
 .empty-note { color: var(--muted); font-family: var(--type); }
 footer { max-width: 1240px; margin: 0 auto 2rem; padding: .8rem 1rem; color: var(--ink-2); font-size: .82rem; text-align: center;
   font-family: var(--type); background: var(--paper); border-radius: 10px; border: 1px dashed var(--line); width: calc(100% - 2rem); }
+
+/* ---- install instructions (Safari) ---- */
+.install-help { max-width: 440px; width: calc(100% - 2rem); border: 0; border-radius: var(--radius); padding: 1.3rem 1.4rem;
+  background: var(--paper); color: var(--ink); border-top: 8px solid var(--red); box-shadow: 0 20px 50px rgba(31, 59, 87, .35); }
+.install-help::backdrop { background: rgba(31, 59, 87, .45); }
+.install-help ol { padding-left: 1.3rem; margin: .4rem 0 1rem; }
+.install-help li { margin-bottom: .5rem; }
+.install-help .btn { background: var(--red); color: var(--paper); border-color: var(--red); }
