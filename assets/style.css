@@ -228,8 +228,8 @@ footer { max-width: 1240px; margin: 0 auto 2rem; padding: .8rem 1rem; color: var
   --soft-shadow: 0 1px 2px rgba(31, 59, 87, .04), 0 12px 30px -18px rgba(31, 59, 87, .22);
 }
 body {
-  background: linear-gradient(180deg, #eef4f8 0, #f7f9fb 900px, #fbf8f2 100%);
-  background-image: none; background-color: #f8f8f5;
+  background: linear-gradient(180deg, #f7eef0 0, #faf6f4 900px, #fbf8f2 100%);
+  background-color: #faf6f4;
 }
 
 /* light, quiet nav bar */
@@ -287,15 +287,15 @@ footer { border: 0; background: none; }
    ===================================================================== */
 :root { --sunset: #f3c9a8; }
 
-/* banner sky: clear blue fading to a pale warm horizon; the desert scene sits on top */
+/* banner sky: a desert sunset, lavender overhead fading through pink to a glowing coral horizon */
 .page-head {
-  background: linear-gradient(180deg, #5b93c4 0%, #84b3d8 34%, #b8d4e8 52%, #e6eef2 62%, #f4ead8 70%, #e7c9a2 80%);
+  background: linear-gradient(180deg, #7473b8 0%, #9787c6 22%, #c08fbd 40%, #e8959a 54%, #f5a684 63%, #f9be92 69%, #e9ab86 78%);
   padding-bottom: 8.5rem;
 }
 .page-head .scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .page-head > *:not(.scene) { position: relative; z-index: 1; }
-.page-head h1 { text-shadow: 0 2px 12px rgba(31, 59, 87, .35); }
-.page-head p { text-shadow: 0 1px 6px rgba(31, 59, 87, .45); }
+.page-head h1 { text-shadow: 0 2px 14px rgba(70, 40, 90, .45); }
+.page-head p { text-shadow: 0 1px 8px rgba(70, 40, 90, .6); }
 .page-head .sign { filter: drop-shadow(0 6px 10px rgba(31, 59, 87, .25)); }
 
 /* section markers: little red stars */

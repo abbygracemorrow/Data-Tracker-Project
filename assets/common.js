@@ -79,31 +79,41 @@
 
   /** The desert-sunset scene behind every page banner (original drawing). */
   function sceneSVG() {
+    // sunset clouds: soft clumps lit pink-orange on top, with lavender undersides
+    const cloud = (cx, cy, w, k = 1) => [[-0.42, 0.25, 0.26, 0.5], [-0.15, 0, 0.32, 0.75], [0.16, 0.12, 0.3, 0.6], [0.42, 0.3, 0.22, 0.42]]
+      .map(([dx, dy, rx, ry]) => `<ellipse cx="${(cx + dx * w).toFixed(0)}" cy="${(cy + dy * 22 * k).toFixed(0)}" rx="${(rx * w).toFixed(0)}" ry="${(ry * 22 * k).toFixed(0)}"/>`).join("");
     return `<svg class="scene" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
-        <radialGradient id="sun" cx="0.72" cy="0.66" r="0.32"><stop offset="0" stop-color="#fff3dc" stop-opacity=".85"/><stop offset="1" stop-color="#fff3dc" stop-opacity="0"/></radialGradient>
-        <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7c39b"/><stop offset="1" stop-color="#d6ad84"/></linearGradient>
-        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d8a8c"/><stop offset="1" stop-color="#5f5e62"/></linearGradient>
-        <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+        <radialGradient id="sun" cx="0.62" cy="0.7" r="0.42"><stop offset="0" stop-color="#ffd7a3" stop-opacity=".95"/><stop offset=".5" stop-color="#ffb489" stop-opacity=".35"/><stop offset="1" stop-color="#ffb489" stop-opacity="0"/></radialGradient>
+        <linearGradient id="cloud-lit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffbb8c"/><stop offset=".55" stop-color="#f08a7a"/><stop offset="1" stop-color="#b9739a"/></linearGradient>
+        <linearGradient id="cloud-far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6a48e"/><stop offset="1" stop-color="#a77aa8"/></linearGradient>
+        <linearGradient id="peak" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd2ad"/><stop offset=".55" stop-color="#f6b394"/><stop offset="1" stop-color="#d98877"/></linearGradient>
+        <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9ab86"/><stop offset="1" stop-color="#cc8a6d"/></linearGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7f88"/><stop offset="1" stop-color="#5d5460"/></linearGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="3.5"/></filter>
+        <filter id="haze"><feGaussianBlur stdDeviation="8"/></filter>
       </defs>
       <rect width="1440" height="440" fill="url(#sun)"/>
-      <g fill="#fff" opacity=".55" filter="url(#soft)">
-        <ellipse cx="300" cy="60" rx="180" ry="10"/><ellipse cx="420" cy="80" rx="120" ry="7"/>
-        <ellipse cx="980" cy="110" rx="200" ry="9"/><ellipse cx="1240" cy="190" rx="160" ry="7"/><ellipse cx="640" cy="220" rx="230" ry="6"/>
+      <g fill="url(#cloud-far)" opacity=".55" filter="url(#haze)">${cloud(220, 70, 260, 0.8)}${cloud(1180, 60, 300, 0.7)}${cloud(700, 150, 340, 0.6)}</g>
+      <g fill="url(#cloud-lit)" opacity=".85" filter="url(#soft)">
+        ${cloud(1010, 95, 230)}${cloud(1290, 140, 200, 0.9)}${cloud(420, 165, 210, 0.8)}${cloud(860, 200, 260, 0.7)}${cloud(140, 210, 180, 0.6)}
       </g>
-      <path d="M0 300 L120 280 L210 292 L330 262 L430 284 L560 270 L700 286 L820 256 L900 240 L960 252 L1040 238 L1130 266 L1250 250 L1340 268 L1440 258 L1440 320 L0 320 Z" fill="#9db9cf" opacity=".85"/>
-      <path d="M0 312 L90 300 L200 306 L300 290 L420 304 L520 296 L640 306 L760 292 L880 300 L1000 288 L1120 300 L1220 284 L1330 296 L1440 290 L1440 330 L0 330 Z" fill="#7d9cb5" opacity=".9"/>
+      <path d="M0 292 L140 270 L260 284 L380 258 L500 278 L620 262 L720 280 L800 266 L1440 290 L1440 320 L0 320 Z" fill="#c487a2" opacity=".75"/>
+      <path d="M700 300 L820 268 L880 236 L930 214 L962 206 L1000 210 L1040 226 L1090 250 L1150 270 L1230 286 L1300 300 Z" fill="url(#peak)"/>
+      <path d="M962 206 L955 236 L938 262 L952 290 L930 300 L1000 300 L985 268 L1002 240 L1000 210 Z" fill="#c9786a" opacity=".55"/>
+      <path d="M1040 226 L1052 256 L1078 280 L1100 300 L1150 300 L1110 274 L1090 250 Z" fill="#b8665a" opacity=".55"/>
+      <path d="M0 312 L110 296 L220 306 L330 290 L460 304 L560 294 L700 304 L840 292 L980 302 L1100 290 L1240 300 L1340 290 L1440 298 L1440 330 L0 330 Z" fill="#a8656a" opacity=".9"/>
       <rect y="318" width="1440" height="122" fill="url(#sand)"/>
-      <g fill="#8f9a68" opacity=".75">
+      <g fill="#8b7558" opacity=".7">
         <ellipse cx="80" cy="330" rx="22" ry="7"/><ellipse cx="230" cy="338" rx="30" ry="8"/><ellipse cx="410" cy="328" rx="18" ry="6"/>
         <ellipse cx="560" cy="342" rx="26" ry="8"/><ellipse cx="1300" cy="334" rx="24" ry="7"/><ellipse cx="1390" cy="346" rx="30" ry="9"/>
       </g>
       <path d="M1040 318 L1060 318 L1440 420 L1440 440 L700 440 Z" fill="url(#road)"/>
-      <g stroke="#f2c14e" stroke-width="3" stroke-linecap="round">
+      <g stroke="#f4c766" stroke-width="3" stroke-linecap="round">
         <line x1="1056" y1="324" x2="1062" y2="328"/><line x1="1074" y1="336" x2="1086" y2="344"/>
         <line x1="1104" y1="356" x2="1124" y2="369"/><line x1="1150" y1="386" x2="1182" y2="406"/>
       </g>
-      <path d="M1045 318 L708 440" stroke="#fffaf0" stroke-width="2" opacity=".7"/>
+      <path d="M1045 318 L708 440" stroke="#fff1e2" stroke-width="2" opacity=".7"/>
     </svg>`;
   }
 
