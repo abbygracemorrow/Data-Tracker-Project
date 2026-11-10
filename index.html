@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Today · Gas Price Tracker</title>
+<meta name="description" content="Daily AAA gas prices for every U.S. state and 470+ metro areas.">
+<meta name="theme-color" content="#0d366b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html"><img src="assets/icons/icon-192.png" alt="">Gas Price Tracker</a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html" aria-current="page">Today</a>
+      <a href="browse.html">Browse</a>
+      <a href="trends.html">Trends</a>
+    </nav>
+    <button id="install-btn" type="button">Install app</button>
+  </div>
+</header>
+<div class="offline-banner">You are offline. Showing the data this device loaded last time.</div>
+<main>
+  <div class="page-head">
+    <h1>Gas prices today</h1>
+    <p>AAA's average pump prices for every state and <span id="metro-count">470+</span> metro areas, collected once a day.
+      Prices are U.S. dollars per gallon. Changes compare the latest run (<span id="latest-date">–</span>)
+      with the previous run (<span id="prev-date">–</span>).</p>
+  </div>
+
+  <section class="tiles" id="tiles" aria-label="Run status"></section>
+
+  <section class="card">
+    <h2>Map of U.S. gas prices <span class="muted small" id="map-caption"></span></h2>
+    <div class="controls">
+      <span class="seg" id="fuel-seg" role="group" aria-label="Fuel">
+        <button type="button" data-v="regular" aria-pressed="true">Regular</button>
+        <button type="button" data-v="midgrade">Mid-grade</button>
+        <button type="button" data-v="premium">Premium</button>
+        <button type="button" data-v="diesel">Diesel</button>
+      </span>
+      <span class="seg" id="mode-seg" role="group" aria-label="Show">
+        <button type="button" data-v="price" aria-pressed="true">Price</button>
+        <button type="button" data-v="change">Change since previous run</button>
+        <button type="button" data-v="year">vs. a year ago</button>
+      </span>
+      <label><input type="checkbox" id="show-metros" checked> Metro dots</label>
+    </div>
+    <div class="grid-2">
+      <div class="map-wrap">
+        <svg id="map" viewBox="0 0 975 610" role="img" aria-label="Map of gas prices by state and metro area"></svg>
+        <button class="btn map-reset" id="map-reset" type="button">Reset zoom</button>
+        <div class="legend" id="map-legend"></div>
+        <p class="muted small">Hover over a state or a dot for its prices. Click a state to zoom in and list its metro areas. Scroll or pinch to zoom, and drag to pan.</p>
+      </div>
+      <aside>
+        <h3 id="panel-title">Most expensive and cheapest states</h3>
+        <ul class="panel-list" id="panel-list"></ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Biggest moves since the previous run</h2>
+    <p class="muted small">Rule: the change in the regular price from the previous run to the latest run (new − old, in dollars per gallon), ranked by its size. Shows the top 15, the same list as the daily GitHub issue.</p>
+    <div id="moves"></div>
+  </section>
+
+  <section class="card">
+    <h2>Sources <span class="muted small" id="sources-summary"></span></h2>
+    <div class="sources" id="sources"></div>
+  </section>
+
+  <section class="card">
+    <h2>Latest values for every item</h2>
+    <div class="controls">
+      <label>Show
+        <select id="all-level"><option value="">All items</option><option value="national">National</option><option value="state">States</option><option value="metro">Metro areas</option></select>
+      </label>
+      <span class="muted small">Need search, filters, sorting or a shortlist? Go to <a href="browse.html">Browse</a>.</span>
+    </div>
+    <div class="table-wrap"><table id="all-table"></table></div>
+  </section>
+</main>
+<footer>Prices: <a href="https://gasprices.aaa.com/">AAA Gas Prices</a>, collected once a day by a GitHub Actions pipeline. Every number on this site is computed in your browser from <a href="data/history.csv">data/history.csv</a> and <a href="data/status.json">data/status.json</a>.</footer>
+<script src="assets/vendor/d3.min.js"></script>
+<script src="assets/vendor/topojson-client.min.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/today.js"></script>
+</body>
+</html>
