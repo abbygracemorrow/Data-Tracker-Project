@@ -113,14 +113,8 @@
       <path d="M1215 277 L-220 431" stroke="#fff3e6" stroke-width="2.4" opacity=".8" fill="none"/>
       <path d="M1232 277 L986 440" stroke="#fff3e6" stroke-width="3" opacity=".85" fill="none"/>
       <g stroke="#f2c14e" stroke-linecap="round">${dashes}</g>
-      <!-- an original shield painted on the near lane (not any real route marker) -->
-      <g transform="translate(880 386) skewX(-34) scale(1.05 0.36) translate(-79 -95)" fill="none" stroke="#fffaf0" stroke-width="7" opacity=".82">
-        <path d="M18 22 Q50 34 79 14 Q108 34 140 22 Q150 70 138 110 Q118 160 79 176 Q40 160 20 110 Q8 70 18 22 Z"/>
-        <text x="79" y="62" text-anchor="middle" font-family="Righteous, sans-serif" font-size="30" fill="#fffaf0" stroke="none">U.S.</text>
-        <text x="79" y="138" text-anchor="middle" font-family="Righteous, sans-serif" font-size="66" fill="#fffaf0" stroke="none">GAS</text>
-      </g>
       <!-- the sign's shadow on the shoulder -->
-      <ellipse cx="1300" cy="404" rx="42" ry="6" fill="#7d4f42" opacity=".25"/>
+      <ellipse cx="1300" cy="406" rx="56" ry="7" fill="#7d4f42" opacity=".25"/>
     </svg>`;
   }
 
