@@ -17,6 +17,7 @@
   document.getElementById("prev-date").textContent = data.prevDate ? fmtDate(data.prevDate) : "none yet";
 
   // ------------------------------------------------------------- tiles
+  const shortDate = (iso) => (iso ? d3.timeFormat("%b %-d")(d3.timeParse("%Y-%m-%d")(iso)) : "–");
   const nat = data.latest.get("US");
   const natChange = GP.change(data, "US");
   const okSources = st.sources.filter((s) => s.ok).length;
@@ -24,8 +25,10 @@
     { cls: "hero", label: "U.S. average, regular", value: money(nat && nat.regular, 3),
       sub: natChange == null ? "No previous run to compare with yet"
         : `<span>${arrow(natChange)} ${signed(natChange)} since ${fmtDate(data.prevDate)}</span>` },
-    { label: "Last run", value: fmtTime(st.run_time).replace(" (local)", ""), sub: st.run_time + " UTC", small: true },
-    { label: "Data date (UTC)", value: fmtDate(st.latest_date || data.latestDate), sub: "AAA price date " + fmtDate((nat || {}).price_date) },
+    { label: "Last updated", value: new Date(st.run_time).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }),
+      sub: "your local time" },
+    { label: "Prices as of", value: shortDate((nat || {}).price_date || data.latestDate),
+      sub: `the date AAA posted these averages (downloaded ${shortDate(st.latest_date || data.latestDate)})` },
     { label: "Items in latest run", value: st.items, sub: "1 national, states and metro areas" },
     { label: "Days with data", value: st.days_with_success, sub: "since " + fmtDate(st.first_run_date) },
     { label: "Sources OK", value: `${okSources} / ${st.sources.length}`, sub: okSources === st.sources.length ? "all sources succeeded" : `${st.sources.length - okSources} failed` },
