@@ -210,7 +210,7 @@
       const lo5 = Math.floor(d3.min(ms, (m) => m.p) / 5) * 5, hi5 = Math.floor(d3.max(ms, (m) => m.p) / 5) * 5 + 5;
       const bins = d3.bin().domain([lo5, hi5]).thresholds(d3.range(lo5, hi5 + 0.001, 5))(ms.map((m) => m.p));
       finding(
-        `Regular gas costs ${pct(med, 1)} ${med >= 0 ? "more" : "less"} than a year ago in the median metro area`,
+        `Regular gas costs ${Math.abs(med).toFixed(1)}% ${med >= 0 ? "more" : "less"} than a year ago in the median metro area`,
         `On ${fmtDate(last)}, ${up} of ${ms.length} metro areas (${((100 * up) / ms.length).toFixed(0)}%) paid more for regular than they did a year earlier.
          The biggest increase was in ${esc(top.r.item)} (${money(top.r.regular_year_ago)} → ${money(top.r.regular)}, ${pct(top.p, 1)})
          and the ${bot.p < 0 ? "biggest decrease" : "smallest increase"} in ${esc(bot.r.item)} (${money(bot.r.regular_year_ago)} → ${money(bot.r.regular)}, ${pct(bot.p, 1)}).`,

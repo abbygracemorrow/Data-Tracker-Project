@@ -48,9 +48,10 @@ pip install -r requirements-dev.txt
 python -m pytest -v
 ```
 
-`.github/workflows/tests.yml` runs the tests on every push and pull request (badge above). The
-daily workflow also runs them after each data commit. The tests use real AAA pages saved in
-`tests/fixtures/`.
+`.github/workflows/tests.yml` runs the tests on every push and pull request (badge above), and
+also after every daily run, because GitHub does not start workflows for the pushes the daily run
+makes with its own token. The tests use real AAA pages saved in `tests/fixtures/`, and
+`tests/test_every_source.py` converts the latest saved raw file of every one of the 52 sources.
 
 ## Sources
 
@@ -155,8 +156,8 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `requirements-dev.txt` | Test dependency (pytest). The pipeline itself uses only the Python standard library. |
 | `.gitignore` | Files git ignores (Python caches) |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are, without Jekyll |
-| `.github/workflows/daily.yml` | Scheduled daily pipeline: fetch, build, status, issue, commit, then tests |
-| `.github/workflows/tests.yml` | Runs the pytest suite on every push and pull request |
+| `.github/workflows/daily.yml` | Scheduled daily pipeline: fetch, build, status, issue, commit |
+| `.github/workflows/tests.yml` | Runs the pytest suite on every push and pull request, and after every daily run |
 | `tracker/__init__.py` | Marks `tracker` as a Python package |
 | `tracker/sources.py` | The source list and URLs, the download function, and the converters from each raw page to the common columns (`COLUMNS`) |
 | `tracker/build.py` | Builds `data/history.csv` from `data/raw/` (`python -m tracker.build`) |
@@ -167,6 +168,7 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `tests/conftest.py` | Test setup and fixture loader |
 | `tests/test_sources.py` | Conversion of each source to the common columns |
 | `tests/test_moves.py` | The move rule and the issue text |
+| `tests/test_every_source.py` | Conversion of every source, using the latest raw file saved for each one |
 | `tests/test_history.py` | History logic: build from raw files, reproducibility, failed sources, second run on the same day, status file, source log |
 | `tests/fixtures/*.html.gz` | Real AAA pages (state averages, DC, Rhode Island) saved on 2026-11-10 for the tests |
 | `tools/make_locations.py` | One-off script that made `data/locations.csv` from the `cities.json` npm package |

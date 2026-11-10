@@ -47,8 +47,3 @@ jobs:
               sleep 5
             done
           fi
-
-      - name: Run the tests against the new data
-        run: |
-          pip install -q -r requirements-dev.txt
-          python -m pytest -q

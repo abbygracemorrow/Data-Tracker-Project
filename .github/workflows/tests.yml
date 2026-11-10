@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # The daily data commits are pushed by the workflow's own token, and GitHub does not
+  # start other workflows for those pushes. This runs the tests after every daily run too.
+  workflow_run:
+    workflows: ["Daily gas prices"]
+    types: [completed]
 
 jobs:
   pytest:
