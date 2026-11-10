@@ -511,3 +511,10 @@ tr.clickable:hover td:nth-child(2) { color: var(--red); }
 .page-head > [data-sign="SHIELD"] .sign { height: 250px; }
 .page-head > [data-sign] { bottom: 1.6rem; }
 @media (max-width: 1100px) { .page-head > [data-sign] .sign { height: 220px; } .page-head > [data-sign="SHIELD"] .sign { height: 200px; } }
+
+/* a slightly smaller next-update panel */
+.next-update { min-width: 240px; max-width: 370px; padding: .55rem .85rem .65rem; margin-top: .9rem; border-radius: 12px; }
+.next-update .nu-label { font-size: .68rem; }
+.next-update .nu-time { font-size: 1.5rem; }
+.next-update .nu-bar { height: 3px; margin: .35rem 0 .3rem; }
+.next-update .nu-sub { font-size: .74rem; }
