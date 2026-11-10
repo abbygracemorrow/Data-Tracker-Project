@@ -180,8 +180,10 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `trends.html` | Trends page |
 | `manifest.webmanifest` | Web app manifest (name, colors, icons) |
 | `sw.js` | Service worker (offline support) |
-| `assets/style.css` | The one stylesheet shared by all pages (fonts, colors, nav bar) |
-| `assets/common.js` | Shared code: loading the data files, number formats, tooltip, bar/line/column charts, offline banner, install button, service worker registration |
+| `assets/style.css` | The one stylesheet shared by all pages (fonts, colors, nav bar). The look is a vintage American road trip: motel-sign pastels, cream paper, pickup-truck red, old wall-map colors and light blue stripes. |
+| `assets/fonts/*.woff2` | The three fonts, stored locally so they work offline: Righteous (headings), Special Elite (typewriter labels), Work Sans (text) |
+| `assets/fonts/LICENSE-*.txt` | The font licenses (SIL Open Font License 1.1 for Righteous and Work Sans, Apache 2.0 for Special Elite) |
+| `assets/common.js` | Shared code: the motel-sign logo and banner drawing, loading the data files, number formats, tooltip, bar/line/column charts, offline banner, install button, service worker registration |
 | `assets/today.js` | Today page: tiles, map, moves, sources, all-items table |
 | `assets/browse.js` | Browse page: filters, search, sort, shortlist |
 | `assets/trends.js` | Trends page: explorer chart and the findings |

@@ -86,7 +86,7 @@
         .map((c) => th(c, SHORT[c])).join("")}</tr></thead><tbody>${
       rows.map((r) => `<tr>
         <td><button class="star" type="button" data-id="${esc(r.item_id)}" aria-pressed="${stars.has(r.item_id)}" aria-label="Star ${esc(r.item)}">${stars.has(r.item_id) ? "★" : "☆"}</button></td>
-        <td>${esc(r.item)}</td><td><span class="tag">${r.level}</span></td><td>${r.state || ""}</td>
+        <td>${esc(r.item)}</td><td><span class="tag ${r.level}">${r.level}</span></td><td>${r.state || ""}</td>
         <td class="num"><strong>${money(r.regular)}</strong></td>
         <td class="num ${dirClass(r.change)}">${r.change == null ? "–" : arrow(r.change) + " " + signed(r.change)}</td>
         ${["midgrade", "premium", "diesel", "regular_yesterday", "regular_week_ago", "regular_month_ago", "regular_year_ago", "diesel_year_ago"]

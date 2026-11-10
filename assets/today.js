@@ -52,8 +52,8 @@
     movesEl.innerHTML = `<div class="table-wrap"><table><thead><tr><th>#</th><th>Item</th><th class="num">Old (${fmtDate(data.prevDate)})</th><th class="num">New (${fmtDate(data.latestDate)})</th><th class="num">Change</th><th class="num">%</th><th style="width:180px"></th></tr></thead><tbody>${
       mv.map((m, i) => {
         const w = (Math.abs(m.change) / maxAbs) * 80;
-        const bar = `<svg width="170" height="12" aria-hidden="true"><line x1="85" x2="85" y1="0" y2="12" stroke="#c3c2b7"/><rect x="${m.change < 0 ? 85 - w : 85}" y="2" width="${Math.max(w, 1)}" height="8" rx="2" fill="${m.change > 0 ? "#e34948" : "#3987e5"}"/></svg>`;
-        return `<tr><td>${i + 1}</td><td>${esc(m.item)} <span class="tag">${m.level}</span></td><td class="num">${money(m.old)}</td><td class="num">${money(m.new)}</td><td class="num ${dirClass(m.change)}">${arrow(m.change)} ${signed(m.change)}</td><td class="num">${pct(m.pct)}</td><td>${bar}</td></tr>`;
+        const bar = `<svg width="170" height="12" aria-hidden="true"><line x1="85" x2="85" y1="0" y2="12" stroke="#cbbfa6"/><rect x="${m.change < 0 ? 85 - w : 85}" y="2" width="${Math.max(w, 1)}" height="8" rx="2" fill="${m.change > 0 ? GP.UP : GP.DOWN}"/></svg>`;
+        return `<tr><td>${i + 1}</td><td>${esc(m.item)} <span class="tag ${m.level}">${m.level}</span></td><td class="num">${money(m.old)}</td><td class="num">${money(m.new)}</td><td class="num ${dirClass(m.change)}">${arrow(m.change)} ${signed(m.change)}</td><td class="num">${pct(m.pct)}</td><td>${bar}</td></tr>`;
       }).join("")}</tbody></table></div>
       ${st.new_today.length || st.gone_today.length ? `<p class="small">Appeared: ${st.new_today.map((i) => esc(i.item)).join(", ") || "none"}. Disappeared: ${st.gone_today.map((i) => esc(i.item)).join(", ") || "none"}.</p>` : ""}`;
   }
@@ -71,7 +71,7 @@
     };
     allTable.innerHTML = `<thead><tr><th>Item</th><th>Level</th>${["regular", "midgrade", "premium", "diesel"].map((c) =>
       `<th class="num">${GP.LABELS[c]}</th><th class="num">Change</th>`).join("")}</tr></thead><tbody>${
-      rows.map((r) => `<tr><td>${esc(r.item)}</td><td><span class="tag">${r.level}</span></td>${cell(r, "regular")}${cell(r, "midgrade")}${cell(r, "premium")}${cell(r, "diesel")}</tr>`).join("")}</tbody>`;
+      rows.map((r) => `<tr><td>${esc(r.item)}</td><td><span class="tag ${r.level}">${r.level}</span></td>${cell(r, "regular")}${cell(r, "midgrade")}${cell(r, "premium")}${cell(r, "diesel")}</tr>`).join("")}</tbody>`;
   }
   document.getElementById("all-level").addEventListener("change", drawAll);
   drawAll();
@@ -85,11 +85,17 @@
   const projection = d3.geoAlbersUsa().fitSize([W, H], { type: "FeatureCollection", features });
   const path = d3.geoPath(projection);
   const svg = d3.select("#map");
+  // old wall-map touches: faint grid lines on the ocean and a title cartouche
+  svg.append("defs").html(`<pattern id="ocean-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#bcd6e6" stroke-width="0.8"/></pattern>`);
+  svg.append("rect").attr("width", W).attr("height", H).attr("fill", "url(#ocean-grid)");
+  svg.append("text").attr("class", "map-title").attr("x", 655).attr("y", H - 30).attr("text-anchor", "middle").attr("font-size", 22).text("The United States");
+  svg.append("text").attr("class", "map-sub").attr("x", 655).attr("y", H - 12).attr("text-anchor", "middle").attr("font-size", 11).text("GAS PRICES · AAA");
   const root = svg.append("g");
   const gStates = root.append("g");
   const gBorders = root.append("path")
     .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
-    .attr("fill", "none").attr("stroke", "#fff").attr("stroke-width", 0.6).attr("d", path).attr("pointer-events", "none");
+    .attr("fill", "none").attr("stroke", "#fffaf0").attr("stroke-width", 0.6).attr("d", path).attr("pointer-events", "none");
   const gMetros = root.append("g");
   const metroPts = metros.map((r) => {
     const loc = data.locations.get(r.item_id);
@@ -113,10 +119,10 @@
   function makeScale() {
     const vals = [...features.map((f) => value(data.latest.get(f.code))), ...metroPts.map((p) => value(p.r))]
       .filter((v) => v != null).sort(d3.ascending);
-    if (!vals.length) { color = () => "#e8e7e2"; return []; }
+    if (!vals.length) { color = () => GP.NODATA; return []; }
     if (state.mode === "price") {
       const lo = d3.quantile(vals, 0.02), hi = d3.quantile(vals, 0.98);
-      color = d3.scaleSequential(d3.interpolateRgbBasis(GP.BLUE_RAMP)).domain([lo, hi]).clamp(true);
+      color = d3.scaleSequential(d3.interpolateRgbBasis(GP.PRICE_RAMP)).domain([lo, hi]).clamp(true);
       return [lo, hi];
     }
     const m = Math.max(d3.quantile(vals.map(Math.abs).sort(d3.ascending), 0.98) || 0, state.mode === "change" ? 0.01 : 1);
@@ -135,11 +141,11 @@
     el.innerHTML = `<span>${state.mode === "price" ? GP.LABELS[state.fuel] + " price, $/gal" : state.mode === "change" ? "Change since " + fmtDate(data.prevDate) + ", $/gal" : "Change vs. a year ago, %"}</span>
       <svg width="${w}" height="30"><defs><linearGradient id="${id}">${stops.map((s) => `<stop offset="${s}" stop-color="${color(lo + s * (hi - lo))}"/>`).join("")}</linearGradient></defs>
       <rect width="${w}" height="10" rx="3" fill="url(#${id})"/>
-      <text x="0" y="24" font-size="11" fill="#52514e">${fmt(lo)}</text>
-      <text x="${w / 2}" y="24" font-size="11" fill="#52514e" text-anchor="middle">${fmt(mid)}</text>
-      <text x="${w}" y="24" font-size="11" fill="#52514e" text-anchor="end">${fmt(hi)}</text></svg>
-      ${state.mode !== "price" ? '<span><span style="color:#a8201f">■</span> rose · <span style="color:#184f95">■</span> fell</span>' : ""}
-      <span><span style="color:#e8e7e2">■</span> no data</span>`;
+      <text x="0" y="24" font-size="11" fill="#5a554c">${fmt(lo)}</text>
+      <text x="${w / 2}" y="24" font-size="11" fill="#5a554c" text-anchor="middle">${fmt(mid)}</text>
+      <text x="${w}" y="24" font-size="11" fill="#5a554c" text-anchor="end">${fmt(hi)}</text></svg>
+      ${state.mode !== "price" ? '<span><span style="color:#9c2420">■</span> rose · <span style="color:#1d5a85">■</span> fell</span>' : ""}
+      <span><span style="color:${GP.NODATA}">■</span> no data</span>`;
   }
 
   function stateTip(f) {
@@ -168,7 +174,7 @@
       .attr("class", (f) => "state" + (state.selected === f.code ? " selected" : ""))
       .attr("data-state", (f) => f.code)
       .attr("d", path)
-      .attr("fill", (f) => { const v = value(data.latest.get(f.code)); return v == null ? "#e8e7e2" : color(v); })
+      .attr("fill", (f) => { const v = value(data.latest.get(f.code)); return v == null ? GP.NODATA : color(v); })
       .attr("stroke-width", 0.8)
       .on("mousemove", (ev, f) => t.show(stateTip(f), ev))
       .on("mouseleave", () => t.hide())
@@ -178,7 +184,7 @@
       .attr("class", "metro").attr("data-id", (p) => p.r.item_id)
       .attr("cx", (p) => p.x).attr("cy", (p) => p.y)
       .attr("r", 5 / Math.sqrt(state.k)).attr("stroke-width", 1.5)
-      .attr("fill", (p) => { const v = value(p.r); return v == null ? "#e8e7e2" : color(v); })
+      .attr("fill", (p) => { const v = value(p.r); return v == null ? GP.NODATA : color(v); })
       .attr("opacity", (p) => (state.selected && p.r.state !== state.selected ? 0.35 : 1))
       .on("mousemove", (ev, p) => t.show(metroTip(p.r), ev))
       .on("mouseleave", () => t.hide());

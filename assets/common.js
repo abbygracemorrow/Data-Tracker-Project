@@ -23,11 +23,51 @@
     TN: "Tennessee", TX: "Texas", UT: "Utah", VA: "Virginia", VT: "Vermont", WA: "Washington",
     WI: "Wisconsin", WV: "West Virginia", WY: "Wyoming",
   };
-  /* Reference palette (dataviz skill): categorical slots in fixed order, a blue sequential
-     ramp for price, and a blue <-> gray <-> red diverging pair for change. */
-  const SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"];
-  const BLUE_RAMP = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"];
-  const DIVERGING = ["#184f95", "#3987e5", "#9ec5f4", "#f0efec", "#f3a7a6", "#e34948", "#a8201f"];
+  /* Colors: a retro road-trip palette checked with the dataviz palette validator
+     (categorical slots in fixed order; a warm "old wall map" ramp for price; and a
+     dusty-blue <-> cream <-> truck-red diverging ramp for change). */
+  const SERIES = ["#2c7bb6", "#d0342c", "#d69a00", "#7650b8", "#1f9a5c", "#e66f9a", "#b5651d", "#13a3b0"];
+  const PRICE_RAMP = ["#f7ecc9", "#f1d79a", "#ebbd6c", "#e39a4c", "#d67139", "#c24a2c", "#962e22"];
+  const DIVERGING = ["#1d5a85", "#4f8fbd", "#a9cbe2", "#efe7d6", "#efb3a6", "#d5574a", "#9c2420"];
+  const UP = "#c8322b", DOWN = "#2c7bb6", NODATA = "#e9e0cc";
+
+  /** An original motel-style sign: letters in round discs, alternating sky blue and pink.
+      vertical: stacked on a pole with a starburst on top (for page banners);
+      horizontal: a row of discs (for the logo). */
+  function signSVG(word, vertical) {
+    const letters = [...word];
+    const fills = ["#b3cfdd", "#efc9c3"];
+    if (!vertical) {
+      const r = 17, gap = 3, w = letters.length * (2 * r + gap) + 4;
+      return `<svg viewBox="0 0 ${w} ${2 * r + 6}" aria-hidden="true">` + letters.map((ch, i) => {
+        const cx = 2 + r + i * (2 * r + gap);
+        return `<circle cx="${cx}" cy="${r + 3}" r="${r}" fill="${fills[i % 2]}" stroke="#fffaf0" stroke-width="3"/>
+          <text x="${cx}" y="${r + 3}" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="20"
+            fill="#fffaf0" stroke="#1f3b57" stroke-width="1.1" paint-order="stroke">${ch}</text>`;
+      }).join("") + "</svg>";
+    }
+    const r = 30, step = 70, top = 78, h = top + letters.length * step + 30, cx = 46, pole = 98;
+    const spokes = d3.range(8).map((i) => {
+      const a = (i * Math.PI) / 4;
+      return `<line x1="${pole + Math.cos(a) * 10}" y1="${34 + Math.sin(a) * 10}" x2="${pole + Math.cos(a) * 30}" y2="${34 + Math.sin(a) * 30}"/>`;
+    }).join("");
+    return `<svg class="sign" viewBox="0 0 140 ${h}" aria-hidden="true">
+      <rect x="${pole - 4}" y="40" width="8" height="${h - 40}" fill="#fffaf0" stroke="#d9cdb4"/>
+      <g stroke="#fffaf0" stroke-width="2.5" stroke-linecap="round">${spokes}</g>
+      <circle cx="${pole}" cy="34" r="24" fill="none" stroke="#fffaf0" stroke-width="2"/>
+      <circle cx="${pole}" cy="34" r="9" fill="#efe2c4" stroke="#fffaf0" stroke-width="2"/>
+      ${letters.map((ch, i) => {
+        const cy = top + i * step;
+        return `<g stroke="#fffaf0" stroke-width="2"><line x1="${cx + r - 2}" x2="${pole}" y1="${cy - 12}" y2="${cy - 12}"/><line x1="${cx + r - 2}" x2="${pole}" y1="${cy + 12}" y2="${cy + 12}"/></g>
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="${fills[i % 2]}" stroke="#fffaf0" stroke-width="5"/>
+          <text x="${cx}" y="${cy}" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="36"
+            fill="#fffaf0" stroke="#1f3b57" stroke-width="1.6" paint-order="stroke">${ch}</text>`;
+      }).join("")}
+    </svg>`;
+  }
+  function drawSigns() {
+    document.querySelectorAll("[data-sign]").forEach((el) => { el.innerHTML = signSVG(el.dataset.sign, el.dataset.vertical === "1"); });
+  }
 
   // ------------------------------------------------------------------ data loading
   async function fetchText(url) {
@@ -149,7 +189,7 @@
     g.selectAll("rect").data(items).join("rect")
       .attr("x", (d) => Math.min(x(d.value), x0)).attr("y", (d, i) => y(i))
       .attr("width", (d) => Math.max(1, Math.abs(x(d.value) - x0))).attr("height", y.bandwidth())
-      .attr("rx", 3).attr("fill", (d) => d.color || o.color || SERIES[0]);
+      .attr("rx", 4).attr("fill", (d) => d.color || o.color || SERIES[0]);
     g.selectAll("text.lab").data(items).join("text").attr("class", "direct-label lab")
       .attr("x", m.left - 6).attr("y", (d, i) => y(i) + y.bandwidth() / 2).attr("dy", "0.35em")
       .attr("text-anchor", "end").text((d) => d.label);
@@ -157,7 +197,7 @@
       .attr("x", (d) => (d.value >= 0 ? Math.max(x(d.value), x0) + 4 : x0 + 4))
       .attr("y", (d, i) => y(i) + y.bandwidth() / 2).attr("dy", "0.35em")
       .text((d) => (o.valueFormat || money)(d.value));
-    svg.append("line").attr("x1", x0).attr("x2", x0).attr("y1", m.top).attr("y2", H - m.bottom).attr("stroke", "#c3c2b7");
+    svg.append("line").attr("x1", x0).attr("x2", x0).attr("y1", m.top).attr("y2", H - m.bottom).attr("stroke", "#cbbfa6");
     // hover rows (hit targets bigger than the bars)
     svg.append("g").selectAll("rect").data(items).join("rect")
       .attr("x", 0).attr("width", W).attr("y", (d, i) => y(i) - 2).attr("height", y.bandwidth() + 4)
@@ -195,7 +235,7 @@
         .attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("d", line);
       g.selectAll(null).data(s.points.filter((p) => p.value != null)).join("circle")
         .attr("cx", (p) => x(parse(p.date))).attr("cy", (p) => y(p.value)).attr("r", dates.length > 40 ? 0 : 3.5)
-        .attr("fill", s.color).attr("stroke", "#fcfcfb").attr("stroke-width", 1.5);
+        .attr("fill", s.color).attr("stroke", "#fffaf0").attr("stroke-width", 1.5);
     }
     // direct labels at the line ends (up to 8 series), nudged apart
     const ends = series.map((s) => {
@@ -208,7 +248,7 @@
       .attr("x", W - m.right + 8).attr("y", (d) => d.y).attr("dy", "0.35em")
       .text((d) => (d.s.short || d.s.name).slice(0, 20));
     // crosshair + tooltip
-    const cross = svg.append("line").attr("stroke", "#898781").attr("stroke-dasharray", "3 3")
+    const cross = svg.append("line").attr("stroke", "#8b8478").attr("stroke-dasharray", "3 3")
       .attr("y1", m.top).attr("y2", H - m.bottom).style("opacity", 0);
     svg.append("rect").attr("x", m.left).attr("y", m.top).attr("width", W - m.left - m.right).attr("height", H - m.top - m.bottom)
       .attr("fill", "transparent")
@@ -249,7 +289,7 @@
       .attr("rx", 3).attr("fill", (b) => b.color || o.color || SERIES[0])
       .on("mousemove", (ev, b) => t.show(b.tip || `<div class="t-title">${esc(b.label)}</div>${b.value}`, ev))
       .on("mouseleave", () => t.hide());
-    svg.append("line").attr("x1", m.left).attr("x2", W - m.right).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "#c3c2b7");
+    svg.append("line").attr("x1", m.left).attr("x2", W - m.right).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "#cbbfa6");
   }
 
   // ------------------------------------------------------------------ page chrome
@@ -287,6 +327,7 @@
   }
 
   setupChrome();
-  window.GP = { NUMERIC, LABELS, STATE_NAMES, SERIES, BLUE_RAMP, DIVERGING, loadData, change, moves,
+  drawSigns();
+  window.GP = { NUMERIC, LABELS, STATE_NAMES, SERIES, PRICE_RAMP, DIVERGING, UP, DOWN, NODATA, signSVG, loadData, change, moves,
     money, signed, pct, dirClass, arrow, fmtDate, fmtTime, esc, tooltip, barChart, lineChart, columnChart, showError };
 })();

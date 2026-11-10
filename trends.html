@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trends · Gas Price Tracker</title>
 <meta name="description" content="Daily AAA gas prices for every U.S. state and 470+ metro areas.">
-<meta name="theme-color" content="#0d366b">
+<meta name="theme-color" content="#7ea7bf">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="preload" href="assets/fonts/righteous-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header class="topbar">
   <div class="inner">
-    <a class="brand" href="index.html"><img src="assets/icons/icon-192.png" alt="">Gas Price Tracker</a>
+    <a class="brand" href="index.html" aria-label="Gas Price Tracker home"><span data-sign="GAS"></span><span><span class="name">Gas Price Tracker</span><span class="tagline">Pump prices · coast to coast</span></span></a>
     <nav class="nav" aria-label="Pages">
       <a href="index.html">Today</a>
       <a href="browse.html">Browse</a>
@@ -26,10 +27,14 @@
 <div class="offline-banner">You are offline. Showing the data this device loaded last time.</div>
 <main>
   <div class="page-head">
+    <div>
+    <div class="kicker">Miles of history</div>
     <h1>Trends</h1>
     <p>A report on the history the pipeline has built. Every number and chart on this page is computed in your browser from
       <a href="data/history.csv">data/history.csv</a>, so the page updates as the history grows. History so far:
       <strong id="span-days">–</strong>.</p>
+    </div>
+    <div data-sign="GAS" data-vertical="1"></div>
   </div>
 
   <section class="card">

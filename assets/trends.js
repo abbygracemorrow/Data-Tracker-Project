@@ -11,7 +11,7 @@
     ? `${nDays} day${nDays === 1 ? "" : "s"} (${fmtDate(first)} to ${fmtDate(last)}), ${rows.length.toLocaleString()} rows`
     : "no rows yet";
   const cents = (v) => (Math.abs(v) >= 1 ? money(Math.abs(v), 2) : `${(Math.abs(v) * 100).toFixed(1)}¢`);
-  const UP = "#e34948", DOWN = "#3987e5";
+  const { UP, DOWN } = GP;
 
   // ------------------------------------------------------------------ explorer
   const KEY = "gas-tracker.trends-selection";
@@ -27,7 +27,9 @@
   let selected;
   try { selected = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { selected = null; }
   if (!Array.isArray(selected)) selected = ["US", "CA", "TX", "NY", "FL"];
-  selected = selected.filter((s) => s && names.has(s.id || s)).map((s, i) => (typeof s === "string" ? { id: s, color: SERIES[i] } : s)).slice(0, 8);
+  selected = selected.filter((s) => s && names.has(s.id || s)).slice(0, 8)
+    .map((s) => (typeof s === "string" ? { id: s } : { id: s.id, color: SERIES.includes(s.color) ? s.color : undefined }));
+  for (const s of selected) if (!s.color) s.color = SERIES.find((c) => !selected.some((t) => t.color === c));
   const colSel = document.getElementById("ex-col");
   colSel.innerHTML = GP.NUMERIC.map((c) => `<option value="${c}">${esc(GP.LABELS[c])}</option>`).join("");
   const q = document.getElementById("ex-q");
@@ -192,7 +194,7 @@
          The gap was largest in ${esc(hi.r.item)} (diesel ${money(hi.r.diesel)} vs. regular ${money(hi.r.regular)}) and smallest in ${esc(lo.r.item)}
          (diesel ${money(lo.r.diesel)} vs. regular ${money(lo.r.regular)}, a gap of ${signed(lo.gap)}).`,
         `for each row with <code>date = ${last}</code> and <code>level = state</code>, gap = <code>diesel</code> − <code>regular</code>; the average is the plain mean of the ${st.length} state gaps.`,
-        (el) => GP.barChart(el, st.map((s) => ({ label: s.r.item, value: s.gap, color: SERIES[1],
+        (el) => GP.barChart(el, st.map((s) => ({ label: s.r.item, value: s.gap, color: SERIES[2],
           tip: `<div class="t-title">${esc(s.r.item)}</div>Diesel ${money(s.r.diesel)}<br>Regular ${money(s.r.regular)}<br>Gap ${signed(s.gap)}` })),
           { rowH: 15, left: 140, valueFormat: (v) => signed(v, 3), aria: "Diesel minus regular by state" }));
     }
@@ -215,7 +217,7 @@
         `AAA reports a year-ago price for each metro area, kept in the <code>regular_year_ago</code> column. For each metro row with <code>date = ${last}</code>,
          percent change = 100 × (<code>regular</code> − <code>regular_year_ago</code>) / <code>regular_year_ago</code>. The chart counts metro areas in 5-point bins.`,
         (el) => GP.columnChart(el, bins.map((b) => ({ label: `${b.x0}% to ${b.x1}%`, value: b.length,
-          color: b.x1 <= 0 ? DOWN : b.x0 >= 0 ? UP : "#898781",
+          color: b.x1 <= 0 ? DOWN : b.x0 >= 0 ? UP : "#b8ad98",
           tip: `<div class="t-title">${b.x0}% to ${b.x1}%</div>${b.length} metro areas` })),
           { yFormat: d3.format("d"), aria: "Metro areas by percent change vs a year ago" }));
     }
