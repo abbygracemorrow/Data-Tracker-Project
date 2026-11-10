@@ -343,3 +343,4 @@ footer::before { content: ""; display: block; width: 132px; height: 14px; margin
     repeating-linear-gradient(180deg, #c8322b 0 2px, #fffaf0 2px 4px);
   box-shadow: 0 2px 6px rgba(31, 59, 87, .15); }
 @media (max-width: 700px) { .page-head { padding-bottom: 6rem; } }
+@media (max-width: 700px) { .page-head .scene .flag { display: none; } }
