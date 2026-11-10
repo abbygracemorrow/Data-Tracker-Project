@@ -147,7 +147,17 @@
     const prev = new Map((byDate.get(prevDate) || []).map((r) => [r.item_id, r]));
     const locations = new Map();
     if (locText) d3.csvParse(locText).forEach((l) => locations.set(l.item_id, [+l.lon, +l.lat]));
-    return { rows, status, dates, latestDate, prevDate, byDate, latest, prev, locations };
+    // The date the prices are for, as AAA prints it ("Price as of ..."). A run's own date is
+    // its UTC date, which in the Americas is often already "tomorrow", so pages show this instead.
+    const priceDate = (runDate) => {
+      if (!runDate) return null;
+      const day = byDate.get(runDate) || [];
+      const us = day.find((r) => r.item_id === "US" && r.price_date);
+      const any = us || day.find((r) => r.level !== "eia" && r.price_date);
+      return any ? any.price_date : runDate;
+    };
+    const latestPriceDate = priceDate(latestDate), prevPriceDate = priceDate(prevDate);
+    return { rows, status, dates, latestDate, prevDate, byDate, latest, prev, locations, priceDate, latestPriceDate, prevPriceDate };
   }
 
   /** Change in a column for an item between the previous and the latest date (null if unknown). */

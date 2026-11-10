@@ -76,8 +76,8 @@
   function render() {
     writeHash();
     const rows = sorted(filtered());
-    $("count").textContent = `${rows.length} of ${items.length} items · prices from the run on ${GP.fmtDate(data.latestDate)}` +
-      (data.prevDate ? ` · changes vs. ${GP.fmtDate(data.prevDate)}` : " · no previous run yet");
+    $("count").textContent = `${rows.length} of ${items.length} items · prices for ${GP.fmtDate(data.latestPriceDate)}` +
+      (data.prevDate ? ` · changes vs. ${GP.fmtDate(data.prevPriceDate)}` : " · no earlier day yet");
     const col = ui.sortCol.value, dir = ui.sortDir.value;
     const th = (c, label, num = true) => `<th class="sortable ${num ? "num" : ""}" data-col="${c}" title="Sort by ${esc(LABEL[c] || "name")}"
       aria-sort="${col === c ? (dir === "asc" ? "ascending" : "descending") : "none"}">${label}${col === c ? ` <span class="arrow">${dir === "asc" ? "▲" : "▼"}</span>` : ""}</th>`;

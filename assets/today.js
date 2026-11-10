@@ -13,8 +13,8 @@
   const st = data.status;
   const metros = [...data.latest.values()].filter((r) => r.level === "metro");
   document.getElementById("metro-count").textContent = metros.length;
-  document.getElementById("latest-date").textContent = fmtDate(data.latestDate);
-  document.getElementById("prev-date").textContent = data.prevDate ? fmtDate(data.prevDate) : "none yet";
+  document.getElementById("latest-date").textContent = fmtDate(data.latestPriceDate);
+  document.getElementById("prev-date").textContent = data.prevDate ? fmtDate(data.prevPriceDate) : "none yet";
 
   // ------------------------------------------------------------- tiles
   // new_today / gone_today from the status file, described in terms of gas-price coverage
@@ -24,13 +24,13 @@
   };
   function coverageNew() {
     if (!data.prevDate) return "first run: every area is new, so nothing to compare yet";
-    if (!st.new_today.length) return `no areas started reporting prices since ${fmtDate(data.prevDate)}`;
+    if (!st.new_today.length) return `no areas started reporting prices since ${fmtDate(data.prevPriceDate)}`;
     return `started reporting prices: ${listNames(st.new_today)}`;
   }
   function coverageGone() {
     if (!data.prevDate) return "first run: nothing to compare yet";
     const before = data.prev.size;
-    if (!st.gone_today.length) return `all ${before} areas from ${fmtDate(data.prevDate)} reported prices again`;
+    if (!st.gone_today.length) return `all ${before} areas from ${fmtDate(data.prevPriceDate)} reported prices again`;
     const failed = st.sources.filter((x) => !x.ok).map((x) => esc(x.name));
     return `no prices today for ${listNames(st.gone_today)}` +
       (failed.length ? ` (failed source${failed.length > 1 ? "s" : ""}: ${failed.slice(0, 3).join(", ")}${failed.length > 3 ? "…" : ""})` : " (dropped from the source's list)");
@@ -42,11 +42,11 @@
   const tiles = [
     { cls: "hero", label: "U.S. average, regular", value: money(nat && nat.regular, 3),
       sub: natChange == null ? "No previous run to compare with yet"
-        : `<span>${arrow(natChange)} ${signed(natChange)} since ${fmtDate(data.prevDate)}</span>` },
+        : `<span>${arrow(natChange)} ${signed(natChange)} since ${fmtDate(data.prevPriceDate)}</span>` },
     { label: "Last updated", value: new Date(st.run_time).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }),
       sub: "your local time" },
-    { label: "Prices as of", value: shortDate((nat || {}).price_date || data.latestDate),
-      sub: `the date AAA posted these averages (downloaded ${shortDate(st.latest_date || data.latestDate)})` },
+    { label: "Prices as of", value: shortDate(data.latestPriceDate),
+      sub: "the day AAA's averages are for; it moves forward with each daily run" },
     { label: "Items in latest run", value: st.items, sub: "1 national, states and metro areas" },
     { label: "Days with data", value: st.days_with_success, sub: `<span id="first-run">since ${fmtDate(st.first_run_date)} (UTC)</span>` },
     { label: "Sources OK", value: `${okSources} / ${st.sources.length}`, sub: okSources === st.sources.length ? "all sources succeeded" : `${st.sources.length - okSources} failed` },
@@ -78,10 +78,10 @@
   const mv = GP.moves(data).slice(0, 15);
   const movesEl = document.getElementById("moves");
   if (!data.prevDate) {
-    movesEl.innerHTML = `<p class="empty-note">Only one run so far (${fmtDate(data.latestDate)}). Moves appear after the next daily run.</p>`;
+    movesEl.innerHTML = `<p class="empty-note">Only one day of prices so far (${fmtDate(data.latestPriceDate)}). Moves appear after the next daily run.</p>`;
   } else {
     const maxAbs = d3.max(mv, (m) => Math.abs(m.change)) || 1;
-    movesEl.innerHTML = `<div class="table-wrap"><table><thead><tr><th>#</th><th>Item</th><th class="num">Old (${fmtDate(data.prevDate)})</th><th class="num">New (${fmtDate(data.latestDate)})</th><th class="num">Change</th><th class="num">%</th><th style="width:180px"></th></tr></thead><tbody>${
+    movesEl.innerHTML = `<div class="table-wrap"><table><thead><tr><th>#</th><th>Item</th><th class="num">Old (${fmtDate(data.prevPriceDate)})</th><th class="num">New (${fmtDate(data.latestPriceDate)})</th><th class="num">Change</th><th class="num">%</th><th style="width:180px"></th></tr></thead><tbody>${
       mv.map((m, i) => {
         const w = (Math.abs(m.change) / maxAbs) * 80;
         const bar = `<svg width="170" height="12" aria-hidden="true"><line x1="85" x2="85" y1="0" y2="12" stroke="#cbbfa6"/><rect x="${m.change < 0 ? 85 - w : 85}" y="2" width="${Math.max(w, 1)}" height="8" rx="2" fill="${m.change > 0 ? GP.UP : GP.DOWN}"/></svg>`;
@@ -170,7 +170,7 @@
     const id = "lg" + Math.random().toString(36).slice(2);
     const fmt = state.mode === "price" ? (v) => "$" + v.toFixed(2) : state.mode === "change" ? (v) => signed(v, 3) : (v) => pct(v, 0);
     const mid = state.mode === "price" ? (lo + hi) / 2 : 0;
-    el.innerHTML = `<span>${state.mode === "price" ? GP.LABELS[state.fuel] + " price, $/gal" : state.mode === "change" ? "Change since " + fmtDate(data.prevDate) + ", $/gal" : "Change vs. a year ago, %"}</span>
+    el.innerHTML = `<span>${state.mode === "price" ? GP.LABELS[state.fuel] + " price, $/gal" : state.mode === "change" ? "Change since " + fmtDate(data.prevPriceDate) + ", $/gal" : "Change vs. a year ago, %"}</span>
       <svg width="${w}" height="30"><defs><linearGradient id="${id}">${stops.map((s) => `<stop offset="${s}" stop-color="${color(lo + s * (hi - lo))}"/>`).join("")}</linearGradient></defs>
       <rect width="${w}" height="10" rx="3" fill="url(#${id})"/>
       <text x="0" y="24" font-size="11" fill="#5a554c">${fmt(lo)}</text>
@@ -222,7 +222,7 @@
       .on("mouseleave", () => t.hide());
     legend(domain);
     document.getElementById("map-caption").textContent =
-      `${GP.LABELS[state.fuel]} · ${state.mode === "price" ? "price on " + fmtDate(data.latestDate) : state.mode === "change" ? "change since " + fmtDate(data.prevDate) : "change vs. a year ago"}`;
+      `${GP.LABELS[state.fuel]} · ${state.mode === "price" ? "prices for " + fmtDate(data.latestPriceDate) : state.mode === "change" ? "change since " + fmtDate(data.prevPriceDate) : "change vs. a year ago"}`;
     panel();
   }
 
