@@ -368,3 +368,63 @@ footer::before { content: ""; display: block; width: 120px; height: 6px; margin:
 .finding::before { content: ""; position: absolute; left: 0; top: 10%; bottom: 10%; width: 3px;
   background: linear-gradient(180deg, rgba(164, 60, 47, 0), var(--red), rgba(164, 60, 47, 0)); }
 .finding:nth-of-type(even)::before { background: linear-gradient(180deg, rgba(31, 59, 87, 0), var(--sky-ink), rgba(31, 59, 87, 0)); }
+
+/* =====================================================================
+   Editorial layout (less boxy, in the spirit of a magazine page): sections sit
+   directly on the page, separated by space and one fine rule; the run figures
+   read as a row of numbers divided by thin vertical lines; notes are set as text.
+   Colors, fonts, the banner, the map and the charts are unchanged.
+   ===================================================================== */
+:root { --rule: rgba(31, 59, 87, .14); --rule-soft: rgba(31, 59, 87, .08); }
+
+/* the banner no longer has content sliding over it, since the sections below are open */
+.page-head + * { margin-top: 0; }
+.page-head { margin-bottom: 1.4rem; padding-bottom: 6rem; }
+
+/* sections: no box, just a thin rule above and generous space */
+.card { background: transparent; box-shadow: none; border: 0; border-radius: 0; padding: 2.2rem 0 1.4rem; margin: 0;
+  border-top: 1px solid var(--rule); }
+.card > h2 { font-size: 1.55rem; margin-bottom: .5em; }
+.card > h2::before { width: 13px; height: 13px; }
+.grid-2 { gap: 3rem; }
+.grid-2 > aside { border-left: 1px solid var(--rule-soft); padding-left: 2rem; }
+@media (max-width: 900px) { .grid-2 > aside { border-left: 0; padding-left: 0; } }
+
+/* run figures: an open row of numbers with fine dividers, no boxes */
+.tiles { gap: 0; margin: .5rem 0 1.6rem; border-top: 2px solid var(--sky-ink); border-bottom: 1px solid var(--rule); }
+.tile, .tile.hero { background: transparent; box-shadow: none; border: 0; border-radius: 0; padding: 1rem 1.2rem 1.1rem;
+  border-left: 1px solid var(--rule-soft); }
+.tile::before, .tile.hero::before { display: none; }
+.tile:hover { transform: none; box-shadow: none; }
+.tiles > .tile:first-child { border-left: 0; padding-left: 0; }
+.tile .label { letter-spacing: .1em; }
+.tile.hero .label { color: var(--red); }
+.tile.hero .value { font-size: 3rem; color: var(--sky-ink); }
+@media (min-width: 1000px) { .tiles > .tile:nth-child(5) { border-left: 0; padding-left: 0; } .tiles > .tile:nth-child(n + 5) { border-top: 1px solid var(--rule-soft); } }
+@media (max-width: 999px) { .tile { border-left: 0; border-top: 1px solid var(--rule-soft); } .tiles > .tile:first-child { border-top: 0; } }
+
+/* tables: open, ruled like a printed table */
+.table-wrap { background: transparent; border: 0; box-shadow: none; border-radius: 0; }
+thead th { background: var(--page, #faf6f4); background: #faf6f4; border-bottom: 2px solid var(--sky-ink); color: var(--sky-ink); }
+tbody tr:hover { background: rgba(164, 60, 47, .05); }
+td { border-bottom: 1px solid var(--rule-soft); }
+
+/* map: no frame, just the map */
+#map { box-shadow: none; border-radius: 10px; }
+.map-reset { background: rgba(255, 253, 248, .85); }
+
+/* sources: text-like chips */
+.src, .src.fail { background: transparent; box-shadow: none; border-radius: 0; padding: .2rem .1rem; border-bottom: 1px dotted var(--rule); }
+
+/* trends: findings as articles; the computation note as an aside in text */
+.finding::before { display: none; }
+.finding > h2 { font-size: 1.45rem; line-height: 1.25; max-width: 46ch; }
+.finding > p { max-width: 75ch; }
+.finding .how { background: transparent; box-shadow: none; border: 0; border-left: 2px solid var(--red); border-radius: 0; padding: .1rem 0 .1rem .9rem; font-style: italic; }
+.finding .how strong { font-style: normal; }
+.picker { background: transparent; border: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); border-radius: 0; }
+
+/* the first section after the run figures doesn't need a rule (the figures end with one) */
+.tiles + .card, .tiles + .snapshot-note + .card { border-top: 0; }
+.finding > h2 { display: block; }
+.finding > h2::before { content: ""; display: inline-block; margin-right: .55rem; vertical-align: .08em; }
