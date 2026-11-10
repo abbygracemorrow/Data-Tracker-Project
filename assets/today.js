@@ -37,8 +37,6 @@
   }
   const shortDate = (iso) => (iso ? d3.timeFormat("%b %-d")(d3.timeParse("%Y-%m-%d")(iso)) : "–");
   const nat = data.latest.get("US") || data.latest.get("EIA-US");   // EIA is the backup if AAA failed
-  // the vintage pump in the banner shows the real U.S. average
-  document.querySelectorAll(".pump-price").forEach((el) => { if (nat && nat.regular != null) el.textContent = "$" + nat.regular.toFixed(2); });
   const natChange = GP.change(data, "US");
   const okSources = st.sources.filter((s) => s.ok).length;
   const tiles = [
@@ -178,7 +176,7 @@
       <text x="0" y="24" font-size="11" fill="#5a554c">${fmt(lo)}</text>
       <text x="${w / 2}" y="24" font-size="11" fill="#5a554c" text-anchor="middle">${fmt(mid)}</text>
       <text x="${w}" y="24" font-size="11" fill="#5a554c" text-anchor="end">${fmt(hi)}</text></svg>
-      ${state.mode !== "price" ? '<span><span style="color:#9c2420">■</span> rose · <span style="color:#1d5a85">■</span> fell</span>' : ""}
+      ${state.mode !== "price" ? '<span><span style="color:#7e2d22">■</span> rose · <span style="color:#1d5a85">■</span> fell</span>' : ""}
       <span><span style="color:${GP.NODATA}">■</span> no data</span>`;
   }
 

@@ -15,10 +15,10 @@
   --sky: #7ea7bf;           /* motel sky */
   --sky-2: #a9c8d9;
   --sky-ink: #1f3b57;       /* deep road-map navy */
-  --pink: #e0827a;          /* soft Americana red (accent bars) */
+  --pink: #c9776a;          /* soft Americana red (accent bars) */
   --sign-blue: #b3cfdd;     /* motel sign blue */
-  --red: #c8322b;           /* pickup-truck red */
-  --red-dark: #9c2420;
+  --red: #a43c2f;           /* pickup-truck red */
+  --red-dark: #7e2d22;
   --mustard: #d69a00;
   --ink: #2b2a28;
   --ink-2: #5a554c;
@@ -27,7 +27,7 @@
   --grid: #ece3cf;
   --axis: #cbbfa6;
   --ocean: #d6e8f3;
-  --up: #b52a24;            /* price rose (text) */
+  --up: #8f3326;            /* price rose (text) */
   --down: #22618d;          /* price fell (text) */
   --radius: 14px;
   --display: "Righteous", "Work Sans", system-ui, sans-serif;
@@ -140,7 +140,7 @@ tbody tr:hover { background: #fdeeea; }
 .star { background: none; border: 0; cursor: pointer; font-size: 1.2rem; line-height: 1; color: var(--axis); padding: 0 .2rem; }
 .star[aria-pressed="true"] { color: var(--red); }
 .tag { display: inline-block; font-family: var(--type); font-size: .7rem; padding: .02rem .5rem; border-radius: 999px; background: var(--sign-blue); color: var(--sky-ink); }
-.tag.state { background: #f7d9d5; color: #7a2520; }
+.tag.state { background: #f1dcd5; color: #6e2a21; }
 .tag.national { background: var(--red); color: var(--paper); }
 .tag.eia { background: #f1dfa6; color: #5b4300; }
 footer .byline { display: block; margin-top: .3rem; font-family: var(--display); color: var(--sky-ink); font-size: .95rem; }
@@ -264,13 +264,13 @@ main { padding-top: 0; }
 .card { background: var(--card); border: 1px solid var(--hairline); box-shadow: var(--soft-shadow); border-radius: 16px; }
 .tile { background: var(--card); border: 1px solid var(--hairline); border-top: 4px solid var(--sign-blue); box-shadow: var(--soft-shadow); border-radius: 14px; }
 .tile:nth-child(odd) { border-top-color: var(--pink); }
-.tile.hero { border: 0; box-shadow: 0 14px 30px -16px rgba(156, 36, 32, .6); background: linear-gradient(155deg, #d23930, #b52a24); }
+.tile.hero { border: 0; box-shadow: 0 14px 30px -16px rgba(126, 45, 34, .6); background: linear-gradient(155deg, #d23930, #8f3326); }
 .table-wrap { border: 1px solid var(--hairline); }
 thead th { background: #f4f1ea; border-bottom: 1px solid var(--hairline); }
 tbody tr:nth-child(even) { background: transparent; }
 td { border-bottom-color: rgba(31, 59, 87, .06); }
 .src { border: 0; box-shadow: inset 0 0 0 1px rgba(47, 107, 42, .18); border-radius: 999px; }
-.src.fail { box-shadow: inset 0 0 0 1px rgba(200, 50, 43, .3); }
+.src.fail { box-shadow: inset 0 0 0 1px rgba(164, 60, 47, .3); }
 #map { border: 0; }
 .panel-list li { border-bottom: 1px solid rgba(31, 59, 87, .06); }
 .finding .how { border: 0; }
@@ -285,7 +285,7 @@ footer { border: 0; background: none; }
    Roadside Americana: desert-sunset banner, scalloped awning, flag stars,
    and the national price shown like the window of a vintage pump.
    ===================================================================== */
-:root { --pump: #5d9c8f; --sunset: #f3c9a8; }
+:root { --sunset: #f3c9a8; }
 
 /* banner sky: clear blue fading to a pale warm horizon; the desert scene sits on top */
 .page-head {
@@ -305,7 +305,7 @@ footer { border: 0; background: none; }
 /* the national price: a vintage pump's price window, emphasized but in keeping */
 .tile.hero {
   background: #fffaf0; color: var(--ink); border: 0; padding: 1.4rem 1.2rem .95rem; overflow: hidden;
-  box-shadow: inset 0 0 0 2px rgba(93, 156, 143, .55), 0 12px 28px -16px rgba(31, 59, 87, .35);
+  box-shadow: inset 0 0 0 1.5px rgba(164, 60, 47, .35), 0 12px 28px -16px rgba(31, 59, 87, .35);
 }
 .tile.hero::before { /* a solid red accent line across the top */
   display: block; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px; border-radius: 0; background: var(--red);
@@ -336,7 +336,3 @@ footer::before { content: ""; display: block; width: 120px; height: 6px; margin:
 .finding:nth-of-type(odd) { border-left-color: var(--red); }
 .finding:nth-of-type(even) { border-left-color: var(--sky-ink); }
 
-/* Today banner: the pump and the GAS sign side by side at the roadside */
-.roadside { display: flex; align-items: flex-end; gap: 1.6rem; }
-.roadside .pump-holder .sign { height: 180px; margin: 0 0 -3.6rem; }
-@media (max-width: 900px) { .roadside .pump-holder { display: none; } }

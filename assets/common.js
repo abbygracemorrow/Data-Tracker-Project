@@ -26,24 +26,24 @@
   /* Colors: a retro road-trip palette checked with the dataviz palette validator
      (categorical slots in fixed order; a warm "old wall map" ramp for price; and a
      dusty-blue <-> cream <-> truck-red diverging ramp for change). */
-  const SERIES = ["#2c7bb6", "#d0342c", "#d69a00", "#7650b8", "#1f9a5c", "#e66f9a", "#b5651d", "#13a3b0"];
+  const SERIES = ["#2c7bb6", "#ad4332", "#d69a00", "#7650b8", "#1f9a5c", "#e66f9a", "#b5651d", "#13a3b0"];
   const PRICE_RAMP = ["#f7ecc9", "#f1d79a", "#ebbd6c", "#e39a4c", "#d67139", "#c24a2c", "#962e22"];
-  const DIVERGING = ["#1d5a85", "#4f8fbd", "#a9cbe2", "#efe7d6", "#efb3a6", "#d5574a", "#9c2420"];
-  const UP = "#c8322b", DOWN = "#2c7bb6", NODATA = "#e9e0cc";
+  const DIVERGING = ["#1d5a85", "#4f8fbd", "#a9cbe2", "#efe7d6", "#efb3a6", "#c0624f", "#7e2d22"];
+  const UP = "#a43c2f", DOWN = "#2c7bb6", NODATA = "#e9e0cc";
 
   /** An original motel-style sign: cream letters in red round discs (bubbles) with cream rims.
       vertical: stacked on a pole with a starburst on top (for page banners);
       horizontal: a row of discs (for the logo). */
   function signSVG(word, vertical) {
     const letters = [...word];
-    const fills = ["#c8322b", "#c8322b"];
+    const fills = ["#a43c2f", "#a43c2f"];
     if (!vertical) {
       const r = 17, gap = 3, w = letters.length * (2 * r + gap) + 4;
       return `<svg viewBox="0 0 ${w} ${2 * r + 6}" aria-hidden="true">` + letters.map((ch, i) => {
         const cx = 2 + r + i * (2 * r + gap);
         return `<circle cx="${cx}" cy="${r + 3}" r="${r}" fill="${fills[i % 2]}" stroke="#fffaf0" stroke-width="3"/>
           <text x="${cx}" y="${r + 3}" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="20"
-            fill="#fffaf0" stroke="#7d1d18" stroke-width="0.8" paint-order="stroke">${ch}</text>`;
+            fill="#fffaf0" stroke="#5e211a" stroke-width="0.8" paint-order="stroke">${ch}</text>`;
       }).join("") + "</svg>";
     }
     const r = 30, step = 70, top = 78, h = top + letters.length * step + 30, cx = 46, pole = 98;
@@ -61,37 +61,16 @@
         return `<g stroke="#fffaf0" stroke-width="2"><line x1="${cx + r - 2}" x2="${pole}" y1="${cy - 12}" y2="${cy - 12}"/><line x1="${cx + r - 2}" x2="${pole}" y1="${cy + 12}" y2="${cy + 12}"/></g>
           <circle cx="${cx}" cy="${cy}" r="${r}" fill="${fills[i % 2]}" stroke="#fffaf0" stroke-width="5"/>
           <text x="${cx}" y="${cy}" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="36"
-            fill="#fffaf0" stroke="#7d1d18" stroke-width="1.2" paint-order="stroke">${ch}</text>`;
+            fill="#fffaf0" stroke="#5e211a" stroke-width="1.2" paint-order="stroke">${ch}</text>`;
       }).join("")}
     </svg>`;
   }
-  /** A vintage gas pump (original drawing): teal body, cream face, globe on top. */
-  function pumpSVG() {
-    return `<svg class="sign" viewBox="0 0 150 300" aria-hidden="true">
-      <circle cx="70" cy="40" r="30" fill="#fffaf0" stroke="#4f8f84" stroke-width="6"/>
-      <circle cx="70" cy="40" r="19" fill="none" stroke="#c8322b" stroke-width="3"/>
-      <text x="70" y="40" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="17" fill="#c8322b">GAS</text>
-      <rect x="62" y="68" width="16" height="12" fill="#4f8f84"/>
-      <rect x="22" y="78" width="96" height="200" rx="16" fill="#5d9c8f" stroke="#fffaf0" stroke-width="3"/>
-      <rect x="34" y="94" width="72" height="168" rx="8" fill="#fffaf0"/>
-      <rect x="42" y="104" width="56" height="34" rx="5" fill="#2b3a40"/>
-      <text class="pump-price" x="70" y="121" dy="0.36em" text-anchor="middle" font-family="Special Elite, monospace" font-size="15" fill="#f6e7c1">$–.––</text>
-      <rect x="44" y="148" width="52" height="16" rx="8" fill="#5d9c8f"/>
-      <text x="70" y="156" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="10" fill="#fffaf0">REGULAR</text>
-      <rect x="48" y="178" width="44" height="52" rx="6" fill="none" stroke="#c8322b" stroke-width="2.5"/>
-      <text x="70" y="204" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="13" fill="#c8322b">USA</text>
-      <path d="M118 120 h10 a8 8 0 0 1 8 8 v110 a10 10 0 0 1 -20 0 v-18" fill="none" stroke="#2b3a40" stroke-width="5" stroke-linecap="round"/>
-      <rect x="111" y="206" width="12" height="20" rx="3" fill="#9aa6a8"/>
-      <rect x="16" y="276" width="108" height="12" rx="4" fill="#fffaf0" opacity=".9"/>
-    </svg>`;
-  }
-
   /** A generic highway shield on a post (original; not any real route's sign). */
   function shieldSVG() {
     return `<svg class="sign" viewBox="0 0 160 300" aria-hidden="true">
       <rect x="74" y="150" width="10" height="150" fill="#fffaf0" stroke="#d9cdb4"/>
       <path d="M18 22 Q50 34 79 14 Q108 34 140 22 Q150 70 138 110 Q118 160 79 176 Q40 160 20 110 Q8 70 18 22 Z" fill="#fffaf0" stroke="#1f3b57" stroke-width="7"/>
-      <path d="M28 34 Q54 42 79 26 Q104 42 130 34 L134 62 L24 62 Z" fill="#c8322b"/>
+      <path d="M28 34 Q54 42 79 26 Q104 42 130 34 L134 62 L24 62 Z" fill="#a43c2f"/>
       <text x="79" y="49" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="16" fill="#fffaf0">HISTORIC</text>
       <text x="79" y="84" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="17" fill="#1f3b57">U.S. GAS</text>
       <text x="79" y="126" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="44" fill="#1f3b57">$</text>
@@ -130,7 +109,7 @@
 
   function drawSigns() {
     document.querySelectorAll("[data-sign]").forEach((el) => {
-      el.innerHTML = el.dataset.sign === "PUMP" ? pumpSVG() : el.dataset.sign === "SHIELD" ? shieldSVG()
+      el.innerHTML = el.dataset.sign === "SHIELD" ? shieldSVG()
         : signSVG(el.dataset.sign, el.dataset.vertical === "1");
     });
     document.querySelectorAll(".page-head").forEach((el) => {
