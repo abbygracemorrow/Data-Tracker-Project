@@ -2,10 +2,11 @@ name: Daily gas prices
 
 on:
   schedule:
-    # 13:23 UTC (about 8:23 a.m. Eastern), after AAA posts the day's averages.
-    - cron: "23 13 * * *"
-    # Backup run later the same UTC day, in case the first scheduled run is dropped or fails.
-    # A second run on the same day replaces that day's raw files, so the day still counts once.
+    # Every day at 6:00 AM Central (Dallas). GitHub schedules in UTC only, so both UTC
+    # times are listed and tracker/schedule.py runs whichever one is 6 AM Central that day.
+    - cron: "0 11 * * *"   # 6:00 AM CDT (daylight time)
+    - cron: "0 12 * * *"   # 6:00 AM CST (standard time)
+    # Afternoon backup: only runs if the morning run saved no data for the day.
     - cron: "47 20 * * *"
   workflow_dispatch:
 
@@ -28,13 +29,21 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Is it 6 AM in Central time (or a backup/manual run)?
+        id: gate
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+        run: python -m tracker.schedule
+
       - name: Fetch, build history, write status, open issue
+        if: steps.gate.outputs.run == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         run: python -m tracker.run
 
       - name: Commit the data files
+        if: steps.gate.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

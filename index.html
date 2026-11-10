@@ -21,7 +21,7 @@
 <body>
 <header class="topbar">
   <div class="inner">
-    <a class="brand" href="index.html" aria-label="Gas Price Tracker home"><span data-sign="GAS"></span><span><span class="name">Gas Price Tracker</span><span class="tagline">Pump prices · coast to coast</span></span></a>
+    <a class="brand" href="index.html" aria-label="Gas Price Tracker home"><span><span class="name">Gas Price Tracker</span><span class="tagline">Pump prices · coast to coast</span></span></a>
     <nav class="nav" aria-label="Pages">
       <a href="index.html" aria-current="page">Today</a>
       <a href="browse.html">Browse</a>
@@ -39,13 +39,37 @@
     <p>AAA's average pump prices for every state and <span id="metro-count">470+</span> metro areas, collected once a day.
       Prices are U.S. dollars per gallon, for <span id="latest-date">–</span>; changes compare them with
       the day before (<span id="prev-date">–</span>).</p>
+    <div class="next-update" id="next-update" aria-live="polite"></div>
     </div>
     <div data-sign="GAS" data-vertical="1"></div>
   </div>
 
   <section class="tiles" id="tiles" aria-label="Run status"></section>
 
-  <section class="card">
+  <section class="card" id="your-pump">
+    <h2>Check your pump <span class="muted small">find a city, or let your browser find the nearest one</span></h2>
+    <div class="pump-tools">
+      <div class="finder">
+        <label class="field-label" for="city-q">Your city or state</label>
+        <div class="finder-row">
+          <input type="search" id="city-q" list="city-list" placeholder="Try Dallas, Denver or Ohio" autocomplete="off">
+          <button class="btn" type="button" id="locate"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-2px"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg> Use my location</button>
+        </div>
+        <datalist id="city-list"></datalist>
+        <div class="city-card" id="city-card"></div>
+      </div>
+      <div class="fillup">
+        <h3>Fill-up calculator</h3>
+        <div class="fill-controls">
+          <label>Tank size <input type="range" id="tank" min="5" max="36" step="1" value="14"> <output id="tank-out">14 gal</output></label>
+          <label>Fuel <select id="fill-fuel"><option value="regular">Regular</option><option value="midgrade">Mid-grade</option><option value="premium">Premium</option><option value="diesel">Diesel</option></select></label>
+        </div>
+        <div id="fill-result"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="map-section">
     <h2>Map of U.S. gas prices <span class="muted small" id="map-caption"></span></h2>
     <div class="controls">
       <span class="seg" id="fuel-seg" role="group" aria-label="Fuel">

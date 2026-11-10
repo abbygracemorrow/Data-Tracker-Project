@@ -79,30 +79,48 @@
 
   /** The desert-sunset scene behind every page banner (original drawing). */
   function sceneSVG() {
+    // The road comes in from the bottom-left and runs to a vanishing point on the right,
+    // like a desert two-lane highway photographed from the shoulder.
+    const VP = [1225, 276], B = [430, 440];                 // vanishing point, centre line at the bottom edge
+    const at = (t) => [VP[0] + (B[0] - VP[0]) * t, VP[1] + (B[1] - VP[1]) * t];
+    const dashes = [[0.03, 0.05], [0.09, 0.13], [0.19, 0.26], [0.34, 0.45], [0.57, 0.73], [0.86, 1.05]]
+      .map(([t0, t1], i) => { const [x1, y1] = at(t0), [x2, y2] = at(t1);
+        return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke-width="${(1.4 + i * 1.3).toFixed(1)}"/>`; }).join("");
     return `<svg class="scene" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
-        <radialGradient id="sun" cx="0.62" cy="0.7" r="0.42"><stop offset="0" stop-color="#ffd7a3" stop-opacity=".95"/><stop offset=".5" stop-color="#ffb489" stop-opacity=".35"/><stop offset="1" stop-color="#ffb489" stop-opacity="0"/></radialGradient>
+        <radialGradient id="sun" cx="0.84" cy="0.62" r="0.45"><stop offset="0" stop-color="#ffd7a3" stop-opacity=".95"/><stop offset=".5" stop-color="#ffb489" stop-opacity=".35"/><stop offset="1" stop-color="#ffb489" stop-opacity="0"/></radialGradient>
         <linearGradient id="peak" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd2ad"/><stop offset=".55" stop-color="#f6b394"/><stop offset="1" stop-color="#d98877"/></linearGradient>
-        <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9ab86"/><stop offset="1" stop-color="#cc8a6d"/></linearGradient>
-        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7f88"/><stop offset="1" stop-color="#5d5460"/></linearGradient>
+        <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3a684"/><stop offset="1" stop-color="#c98a6e"/></linearGradient>
+        <linearGradient id="asphalt" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a8e97"/><stop offset=".45" stop-color="#6f6872"/><stop offset="1" stop-color="#4f4a55"/></linearGradient>
       </defs>
       <rect width="1440" height="440" fill="url(#sun)"/>
-      <path d="M0 292 L140 270 L260 284 L380 258 L500 278 L620 262 L720 280 L800 266 L1440 290 L1440 320 L0 320 Z" fill="#c487a2" opacity=".75"/>
-      <path d="M700 300 L820 268 L880 236 L930 214 L962 206 L1000 210 L1040 226 L1090 250 L1150 270 L1230 286 L1300 300 Z" fill="url(#peak)"/>
-      <path d="M962 206 L955 236 L938 262 L952 290 L930 300 L1000 300 L985 268 L1002 240 L1000 210 Z" fill="#c9786a" opacity=".55"/>
-      <path d="M1040 226 L1052 256 L1078 280 L1100 300 L1150 300 L1110 274 L1090 250 Z" fill="#b8665a" opacity=".55"/>
-      <path d="M0 312 L110 296 L220 306 L330 290 L460 304 L560 294 L700 304 L840 292 L980 302 L1100 290 L1240 300 L1340 290 L1440 298 L1440 330 L0 330 Z" fill="#a8656a" opacity=".9"/>
-      <rect y="318" width="1440" height="122" fill="url(#sand)"/>
+      <g transform="translate(0 -44)">
+        <path d="M0 292 L140 270 L260 284 L380 258 L500 278 L620 262 L720 280 L800 266 L1440 290 L1440 320 L0 320 Z" fill="#c487a2" opacity=".75"/>
+        <path d="M640 300 L760 268 L820 236 L870 214 L902 206 L940 210 L980 226 L1030 250 L1090 270 L1170 286 L1240 300 Z" fill="url(#peak)"/>
+        <path d="M902 206 L895 236 L878 262 L892 290 L870 300 L940 300 L925 268 L942 240 L940 210 Z" fill="#c9786a" opacity=".55"/>
+        <path d="M980 226 L992 256 L1018 280 L1040 300 L1090 300 L1050 274 L1030 250 Z" fill="#b8665a" opacity=".55"/>
+        <path d="M0 312 L110 296 L220 306 L330 290 L460 304 L560 294 L700 304 L840 292 L980 302 L1100 290 L1240 300 L1340 290 L1440 298 L1440 330 L0 330 Z" fill="#a8656a" opacity=".9"/>
+      </g>
+      <rect y="274" width="1440" height="166" fill="url(#sand)"/>
       <g fill="#8b7558" opacity=".7">
-        <ellipse cx="80" cy="330" rx="22" ry="7"/><ellipse cx="230" cy="338" rx="30" ry="8"/><ellipse cx="410" cy="328" rx="18" ry="6"/>
-        <ellipse cx="560" cy="342" rx="26" ry="8"/><ellipse cx="1300" cy="334" rx="24" ry="7"/><ellipse cx="1390" cy="346" rx="30" ry="9"/>
+        <ellipse cx="60" cy="286" rx="22" ry="6"/><ellipse cx="190" cy="292" rx="28" ry="7"/><ellipse cx="360" cy="284" rx="16" ry="5"/>
+        <ellipse cx="520" cy="290" rx="24" ry="6"/><ellipse cx="700" cy="282" rx="14" ry="4"/><ellipse cx="1320" cy="300" rx="26" ry="7"/><ellipse cx="1410" cy="318" rx="30" ry="8"/>
       </g>
-      <path d="M1040 318 L1060 318 L1440 420 L1440 440 L700 440 Z" fill="url(#road)"/>
-      <g stroke="#f4c766" stroke-width="3" stroke-linecap="round">
-        <line x1="1056" y1="324" x2="1062" y2="328"/><line x1="1074" y1="336" x2="1086" y2="344"/>
-        <line x1="1104" y1="356" x2="1124" y2="369"/><line x1="1150" y1="386" x2="1182" y2="406"/>
+      <!-- the shoulder on the right, where the sign stands -->
+      <path d="M1236 276 L1440 300 L1440 440 L1010 440 Z" fill="#d6a07f" opacity=".55"/>
+      <!-- asphalt, edge lines and the dashed yellow centre line -->
+      <path d="M1214 276 L1236 276 L1010 440 L-220 440 L-220 432 Z" fill="url(#asphalt)"/>
+      <path d="M1215 277 L-220 431" stroke="#fff3e6" stroke-width="2.4" opacity=".8" fill="none"/>
+      <path d="M1232 277 L986 440" stroke="#fff3e6" stroke-width="3" opacity=".85" fill="none"/>
+      <g stroke="#f2c14e" stroke-linecap="round">${dashes}</g>
+      <!-- an original shield painted on the near lane (not any real route marker) -->
+      <g transform="translate(880 386) skewX(-34) scale(1.05 0.36) translate(-79 -95)" fill="none" stroke="#fffaf0" stroke-width="7" opacity=".82">
+        <path d="M18 22 Q50 34 79 14 Q108 34 140 22 Q150 70 138 110 Q118 160 79 176 Q40 160 20 110 Q8 70 18 22 Z"/>
+        <text x="79" y="62" text-anchor="middle" font-family="Righteous, sans-serif" font-size="30" fill="#fffaf0" stroke="none">U.S.</text>
+        <text x="79" y="138" text-anchor="middle" font-family="Righteous, sans-serif" font-size="66" fill="#fffaf0" stroke="none">GAS</text>
       </g>
-      <path d="M1045 318 L708 440" stroke="#fff1e2" stroke-width="2" opacity=".7"/>
+      <!-- the sign's shadow on the shoulder -->
+      <ellipse cx="1300" cy="404" rx="42" ry="6" fill="#7d4f42" opacity=".25"/>
     </svg>`;
   }
 

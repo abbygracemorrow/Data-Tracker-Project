@@ -85,7 +85,7 @@
       mv.map((m, i) => {
         const w = (Math.abs(m.change) / maxAbs) * 80;
         const bar = `<svg width="170" height="12" aria-hidden="true"><line x1="85" x2="85" y1="0" y2="12" stroke="#cbbfa6"/><rect x="${m.change < 0 ? 85 - w : 85}" y="2" width="${Math.max(w, 1)}" height="8" rx="2" fill="${m.change > 0 ? GP.UP : GP.DOWN}"/></svg>`;
-        return `<tr><td>${i + 1}</td><td>${esc(m.item)} <span class="tag ${m.level}">${m.level}</span></td><td class="num">${money(m.old)}</td><td class="num">${money(m.new)}</td><td class="num ${dirClass(m.change)}">${arrow(m.change)} ${signed(m.change)}</td><td class="num">${pct(m.pct)}</td><td>${bar}</td></tr>`;
+        return `<tr class="clickable" data-id="${esc(m.item_id)}" title="Show ${esc(m.item)} on the map"><td>${i + 1}</td><td>${esc(m.item)} <span class="tag ${m.level}">${m.level}</span></td><td class="num">${money(m.old)}</td><td class="num">${money(m.new)}</td><td class="num ${dirClass(m.change)}">${arrow(m.change)} ${signed(m.change)}</td><td class="num">${pct(m.pct)}</td><td>${bar}</td></tr>`;
       }).join("")}</tbody></table></div>
       ${st.new_today.length || st.gone_today.length ? `<p class="small">Appeared: ${st.new_today.map((i) => esc(i.item)).join(", ") || "none"}. Disappeared: ${st.gone_today.map((i) => esc(i.item)).join(", ") || "none"}.</p>` : ""}`;
   }
@@ -307,4 +307,187 @@
   document.getElementById("show-metros").addEventListener("change", (e) => { state.metros = e.target.checked; draw(); });
   syncDisabled();
   draw();
+
+  // ============================================================= interactive tools
+  const fmtClock = (d) => d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+
+  // ----- next update: every day at 6:00 AM Central (America/Chicago) -----
+  function centralOffsetHours(date) {
+    const name = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", timeZoneName: "shortOffset" })
+      .formatToParts(date).find((p) => p.type === "timeZoneName").value;          // e.g. "GMT-6"
+    const m = name.match(/GMT([+-]\d+)/);
+    return m ? +m[1] : -6;
+  }
+  function sixAmCentral(dayOffset, now = new Date()) {
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", year: "numeric", month: "numeric", day: "numeric" })
+      .formatToParts(now).filter((p) => p.type !== "literal").map((p) => [p.type, +p.value]));
+    const guess = new Date(Date.UTC(parts.year, parts.month - 1, parts.day + dayOffset, 12));   // noon UTC that day
+    return new Date(Date.UTC(parts.year, parts.month - 1, parts.day + dayOffset, 6 - centralOffsetHours(guess)));
+  }
+  const nextEl = document.getElementById("next-update");
+  let polling = null;
+  function tick() {
+    const now = new Date();
+    const today6 = sixAmCentral(0, now), next = now < today6 ? today6 : sixAmCentral(1, now);
+    const last6 = now < today6 ? sixAmCentral(-1, now) : today6;
+    const lastRun = new Date(st.run_time);
+    const localNote = Intl.DateTimeFormat().resolvedOptions().timeZone === "America/Chicago" ? "" : ` (${fmtClock(next)} your time)`;
+    const sinceSlot = (now - last6) / 36e5;
+    if (!data.asOf && lastRun < last6 && sinceSlot < 9) {
+      // today's 6 AM run should have happened but its data isn't here yet
+      nextEl.innerHTML = `<div class="nu-label">Today's update</div><div class="nu-time">${sinceSlot < 1 ? "Running now…" : "Running late"}</div>
+        <div class="nu-sub">${sinceSlot < 1 ? "New prices usually appear within a few minutes. This page checks for them every 2 minutes."
+          : "GitHub sometimes starts scheduled runs late. A backup run follows in the afternoon."}</div>`;
+      if (!polling) polling = setInterval(checkForNewData, 120000);
+      return;
+    }
+    const ms = next - now, h = Math.floor(ms / 36e5), m = Math.floor((ms % 36e5) / 6e4), sec = Math.floor((ms % 6e4) / 1e3);
+    const pctDay = Math.min(100, Math.max(0, (100 * (now - last6)) / (next - last6)));
+    nextEl.innerHTML = `<div class="nu-label">Next update in</div>
+      <div class="nu-time">${String(h).padStart(2, "0")}<small>h</small> ${String(m).padStart(2, "0")}<small>m</small> ${String(sec).padStart(2, "0")}<small>s</small></div>
+      <div class="nu-bar" role="progressbar" aria-valuenow="${pctDay.toFixed(0)}" aria-valuemin="0" aria-valuemax="100" aria-label="Time until the next update"><span style="width:${pctDay.toFixed(2)}%"></span></div>
+      <div class="nu-sub">Every day at 6:00 AM Central${localNote}. Last update ${lastRun.toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" })}.</div>`;
+  }
+  async function checkForNewData() {
+    try {
+      const fresh = await (await fetch("data/status.json", { cache: "no-cache" })).json();
+      if (fresh.run_time && fresh.run_time !== st.run_time) {
+        clearInterval(polling);
+        nextEl.innerHTML = `<div class="nu-label">New prices are in</div><div class="nu-time">Updated</div>
+          <button class="btn nu-reload" type="button">Show today's prices</button>`;
+        nextEl.querySelector(".nu-reload").addEventListener("click", () => location.reload());
+        clearInterval(timer);
+      }
+    } catch { /* offline: try again next time */ }
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  // ----- find your city -----
+  const allItems = [...data.latest.values()].filter((r) => r.level !== "eia")
+    .sort((a, b) => levelOrder[a.level] - levelOrder[b.level] || a.item.localeCompare(b.item));
+  const byName = new Map(allItems.map((r) => [r.item.toLowerCase(), r]));
+  document.getElementById("city-list").innerHTML = allItems.map((r) => `<option value="${esc(r.item)}">`).join("");
+  const cityQ = document.getElementById("city-q"), cityCard = document.getElementById("city-card");
+  let chosen = null;
+
+  function findItem(text) {
+    const q = text.trim().toLowerCase();
+    if (!q) return null;
+    if (byName.has(q)) return byName.get(q);
+    const code = Object.keys(GP.STATE_NAMES).find((c) => c.toLowerCase() === q);
+    if (code) return data.latest.get(code);
+    return allItems.find((r) => r.level === "metro" && r.item.toLowerCase().startsWith(q))
+      || allItems.find((r) => r.item.toLowerCase().startsWith(q))
+      || allItems.find((r) => r.item.toLowerCase().includes(q)) || null;
+  }
+  function rankOf(r) {
+    const peers = allItems.filter((x) => x.level === r.level && x.regular != null).sort((a, b) => b.regular - a.regular);
+    return [peers.findIndex((x) => x.item_id === r.item_id) + 1, peers.length];
+  }
+  function showCity(r, how = "") {
+    chosen = r;
+    if (!r) { cityCard.innerHTML = ""; fillUp(); return; }
+    localStorage.setItem("gas-tracker.city", r.item_id);
+    const [rank, of] = rankOf(r);
+    const us = data.latest.get("US");
+    const vsUS = us && r.regular != null && r.item_id !== "US" ? r.regular - us.regular : null;
+    const yr = r.regular_year_ago ? (100 * (r.regular - r.regular_year_ago)) / r.regular_year_ago : null;
+    const grade = (c) => { const ch = GP.change(data, r.item_id, c);
+      return `<div class="cc-grade"><span>${GP.LABELS[c]}</span><strong>${money(r[c], 3)}</strong><em class="${dirClass(ch)}">${ch == null ? "" : signed(ch, 3)}</em></div>`; };
+    const levelWord = { metro: "metro areas", state: "states", national: "" }[r.level];
+    cityCard.innerHTML = `
+      ${how ? `<div class="cc-how">${how}</div>` : ""}
+      <div class="cc-head"><h3>${esc(r.item)}</h3><span class="tag ${r.level}">${r.level}</span></div>
+      <div class="cc-grades">${["regular", "midgrade", "premium", "diesel"].map(grade).join("")}</div>
+      <ul class="cc-facts">
+        ${levelWord ? (rank <= of / 2 ? `<li><strong>#${rank}</strong> most expensive of ${of} ${levelWord} for regular</li>` : `<li><strong>#${of - rank + 1}</strong> cheapest of ${of} ${levelWord} for regular</li>`) : ""}
+        ${vsUS != null ? `<li><strong class="${dirClass(vsUS)}">${signed(vsUS, 3)}</strong> vs. the U.S. average (${money(us.regular, 3)})</li>` : ""}
+        ${yr != null ? `<li><strong class="${dirClass(yr)}">${pct(yr, 1)}</strong> vs. a year ago (${money(r.regular_year_ago, 3)})</li>` : ""}
+      </ul>
+      <button class="btn cc-map" type="button">Show on the map</button>`;
+    cityCard.querySelector(".cc-map").addEventListener("click", () => focusOnMap(r.item_id, true));
+    focusOnMap(r.item_id, false);
+    fillUp();
+  }
+  cityQ.addEventListener("change", () => showCity(findItem(cityQ.value)));
+  cityQ.addEventListener("keydown", (e) => { if (e.key === "Enter") showCity(findItem(cityQ.value)); });
+
+  // nearest metro area to the visitor (uses the browser's location, only when asked)
+  document.getElementById("locate").addEventListener("click", () => {
+    if (!navigator.geolocation) { cityCard.innerHTML = '<p class="empty-note">Your browser can\'t share a location. Type a city instead.</p>'; return; }
+    cityCard.innerHTML = '<p class="empty-note">Finding the nearest metro area…</p>';
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const { latitude: lat, longitude: lon } = pos.coords;
+      const rad = Math.PI / 180;
+      let best = null, bestKm = Infinity;
+      for (const [id, [plon, plat]] of data.locations) {
+        if (!data.latest.has(id)) continue;
+        const a = Math.sin(((plat - lat) * rad) / 2) ** 2 + Math.cos(lat * rad) * Math.cos(plat * rad) * Math.sin(((plon - lon) * rad) / 2) ** 2;
+        const km = 12742 * Math.asin(Math.sqrt(a));
+        if (km < bestKm) { bestKm = km; best = id; }
+      }
+      if (!best) { cityCard.innerHTML = '<p class="empty-note">No metro area found near you.</p>'; return; }
+      const r = data.latest.get(best);
+      cityQ.value = r.item;
+      showCity(r, `Nearest metro area, about ${Math.round(bestKm * 0.621371)} miles away`);
+    }, () => { cityCard.innerHTML = '<p class="empty-note">Location wasn\'t shared. Type a city or state instead.</p>'; },
+    { timeout: 10000, maximumAge: 3600000 });
+  });
+
+  // ----- fill-up calculator -----
+  const tank = document.getElementById("tank"), tankOut = document.getElementById("tank-out"), fillFuel = document.getElementById("fill-fuel");
+  tank.value = localStorage.getItem("gas-tracker.tank") || tank.value;
+  function fillUp() {
+    const gal = +tank.value, fuel = fillFuel.value;
+    tankOut.textContent = `${gal} gal`;
+    localStorage.setItem("gas-tracker.tank", gal);
+    const us = data.latest.get("US");
+    const states = allItems.filter((r) => r.level === "state" && r[fuel] != null).sort((a, b) => a[fuel] - b[fuel]);
+    const here = chosen && chosen[fuel] != null ? chosen : null;
+    const rows = [];
+    if (here) rows.push({ name: here.item, v: here[fuel], me: true });
+    if (us && us[fuel] != null && (!here || here.item_id !== "US")) rows.push({ name: "U.S. average", v: us[fuel] });
+    if (states.length) {
+      rows.push({ name: `${states[0].item} (cheapest state)`, v: states[0][fuel] });
+      rows.push({ name: `${states[states.length - 1].item} (priciest state)`, v: states[states.length - 1][fuel] });
+    }
+    const max = d3.max(rows, (r) => r.v * gal) || 1;
+    const lead = here ? `A ${gal}-gallon fill-up of ${GP.LABELS[fuel].toLowerCase()} in <strong>${esc(here.item)}</strong> costs about
+        <span class="fill-big">${money(here[fuel] * gal, 2)}</span>`
+      : `Pick a city to see your cost. A ${gal}-gallon fill-up of ${GP.LABELS[fuel].toLowerCase()} costs about
+        <span class="fill-big">${us && us[fuel] != null ? money(us[fuel] * gal, 2) : "–"}</span> at the U.S. average`;
+    document.getElementById("fill-result").innerHTML = `<p class="fill-lead">${lead}</p>
+      <div class="fill-bars">${rows.map((r) => `<div class="fill-row ${r.me ? "me" : ""}"><span class="fr-name">${esc(r.name)}</span>
+        <span class="fr-bar"><span style="width:${((100 * r.v * gal) / max).toFixed(1)}%"></span></span><span class="fr-val">${money(r.v * gal, 2)}</span></div>`).join("")}</div>
+      <p class="muted small">${GP.LABELS[fuel]} at ${money(here ? here[fuel] : us && us[fuel], 3)} a gallon × ${gal} gallons.${fuel !== "regular" && !states.length ? "" : ""}</p>`;
+  }
+  tank.addEventListener("input", fillUp);
+  fillFuel.addEventListener("change", fillUp);
+
+  // ----- map focus: zoom to the place and ring it -----
+  function focusOnMap(id, scroll) {
+    const r = data.latest.get(id);
+    if (!r) return;
+    gMetros.selectAll(".focus-ring").remove();
+    if (r.level === "national") { select(null); }
+    else {
+      const f = features.find((x) => x.code === r.state);
+      if (f && state.selected !== f.code) select(f);
+      const p = metroPts.find((m) => m.r.item_id === id);
+      if (p) gMetros.append("circle").attr("class", "focus-ring").attr("cx", p.x).attr("cy", p.y).attr("r", 9);
+    }
+    if (scroll) document.getElementById("map-section").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  movesEl.addEventListener("click", (e) => {
+    const tr = e.target.closest("tr[data-id]");
+    if (!tr) return;
+    const r = data.latest.get(tr.dataset.id);
+    if (r && r.level !== "eia") { cityQ.value = r.item; showCity(r); focusOnMap(r.item_id, true); }
+  });
+
+  // start with the last city this visitor picked, if any
+  const saved = localStorage.getItem("gas-tracker.city");
+  if (saved && data.latest.has(saved)) { cityQ.value = data.latest.get(saved).item; showCity(data.latest.get(saved)); }
+  else fillUp();
 })();

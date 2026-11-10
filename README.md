@@ -15,8 +15,11 @@ everything to a website with an interactive map of the United States.
 
 ## How it works
 
-`.github/workflows/daily.yml` runs `python -m tracker.run` every day at 13:23 UTC (with a backup
-run at 20:47 UTC). Each run:
+`.github/workflows/daily.yml` runs `python -m tracker.run` **every day at 6:00 AM Central time**
+(Dallas). GitHub schedules in UTC only, and 6:00 AM Central is 11:00 UTC in daylight time but
+12:00 UTC in standard time, so the workflow is scheduled at both and `tracker/schedule.py` lets only
+the one that is really 6 AM Central run. An afternoon backup (20:47 UTC) runs only if the morning
+run saved no data for the day. Each run:
 
 1. **Calls every source** (53 pages from two providers, listed below) and saves exactly what each one returns,
    gzip-compressed, in `data/raw/<date>/<source>.html.gz`. One source failing does not stop the
@@ -143,6 +146,13 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
   its change since the previous run. On the map you can pick the fuel grade and show the price, the
   change since the previous run, or the change vs. a year ago. You can hover over states and metro
   dots, click a state to zoom in and list its metro areas, and scroll or drag to zoom and pan.
+  The banner shows a live **countdown to the next update** (6:00 AM Central); once that time has
+  passed, the page checks every 2 minutes for the new data and offers to show it. **Check your pump**
+  finds a city or state by name, or the nearest metro area with **Use my location** (the browser asks
+  first, and the location never leaves the device), and shows its prices, rank, gap to the U.S.
+  average and change from a year ago, rings it on the map, and remembers it. The **fill-up
+  calculator** shows what a tank (5 to 36 gallons, any grade) costs there, at the U.S. average, and in
+  the cheapest and priciest states. Rows of the biggest-moves table jump to that place on the map.
 * **Browse** (`browse.html`): latest values for every item, with a name search; filters for level,
   state, direction of change, maximum regular price and "starred only"; sorting by every numeric
   column up and down (click a header or use the Sort control); and a ☆ star on every row that saves
@@ -167,7 +177,7 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `requirements-dev.txt` | Test dependency (pytest). The pipeline itself uses only the Python standard library. |
 | `.gitignore` | Files git ignores (Python caches) |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are, without Jekyll |
-| `.github/workflows/daily.yml` | Scheduled daily pipeline: fetch, build, status, issue, commit |
+| `.github/workflows/daily.yml` | Daily pipeline at 6:00 AM Central: schedule check, fetch, build, status, issue, commit |
 | `.github/workflows/tests.yml` | Runs the pytest suite on every push and pull request, and after every daily run |
 | `tracker/__init__.py` | Marks `tracker` as a Python package |
 | `tracker/sources.py` | The source list and URLs (AAA and EIA), the download function, and the converters from each raw page to the common columns (`COLUMNS`) |
@@ -175,11 +185,13 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `tracker/moves.py` | The move rule, appeared/disappeared items, and the issue text |
 | `tracker/status.py` | Writes `data/status.json` |
 | `tracker/issue.py` | Opens or updates today's GitHub issue and closes the previous one (GitHub REST API, `GITHUB_TOKEN`) |
+| `tracker/schedule.py` | Decides whether a scheduled run is the one at 6:00 AM Central (daylight or standard time), and whether the afternoon backup is needed |
 | `tracker/run.py` | The daily run: fetch all sources into `data/raw/<date>/`, log results, build, status, issue |
 | `tests/conftest.py` | Test setup and fixture loader |
 | `tests/test_sources.py` | Conversion of each source (AAA states page, AAA state pages, EIA page) to the common columns |
 | `tests/test_moves.py` | The move rule and the issue text |
 | `tests/test_every_source.py` | Conversion of every source, using the latest raw file saved for each one |
+| `tests/test_schedule.py` | The 6 AM Central schedule in winter and summer, the backup rule, manual runs |
 | `tests/test_history.py` | History logic: build from raw files, reproducibility, failed sources (including a whole-AAA outage and an EIA outage), second run on the same day, status file, source log |
 | `tests/fixtures/*.html.gz` | Real pages saved on 2026-11-10 for the tests: AAA state averages, DC and Rhode Island, and the EIA page |
 | `tools/make_locations.py` | One-off script that made `data/locations.csv` from the `cities.json` npm package |
