@@ -1,0 +1,272 @@
+{
+  "run_time": "2026-11-10T01:37:52Z",
+  "first_run_date": "2026-11-10",
+  "days_with_success": 1,
+  "latest_date": "2026-11-10",
+  "previous_date": null,
+  "items": 526,
+  "new_today": [],
+  "gone_today": [],
+  "sources": [
+    {
+      "name": "aaa_states",
+      "ok": true,
+      "count": 52
+    },
+    {
+      "name": "aaa_ak",
+      "ok": true,
+      "count": 3
+    },
+    {
+      "name": "aaa_al",
+      "ok": true,
+      "count": 13
+    },
+    {
+      "name": "aaa_ar",
+      "ok": true,
+      "count": 8
+    },
+    {
+      "name": "aaa_az",
+      "ok": true,
+      "count": 14
+    },
+    {
+      "name": "aaa_ca",
+      "ok": true,
+      "count": 31
+    },
+    {
+      "name": "aaa_co",
+      "ok": true,
+      "count": 10
+    },
+    {
+      "name": "aaa_ct",
+      "ok": true,
+      "count": 6
+    },
+    {
+      "name": "aaa_dc",
+      "ok": true,
+      "count": 2
+    },
+    {
+      "name": "aaa_de",
+      "ok": true,
+      "count": 3
+    },
+    {
+      "name": "aaa_fl",
+      "ok": true,
+      "count": 24
+    },
+    {
+      "name": "aaa_ga",
+      "ok": true,
+      "count": 15
+    },
+    {
+      "name": "aaa_hi",
+      "ok": true,
+      "count": 5
+    },
+    {
+      "name": "aaa_ia",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "name": "aaa_id",
+      "ok": true,
+      "count": 7
+    },
+    {
+      "name": "aaa_il",
+      "ok": true,
+      "count": 17
+    },
+    {
+      "name": "aaa_in",
+      "ok": true,
+      "count": 15
+    },
+    {
+      "name": "aaa_ks",
+      "ok": true,
+      "count": 5
+    },
+    {
+      "name": "aaa_ky",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "name": "aaa_la",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "name": "aaa_ma",
+      "ok": true,
+      "count": 7
+    },
+    {
+      "name": "aaa_md",
+      "ok": true,
+      "count": 8
+    },
+    {
+      "name": "aaa_me",
+      "ok": true,
+      "count": 3
+    },
+    {
+      "name": "aaa_mi",
+      "ok": true,
+      "count": 10
+    },
+    {
+      "name": "aaa_mn",
+      "ok": true,
+      "count": 8
+    },
+    {
+      "name": "aaa_mo",
+      "ok": true,
+      "count": 8
+    },
+    {
+      "name": "aaa_ms",
+      "ok": true,
+      "count": 4
+    },
+    {
+      "name": "aaa_mt",
+      "ok": true,
+      "count": 3
+    },
+    {
+      "name": "aaa_nc",
+      "ok": true,
+      "count": 15
+    },
+    {
+      "name": "aaa_nd",
+      "ok": true,
+      "count": 4
+    },
+    {
+      "name": "aaa_ne",
+      "ok": true,
+      "count": 7
+    },
+    {
+      "name": "aaa_nh",
+      "ok": true,
+      "count": 2
+    },
+    {
+      "name": "aaa_nj",
+      "ok": true,
+      "count": 11
+    },
+    {
+      "name": "aaa_nm",
+      "ok": true,
+      "count": 4
+    },
+    {
+      "name": "aaa_nv",
+      "ok": true,
+      "count": 2
+    },
+    {
+      "name": "aaa_ny",
+      "ok": true,
+      "count": 16
+    },
+    {
+      "name": "aaa_oh",
+      "ok": true,
+      "count": 14
+    },
+    {
+      "name": "aaa_ok",
+      "ok": true,
+      "count": 4
+    },
+    {
+      "name": "aaa_or",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "name": "aaa_pa",
+      "ok": true,
+      "count": 19
+    },
+    {
+      "name": "aaa_ri",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "aaa_sc",
+      "ok": true,
+      "count": 10
+    },
+    {
+      "name": "aaa_sd",
+      "ok": true,
+      "count": 3
+    },
+    {
+      "name": "aaa_tn",
+      "ok": true,
+      "count": 10
+    },
+    {
+      "name": "aaa_tx",
+      "ok": true,
+      "count": 27
+    },
+    {
+      "name": "aaa_ut",
+      "ok": true,
+      "count": 5
+    },
+    {
+      "name": "aaa_va",
+      "ok": true,
+      "count": 12
+    },
+    {
+      "name": "aaa_vt",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "aaa_wa",
+      "ok": true,
+      "count": 14
+    },
+    {
+      "name": "aaa_wi",
+      "ok": true,
+      "count": 15
+    },
+    {
+      "name": "aaa_wv",
+      "ok": true,
+      "count": 11
+    },
+    {
+      "name": "aaa_wy",
+      "ok": true,
+      "count": 2
+    }
+  ]
+}
