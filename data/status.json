@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-11-10T01:37:52Z",
+  "run_time": "2026-11-10T02:51:27Z",
   "first_run_date": "2026-11-10",
   "days_with_success": 1,
   "latest_date": "2026-11-10",
   "previous_date": null,
-  "items": 526,
+  "items": 541,
   "new_today": [],
   "gone_today": [],
   "sources": [
@@ -210,18 +210,21 @@
     },
     {
       "name": "aaa_ri",
-      "ok": true,
-      "count": 1
+      "ok": false,
+      "count": 0,
+      "error": "download failed: <HTTPError 429: 'Too Many Requests'>"
     },
     {
       "name": "aaa_sc",
-      "ok": true,
-      "count": 10
+      "ok": false,
+      "count": 0,
+      "error": "download failed: <HTTPError 429: 'Too Many Requests'>"
     },
     {
       "name": "aaa_sd",
-      "ok": true,
-      "count": 3
+      "ok": false,
+      "count": 0,
+      "error": "download failed: <HTTPError 429: 'Too Many Requests'>"
     },
     {
       "name": "aaa_tn",
@@ -267,6 +270,11 @@
       "name": "aaa_wy",
       "ok": true,
       "count": 2
+    },
+    {
+      "name": "eia_gasdiesel",
+      "ok": true,
+      "count": 29
     }
   ]
 }
