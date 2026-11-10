@@ -201,6 +201,7 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `assets/browse.js` | Browse page: filters, search, sort, shortlist |
 | `assets/trends.js` | Trends page: explorer chart and the findings |
 | `assets/icons/icon.svg`, `icon-192.png`, `icon-512.png` | App icons |
+| `assets/icons/favicon.svg`, `favicon-32.png` | The browser-tab icon (a little gas pump) |
 | `assets/vendor/d3.min.js` | d3 v7.9 (charts and map), stored locally so the site works offline |
 | `assets/vendor/topojson-client.min.js` | topojson-client v3.1 (reads the map file) |
 | `assets/vendor/us-states-10m.json` | U.S. state shapes from the `us-atlas` v3 package |

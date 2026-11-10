@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a little vintage gas pump: rustic red body, cream globe and price window, navy hose -->
+  <circle cx="26" cy="11" r="8.5" fill="#fffaf0" stroke="#a43c2f" stroke-width="3"/>
+  <rect x="23" y="18" width="6" height="4" fill="#1f3b57"/>
+  <rect x="12" y="21" width="28" height="36" rx="5" fill="#a43c2f"/>
+  <rect x="17" y="26" width="18" height="11" rx="2.5" fill="#fffaf0"/>
+  <rect x="20" y="29" width="12" height="5" rx="1" fill="#1f3b57"/>
+  <rect x="17" y="41" width="18" height="3" rx="1.5" fill="#fffaf0" opacity=".85"/>
+  <path d="M40 28 h5 a4 4 0 0 1 4 4 v16 a4 4 0 0 1 -8 0 v-3" fill="none" stroke="#1f3b57" stroke-width="3.2" stroke-linecap="round"/>
+  <rect x="9" y="56" width="34" height="5" rx="2" fill="#1f3b57"/>
+</svg>

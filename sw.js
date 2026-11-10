@@ -1,12 +1,12 @@
 /* Service worker: makes the site installable and lets it open offline.
    Strategy: network first for everything (so online visitors always get fresh data),
    falling back to the cached copy when the network is unavailable. */
-const CACHE = "gas-tracker-v15";
+const CACHE = "gas-tracker-v16";
 const SHELL = [
   "./", "index.html", "browse.html", "trends.html", "manifest.webmanifest",
   "assets/style.css", "assets/common.js", "assets/today.js", "assets/browse.js", "assets/trends.js",
   "assets/vendor/d3.min.js", "assets/vendor/topojson-client.min.js", "assets/vendor/us-states-10m.json",
-  "assets/icons/icon-192.png", "assets/icons/icon-512.png", "assets/icons/icon.svg",
+  "assets/icons/icon-192.png", "assets/icons/icon-512.png", "assets/icons/icon.svg", "assets/icons/favicon.svg", "assets/icons/favicon-32.png",
   "assets/fonts/righteous-latin-400-normal.woff2", "assets/fonts/special-elite-latin-400-normal.woff2",
   "assets/fonts/work-sans-latin-400-normal.woff2", "assets/fonts/work-sans-latin-500-normal.woff2",
   "assets/fonts/work-sans-latin-600-normal.woff2", "assets/fonts/work-sans-latin-700-normal.woff2",
