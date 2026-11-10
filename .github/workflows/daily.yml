@@ -2,12 +2,13 @@ name: Daily gas prices
 
 on:
   schedule:
-    # Every day at 6:00 AM Central (Dallas). GitHub schedules in UTC only, so both UTC
-    # times are listed and tracker/schedule.py runs whichever one is 6 AM Central that day.
-    - cron: "0 11 * * *"   # 6:00 AM CDT (daylight time)
-    - cron: "0 12 * * *"   # 6:00 AM CST (standard time)
-    # Afternoon backup: only runs if the morning run saved no data for the day.
-    - cron: "47 20 * * *"
+    # The update is due every day at 6:00 AM Central (Dallas). GitHub's scheduler is best
+    # effort (runs can start late or be dropped), so the workflow wakes up often and
+    # tracker/schedule.py runs the update at the first wake-up at or after 6:00 AM Central,
+    # then skips the rest of the day. UTC hours 11-23 cover 6 AM-6 PM Central in both
+    # daylight time (UTC-5) and standard time (UTC-6).
+    - cron: "0,10,20,30,40,50 11-14 * * *"   # every 10 minutes for the first hours
+    - cron: "5,35 15-23 * * *"               # then every 30 minutes until evening
   workflow_dispatch:
 
 permissions:
@@ -25,15 +26,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Is today's 6 AM Central update still due?
+        id: gate
+        run: python3 -m tracker.schedule
+
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
-
-      - name: Is it 6 AM in Central time (or a backup/manual run)?
-        id: gate
-        env:
-          SCHEDULE: ${{ github.event.schedule }}
-        run: python -m tracker.schedule
 
       - name: Fetch, build history, write status, open issue
         if: steps.gate.outputs.run == 'true'

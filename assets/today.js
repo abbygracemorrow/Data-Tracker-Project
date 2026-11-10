@@ -333,11 +333,11 @@
     const lastRun = new Date(st.run_time);
     const localNote = Intl.DateTimeFormat().resolvedOptions().timeZone === "America/Chicago" ? "" : ` (${fmtClock(next)} your time)`;
     const sinceSlot = (now - last6) / 36e5;
-    if (!data.asOf && lastRun < last6 && sinceSlot < 9) {
+    if (!data.asOf && lastRun < last6 && sinceSlot < 12) {
       // today's 6 AM run should have happened but its data isn't here yet
       nextEl.innerHTML = `<div class="nu-label">Today's update</div><div class="nu-time">${sinceSlot < 1 ? "Running now…" : "Running late"}</div>
         <div class="nu-sub">${sinceSlot < 1 ? "New prices usually appear within a few minutes. This page checks for them every 2 minutes."
-          : "GitHub sometimes starts scheduled runs late. A backup run follows in the afternoon."}</div>`;
+          : "GitHub started today's run late. The tracker retries every 10 minutes until it runs, and this page checks every 2 minutes."}</div>`;
       if (!polling) polling = setInterval(checkForNewData, 120000);
       return;
     }

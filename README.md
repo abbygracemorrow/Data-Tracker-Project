@@ -16,10 +16,12 @@ everything to a website with an interactive map of the United States.
 ## How it works
 
 `.github/workflows/daily.yml` runs `python -m tracker.run` **every day at 6:00 AM Central time**
-(Dallas). GitHub schedules in UTC only, and 6:00 AM Central is 11:00 UTC in daylight time but
-12:00 UTC in standard time, so the workflow is scheduled at both and `tracker/schedule.py` lets only
-the one that is really 6 AM Central run. An afternoon backup (20:47 UTC) runs only if the morning
-run saved no data for the day. Each run:
+(Dallas). GitHub's scheduler is best effort: a scheduled run can start late or be dropped, especially
+at the top of the hour. So the workflow does not rely on a single trigger: it wakes up every 10
+minutes from 6 to 9 AM Central and every 30 minutes after that until 6 PM, and `tracker/schedule.py`
+decides at each wake-up whether today's update is still due. The first wake-up GitHub actually starts
+does the update; the others stop within seconds. (GitHub schedules in UTC; the check works in Central
+time, so daylight saving time is handled.) Each run:
 
 1. **Calls every source** (53 pages from two providers, listed below) and saves exactly what each one returns,
    gzip-compressed, in `data/raw/<date>/<source>.html.gz`. One source failing does not stop the
@@ -177,7 +179,7 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `requirements-dev.txt` | Test dependency (pytest). The pipeline itself uses only the Python standard library. |
 | `.gitignore` | Files git ignores (Python caches) |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are, without Jekyll |
-| `.github/workflows/daily.yml` | Daily pipeline at 6:00 AM Central: schedule check, fetch, build, status, issue, commit |
+| `.github/workflows/daily.yml` | Daily pipeline due at 6:00 AM Central, with frequent wake-ups as a safety net: schedule check, fetch, build, status, issue, commit |
 | `.github/workflows/tests.yml` | Runs the pytest suite on every push and pull request, and after every daily run |
 | `tracker/__init__.py` | Marks `tracker` as a Python package |
 | `tracker/sources.py` | The source list and URLs (AAA and EIA), the download function, and the converters from each raw page to the common columns (`COLUMNS`) |
@@ -185,13 +187,13 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
 | `tracker/moves.py` | The move rule, appeared/disappeared items, and the issue text |
 | `tracker/status.py` | Writes `data/status.json` |
 | `tracker/issue.py` | Opens or updates today's GitHub issue and closes the previous one (GitHub REST API, `GITHUB_TOKEN`) |
-| `tracker/schedule.py` | Decides whether a scheduled run is the one at 6:00 AM Central (daylight or standard time), and whether the afternoon backup is needed |
+| `tracker/schedule.py` | Decides at each scheduled wake-up whether today's 6:00 AM Central update is still due (handles daylight saving time) |
 | `tracker/run.py` | The daily run: fetch all sources into `data/raw/<date>/`, log results, build, status, issue |
 | `tests/conftest.py` | Test setup and fixture loader |
 | `tests/test_sources.py` | Conversion of each source (AAA states page, AAA state pages, EIA page) to the common columns |
 | `tests/test_moves.py` | The move rule and the issue text |
 | `tests/test_every_source.py` | Conversion of every source, using the latest raw file saved for each one |
-| `tests/test_schedule.py` | The 6 AM Central schedule in winter and summer, the backup rule, manual runs |
+| `tests/test_schedule.py` | The 6 AM Central schedule in winter and summer, only the first wake-up running, no evening catch-up, manual runs |
 | `tests/test_history.py` | History logic: build from raw files, reproducibility, failed sources (including a whole-AAA outage and an EIA outage), second run on the same day, status file, source log |
 | `tests/fixtures/*.html.gz` | Real pages saved on 2026-11-10 for the tests: AAA state averages, DC and Rhode Island, and the EIA page |
 | `tools/make_locations.py` | One-off script that made `data/locations.csv` from the `cities.json` npm package |
