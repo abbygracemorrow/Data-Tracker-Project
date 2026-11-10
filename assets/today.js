@@ -309,59 +309,30 @@
   draw();
 
   // ============================================================= interactive tools
-  const fmtClock = (d) => d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
-
-  // ----- next update: every day at 6:00 AM Central (America/Chicago) -----
-  function centralOffsetHours(date) {
-    const name = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", timeZoneName: "shortOffset" })
-      .formatToParts(date).find((p) => p.type === "timeZoneName").value;          // e.g. "GMT-6"
-    const m = name.match(/GMT([+-]\d+)/);
-    return m ? +m[1] : -6;
-  }
-  function sixAmCentral(dayOffset, now = new Date()) {
-    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", year: "numeric", month: "numeric", day: "numeric" })
-      .formatToParts(now).filter((p) => p.type !== "literal").map((p) => [p.type, +p.value]));
-    const guess = new Date(Date.UTC(parts.year, parts.month - 1, parts.day + dayOffset, 12));   // noon UTC that day
-    return new Date(Date.UTC(parts.year, parts.month - 1, parts.day + dayOffset, 6 - centralOffsetHours(guess)));
-  }
+  // ----- days tracked: one marker per calendar day since the first run -----
   const nextEl = document.getElementById("next-update");
-  let polling = null;
-  function tick() {
-    const now = new Date();
-    const today6 = sixAmCentral(0, now), next = now < today6 ? today6 : sixAmCentral(1, now);
-    const last6 = now < today6 ? sixAmCentral(-1, now) : today6;
+  (function daysTracked() {
+    const parse = d3.timeParse("%Y-%m-%d"), fmtKey = d3.timeFormat("%Y-%m-%d");
+    const ran = new Set(data.dates);
+    const first = parse(data.dates[0]);
+    const today = parse(fmtKey(new Date()));
+    const goal = 7;                                              // the assignment needs runs on 7 days
+    const lastDay = d3.max([today, d3.timeDay.offset(first, goal - 1), parse(data.dates[data.dates.length - 1])]);
+    const days = d3.timeDay.range(first, d3.timeDay.offset(lastDay, 1)).slice(-21);   // at most the last 3 weeks
+    const n = data.dates.length;
+    const marks = days.map((d) => {
+      const key = fmtKey(d), done = ran.has(key), future = d > today;
+      const title = `${d3.timeFormat("%a, %b %-d")(d)}: ${done ? "prices recorded" : future ? "coming up" : "no run"}`;
+      return `<span class="dt-day ${done ? "done" : future ? "future" : "missed"}" title="${title}" aria-label="${title}">
+        <span class="dt-dot"></span><span class="dt-date">${d3.timeFormat("%-d")(d)}</span></span>`;
+    }).join("");
     const lastRun = new Date(st.run_time);
-    const localNote = Intl.DateTimeFormat().resolvedOptions().timeZone === "America/Chicago" ? "" : ` (${fmtClock(next)} your time)`;
-    const sinceSlot = (now - last6) / 36e5;
-    if (!data.asOf && lastRun < last6 && sinceSlot < 12) {
-      // today's 6 AM run should have happened but its data isn't here yet
-      nextEl.innerHTML = `<div class="nu-label">Today's update</div><div class="nu-time">${sinceSlot < 1 ? "Running now…" : "Running late"}</div>
-        <div class="nu-sub">${sinceSlot < 1 ? "New prices usually appear within a few minutes. This page checks for them every 2 minutes."
-          : "GitHub started today's run late. The tracker retries every 10 minutes until it runs, and this page checks every 2 minutes."}</div>`;
-      if (!polling) polling = setInterval(checkForNewData, 120000);
-      return;
-    }
-    const ms = next - now, h = Math.floor(ms / 36e5), m = Math.floor((ms % 36e5) / 6e4), sec = Math.floor((ms % 6e4) / 1e3);
-    const pctDay = Math.min(100, Math.max(0, (100 * (now - last6)) / (next - last6)));
-    nextEl.innerHTML = `<div class="nu-label">Next update in</div>
-      <div class="nu-time">${String(h).padStart(2, "0")}<small>h</small> ${String(m).padStart(2, "0")}<small>m</small> ${String(sec).padStart(2, "0")}<small>s</small></div>
-      <div class="nu-bar" role="progressbar" aria-valuenow="${pctDay.toFixed(0)}" aria-valuemin="0" aria-valuemax="100" aria-label="Time until the next update"><span style="width:${pctDay.toFixed(2)}%"></span></div>
-      <div class="nu-sub">Every day at 6:00 AM Central${localNote}. Last update ${lastRun.toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" })}.</div>`;
-  }
-  async function checkForNewData() {
-    try {
-      const fresh = await (await fetch("data/status.json", { cache: "no-cache" })).json();
-      if (fresh.run_time && fresh.run_time !== st.run_time) {
-        clearInterval(polling);
-        nextEl.innerHTML = `<div class="nu-label">New prices are in</div><div class="nu-time">Updated</div>
-          <button class="btn nu-reload" type="button">Show today's prices</button>`;
-        nextEl.querySelector(".nu-reload").addEventListener("click", () => location.reload());
-        clearInterval(timer);
-      }
-    } catch { /* offline: try again next time */ }
-  }
-  tick();
-  const timer = setInterval(tick, 1000);
+    nextEl.innerHTML = `<div class="nu-label">Days tracked</div>
+      <div class="nu-time">${n} <small>${n === 1 ? "day" : "days"}</small></div>
+      <div class="dt-days" role="list">${marks}</div>
+      <div class="nu-sub">${n < goal ? `${goal - n} more ${goal - n === 1 ? "day" : "days"} to a full week. ` : ""}Updated each morning · last update
+        ${lastRun.toLocaleString(undefined, { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}.</div>`;
+  })();
 
   // ----- find your city -----
   const allItems = [...data.latest.values()].filter((r) => r.level !== "eia")

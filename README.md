@@ -148,8 +148,9 @@ GitHub Pages serves the repository root. All three pages load `data/history.csv`
   its change since the previous run. On the map you can pick the fuel grade and show the price, the
   change since the previous run, or the change vs. a year ago. You can hover over states and metro
   dots, click a state to zoom in and list its metro areas, and scroll or drag to zoom and pan.
-  The banner shows a live **countdown to the next update** (6:00 AM Central); once that time has
-  passed, the page checks every 2 minutes for the new data and offers to show it. **Check your pump**
+  The banner shows a **days-tracked** strip: the number of days with data, one marker per calendar
+  day since the first run (red when that day's prices were recorded, gray for a day with no run,
+  faded for the days still to come in the first week), and the time of the last update. **Check your pump**
   finds a city or state by name, or the nearest metro area with **Use my location** (the browser asks
   first, and the location never leaves the device), and shows its prices, rank, gap to the U.S.
   average and change from a year ago, rings it on the map, and remembers it. The **fill-up
