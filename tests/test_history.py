@@ -9,6 +9,7 @@ from tracker.sources import COLUMNS, source_url
 from conftest import load
 
 SOURCES = ["aaa_states", "aaa_dc", "aaa_ri"]
+ALL = SOURCES + ["eia_gasdiesel"]
 
 
 def fake_downloader(pages, fail=()):
@@ -22,9 +23,9 @@ def fake_downloader(pages, fail=()):
     return download
 
 
-def run_day(tmp_path, pages, date, fail=()):
+def run_day(tmp_path, pages, date, fail=(), names=SOURCES):
     raw = tmp_path / "raw"
-    results = run.fetch_all(date, raw, fake_downloader(pages, fail), names=SOURCES)
+    results = run.fetch_all(date, raw, fake_downloader(pages, fail), names=names)
     rows = build.build(raw, tmp_path / "history.csv")
     return results, rows
 
@@ -117,3 +118,26 @@ def test_source_log_keeps_one_entry_per_source_per_day(tmp_path, pages):
         entries = list(csv.DictReader(fh))
     assert len(entries) == 3 and {e["run_time"] for e in entries} == {"t2"}
     assert all(e["ok"] == "true" for e in entries)
+
+
+def test_whole_aaa_outage_is_survived_by_the_second_provider(tmp_path, pages):
+    """If every AAA page fails, the EIA source still gives the day a raw file and rows,
+    so the run finishes, the day counts, and the failures are all recorded."""
+    run_day(tmp_path, pages, "2026-11-09", names=ALL)
+    aaa = [s for s in ALL if s.startswith("aaa_")]
+    results, rows = run_day(tmp_path, pages, "2026-11-10", fail=aaa, names=ALL)
+    assert {r["name"]: r["ok"] for r in results} == {**{s: False for s in aaa}, "eia_gasdiesel": True}
+    saved = sorted(p.name for p in (tmp_path / "raw" / "2026-11-10").iterdir())
+    assert saved == ["eia_gasdiesel.html.gz"]
+    today = [r for r in rows if r["date"] == "2026-11-10"]
+    assert len(today) == 29 and all(r["source"] == "eia_gasdiesel" for r in today)
+    st = status.make_status("2026-11-10T13:23:00Z", rows, results, tmp_path / "raw")
+    assert st["days_with_success"] == 2 and st["items"] == 29
+    assert len(st["gone_today"]) == 55   # every AAA item disappeared for the day, and is listed
+    assert sum(not s["ok"] for s in st["sources"]) == len(aaa)
+
+
+def test_eia_outage_leaves_aaa_untouched(tmp_path, pages):
+    results, rows = run_day(tmp_path, pages, "2026-11-10", fail=["eia_gasdiesel"], names=ALL)
+    assert [r["name"] for r in results if not r["ok"]] == ["eia_gasdiesel"]
+    assert len(rows) == 55 and not any(r["source"] == "eia_gasdiesel" for r in rows)

@@ -1,8 +1,8 @@
 """Every source converts to the common columns, using the raw files the pipeline saved.
 
-For each of the 52 sources this takes the most recent raw file in data/raw/ and checks that
+For each of the 53 sources this takes the most recent raw file in data/raw/ and checks that
 it converts into rows with the common columns, the right source name, a unique item_id per
-row, and the two main numeric values (regular and at least one other grade) filled in.
+row, and the regular price (plus another grade for AAA rows) filled in.
 """
 import gzip
 
@@ -33,6 +33,9 @@ def test_source_converts_to_common_columns(source):
         assert list(r) == COLUMNS
         assert r["date"] == date and r["source"] == source and r["item"]
         assert float(r["regular"]) > 0
+        if source == "eia_gasdiesel":
+            assert r["level"] == "eia"
+            continue
         assert any(r[c] for c in ("midgrade", "premium", "diesel")) or r["level"] == "national"
         if source != "aaa_states":
             assert r["level"] == "metro" and r["state"] == source[4:].upper()

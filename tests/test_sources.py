@@ -67,5 +67,28 @@ def test_helpers():
     assert price_date("nothing") == ""
     assert slug("Washington (DC only)") == "washington-dc-only"
     names = source_names()
-    assert names[0] == "aaa_states" and len(names) == 52 and len(set(names)) == 52
+    assert names[0] == "aaa_states" and len(names) == 53 and len(set(names)) == 53
+    assert names[-1] == "eia_gasdiesel" and source_url("eia_gasdiesel").startswith("https://www.eia.gov/")
     assert source_url("aaa_tx").endswith("?state=TX")
+
+
+def test_eia_page_gives_regions_states_and_cities():
+    rows = convert("eia_gasdiesel", load("eia_gasdiesel"), "2026-11-10")
+    by_id = {r["item_id"]: r for r in rows}
+    assert len(rows) == 29 and len(by_id) == 29
+    for r in rows:
+        assert list(r) == COLUMNS
+        assert r["source"] == "eia_gasdiesel" and r["level"] == "eia" and r["date"] == "2026-11-10"
+        assert r["price_date"] == "2026-11-02" and r["item"].endswith("(EIA weekly)")
+        assert float(r["regular"]) > 0
+    us = by_id["EIA-US"]
+    # regular: latest week 4.153, week before 4.269, change from a year ago +1.134 -> 3.019
+    assert (us["regular"], us["regular_week_ago"], us["regular_year_ago"]) == ("4.1530", "4.2690", "3.0190")
+    # diesel: 6.292, change from a year ago +2.539 -> 3.753
+    assert (us["diesel"], us["diesel_year_ago"]) == ("6.2920", "3.7530")
+    # California is in both the gasoline (States) table and the diesel table: one row, both fuels
+    ca = by_id["EIA-california"]
+    assert ca["state"] == "CA" and ca["regular"] == "5.7480" and ca["diesel"] == "8.0760"
+    # cities get their state; regions have none
+    assert by_id["EIA-boston"]["state"] == "MA" and by_id["EIA-boston"]["diesel"] == ""
+    assert by_id["EIA-midwest-padd2"]["state"] == "" and by_id["EIA-midwest-padd2"]["diesel"] == "6.4020"

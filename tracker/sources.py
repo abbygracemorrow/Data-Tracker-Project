@@ -1,12 +1,16 @@
 """The sources the tracker calls, how each one is downloaded, and how each raw file
 is converted into rows with the common history columns.
 
-Every source is a page on gasprices.aaa.com:
+There are two independent providers, so a failure at one of them does not leave a day empty:
 
-* ``aaa_states``  - https://gasprices.aaa.com/state-gas-price-averages/
-  One row per state (50 states + DC) and one row for the national average.
-* ``aaa_<st>``    - https://gasprices.aaa.com/?state=<ST>   (51 sources, one per state + DC)
-  One row per metro area that AAA lists for that state.
+* AAA (daily), pages on gasprices.aaa.com:
+  * ``aaa_states``  - https://gasprices.aaa.com/state-gas-price-averages/
+    One row per state (50 states + DC) and one row for the national average.
+  * ``aaa_<st>``    - https://gasprices.aaa.com/?state=<ST>   (51 sources, one per state + DC)
+    One row per metro area that AAA lists for that state.
+* EIA, the U.S. Energy Information Administration (weekly, updated on Mondays):
+  * ``eia_gasdiesel`` - https://www.eia.gov/petroleum/gasdiesel/
+    One row per area in EIA's retail price tables: the U.S., 10 regions, 9 states and 10 cities.
 
 Only the price tables are kept from each page; everything else on the page is ignored.
 """
@@ -53,10 +57,12 @@ USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 
 def source_names() -> list[str]:
     """Every source, in the order it is called."""
-    return ["aaa_states"] + [f"aaa_{st.lower()}" for st in sorted(STATES)]
+    return ["aaa_states"] + [f"aaa_{st.lower()}" for st in sorted(STATES)] + ["eia_gasdiesel"]
 
 
 def source_url(name: str) -> str:
+    if name == "eia_gasdiesel":
+        return "https://www.eia.gov/petroleum/gasdiesel/"
     if name == "aaa_states":
         return "https://gasprices.aaa.com/state-gas-price-averages/"
     return f"https://gasprices.aaa.com/?state={name[4:].upper()}"
@@ -223,9 +229,84 @@ def parse_metros(page: str, date: str, state: str, source: str | None = None) ->
     return rows
 
 
+# EIA city -> state code (EIA's cities are the big metro areas it surveys)
+EIA_CITY_STATE = {
+    "Boston": "MA", "Chicago": "IL", "Cleveland": "OH", "Denver": "CO", "Houston": "TX",
+    "Los Angeles": "CA", "Miami": "FL", "New York City": "NY", "San Francisco": "CA", "Seattle": "WA",
+}
+_STATE_CODE = {v: k for k, v in STATES.items()}
+
+
+def _us_date(text: str) -> str:
+    """'11/02/26' -> '2026-11-02'."""
+    m = re.fullmatch(r"(\d{1,2})/(\d{1,2})/(\d{2,4})", text.strip())
+    if not m:
+        return ""
+    month, day, year = (int(g) for g in m.groups())
+    return dt.date(year + 2000 if year < 100 else year, month, day).isoformat()
+
+
+def parse_eia(page: str, date: str, source: str = "eia_gasdiesel") -> list[dict]:
+    """EIA 'Gasoline and Diesel Fuel Update' page -> one row per area.
+
+    The page has three tables: regular gasoline by region, regular gasoline by state and city,
+    and diesel by region. Each has the last three weekly prices and the change from a year ago.
+    The same area in the gasoline and diesel tables (e.g. California) becomes one row.
+    """
+    items: dict[str, dict] = {}
+    for table in re.findall(r"<table[^>]*>(.*?)</table>", page, re.S):
+        cap = re.search(r"<caption>(.*?)</caption>", table, re.S)
+        caption = _text(cap.group(1)).lower() if cap else ""
+        if "diesel" in caption:
+            fuel = "diesel"
+        elif "gasoline" in caption or caption.startswith("states"):
+            fuel = "regular"
+        else:
+            continue
+        heads = [_text(h).lower() for h in re.findall(r"<th[^>]*>(.*?)</th>", table, re.S)]
+        dates = [_us_date(h) for h in heads if _us_date(h)]
+        if not dates or "year ago" not in heads:
+            continue
+        n_dates = len(dates)
+        year_ago_col = n_dates + [h for h in heads if h and not _us_date(h) and "change" not in h].index("year ago")
+        section = "state" if caption.startswith("states") else "region"
+        for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", table.split("<tbody>", 1)[-1], re.S):
+            cells = re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)
+            if len(cells) == 1 and _text(cells[0]).lower() == "cities":
+                section = "city"
+                continue
+            if len(cells) < n_dates + 1:
+                continue
+            name = _text(re.sub(r"<br\s*/?>", " ", cells[0]))
+            values = [_price(c) for c in cells[1:]]
+            latest, before = values[n_dates - 1], values[n_dates - 2] if n_dates > 1 else ""
+            m = re.search(r"-?\d+(?:\.\d+)?", _text(cells[1 + year_ago_col])) if len(cells) > 1 + year_ago_col else None
+            year_change = float(m.group(0)) if m else None
+            if name == "U.S.":
+                item_id, label, level_state = "EIA-US", "United States", ""
+            else:
+                item_id, label = f"EIA-{slug(name)}", name
+                level_state = _STATE_CODE.get(name, "") if section != "city" else EIA_CITY_STATE.get(name, "")
+            row = items.get(item_id)
+            if row is None:
+                row = _blank_row(date, source)
+                row.update({"item_id": item_id, "item": f"{label} (EIA weekly)", "level": "eia",
+                            "state": level_state, "price_date": dates[-1]})
+                items[item_id] = row
+            if latest:
+                row[fuel] = latest
+                if year_change is not None:
+                    row[f"{fuel}_year_ago"] = f"{float(latest) - year_change:.4f}"
+                if fuel == "regular" and before:
+                    row["regular_week_ago"] = before
+    return sorted(items.values(), key=lambda r: r["item_id"])
+
+
 def convert(source: str, raw: bytes, date: str) -> list[dict]:
     """Convert one raw file of one source into rows with the common columns."""
     page = raw.decode("utf-8", errors="replace")
+    if source == "eia_gasdiesel":
+        return parse_eia(page, date, source)
     if source == "aaa_states":
         return parse_states(page, date, source)
     if source.startswith("aaa_") and len(source) == 6:
