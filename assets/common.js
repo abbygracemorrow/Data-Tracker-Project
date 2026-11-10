@@ -65,8 +65,77 @@
       }).join("")}
     </svg>`;
   }
+  /** A vintage gas pump (original drawing): teal body, cream face, globe on top. */
+  function pumpSVG() {
+    return `<svg class="sign" viewBox="0 0 150 300" aria-hidden="true">
+      <circle cx="70" cy="40" r="30" fill="#fffaf0" stroke="#4f8f84" stroke-width="6"/>
+      <circle cx="70" cy="40" r="19" fill="none" stroke="#c8322b" stroke-width="3"/>
+      <text x="70" y="40" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="17" fill="#c8322b">GAS</text>
+      <rect x="62" y="68" width="16" height="12" fill="#4f8f84"/>
+      <rect x="22" y="78" width="96" height="200" rx="16" fill="#5d9c8f" stroke="#fffaf0" stroke-width="3"/>
+      <rect x="34" y="94" width="72" height="168" rx="8" fill="#fffaf0"/>
+      <rect x="42" y="104" width="56" height="34" rx="5" fill="#2b3a40"/>
+      <text x="70" y="121" dy="0.36em" text-anchor="middle" font-family="Special Elite, monospace" font-size="15" fill="#f6e7c1">$4.00</text>
+      <rect x="44" y="148" width="52" height="16" rx="8" fill="#5d9c8f"/>
+      <text x="70" y="156" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="10" fill="#fffaf0">REGULAR</text>
+      <rect x="48" y="178" width="44" height="52" rx="6" fill="none" stroke="#c8322b" stroke-width="2.5"/>
+      <text x="70" y="204" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="13" fill="#c8322b">USA</text>
+      <path d="M118 120 h10 a8 8 0 0 1 8 8 v110 a10 10 0 0 1 -20 0 v-18" fill="none" stroke="#2b3a40" stroke-width="5" stroke-linecap="round"/>
+      <rect x="111" y="206" width="12" height="20" rx="3" fill="#9aa6a8"/>
+      <rect x="16" y="276" width="108" height="12" rx="4" fill="#fffaf0" opacity=".9"/>
+    </svg>`;
+  }
+
+  /** A generic highway shield on a post (original; not any real route's sign). */
+  function shieldSVG() {
+    return `<svg class="sign" viewBox="0 0 160 300" aria-hidden="true">
+      <rect x="74" y="150" width="10" height="150" fill="#fffaf0" stroke="#d9cdb4"/>
+      <path d="M18 22 Q50 34 79 14 Q108 34 140 22 Q150 70 138 110 Q118 160 79 176 Q40 160 20 110 Q8 70 18 22 Z" fill="#fffaf0" stroke="#1f3b57" stroke-width="7"/>
+      <path d="M28 34 Q54 42 79 26 Q104 42 130 34 L134 62 L24 62 Z" fill="#c8322b"/>
+      <text x="79" y="49" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="16" fill="#fffaf0">HISTORIC</text>
+      <text x="79" y="84" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="17" fill="#1f3b57">U.S. GAS</text>
+      <text x="79" y="126" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="44" fill="#1f3b57">$</text>
+    </svg>`;
+  }
+
+  /** The desert-sunset scene behind every page banner (original drawing). */
+  function sceneSVG() {
+    return `<svg class="scene" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="sun" cx="0.72" cy="0.66" r="0.32"><stop offset="0" stop-color="#ffe2b8" stop-opacity=".9"/><stop offset="1" stop-color="#ffe2b8" stop-opacity="0"/></radialGradient>
+        <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7c39b"/><stop offset="1" stop-color="#d6ad84"/></linearGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d8a8c"/><stop offset="1" stop-color="#5f5e62"/></linearGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <rect width="1440" height="440" fill="url(#sun)"/>
+      <g fill="#fff" opacity=".55" filter="url(#soft)">
+        <ellipse cx="300" cy="60" rx="180" ry="10"/><ellipse cx="420" cy="80" rx="120" ry="7"/>
+        <ellipse cx="980" cy="110" rx="200" ry="9"/><ellipse cx="1240" cy="190" rx="160" ry="7"/><ellipse cx="640" cy="220" rx="230" ry="6"/>
+      </g>
+      <path d="M0 300 L120 280 L210 292 L330 262 L430 284 L560 270 L700 286 L820 256 L900 240 L960 252 L1040 238 L1130 266 L1250 250 L1340 268 L1440 258 L1440 320 L0 320 Z" fill="#c69aa8" opacity=".75"/>
+      <path d="M0 312 L90 300 L200 306 L300 290 L420 304 L520 296 L640 306 L760 292 L880 300 L1000 288 L1120 300 L1220 284 L1330 296 L1440 290 L1440 330 L0 330 Z" fill="#a98394" opacity=".8"/>
+      <rect y="318" width="1440" height="122" fill="url(#sand)"/>
+      <g fill="#8f9a68" opacity=".75">
+        <ellipse cx="80" cy="330" rx="22" ry="7"/><ellipse cx="230" cy="338" rx="30" ry="8"/><ellipse cx="410" cy="328" rx="18" ry="6"/>
+        <ellipse cx="560" cy="342" rx="26" ry="8"/><ellipse cx="1300" cy="334" rx="24" ry="7"/><ellipse cx="1390" cy="346" rx="30" ry="9"/>
+      </g>
+      <path d="M1040 318 L1060 318 L1440 420 L1440 440 L700 440 Z" fill="url(#road)"/>
+      <g stroke="#f2c14e" stroke-width="3" stroke-linecap="round">
+        <line x1="1056" y1="324" x2="1062" y2="328"/><line x1="1074" y1="336" x2="1086" y2="344"/>
+        <line x1="1104" y1="356" x2="1124" y2="369"/><line x1="1150" y1="386" x2="1182" y2="406"/>
+      </g>
+      <path d="M1045 318 L708 440" stroke="#fffaf0" stroke-width="2" opacity=".7"/>
+    </svg>`;
+  }
+
   function drawSigns() {
-    document.querySelectorAll("[data-sign]").forEach((el) => { el.innerHTML = signSVG(el.dataset.sign, el.dataset.vertical === "1"); });
+    document.querySelectorAll("[data-sign]").forEach((el) => {
+      el.innerHTML = el.dataset.sign === "PUMP" ? pumpSVG() : el.dataset.sign === "SHIELD" ? shieldSVG()
+        : signSVG(el.dataset.sign, el.dataset.vertical === "1");
+    });
+    document.querySelectorAll(".page-head").forEach((el) => {
+      if (!el.querySelector(".scene")) el.insertAdjacentHTML("afterbegin", sceneSVG());
+    });
   }
 
   // ------------------------------------------------------------------ data loading

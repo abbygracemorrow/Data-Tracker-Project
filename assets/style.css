@@ -214,13 +214,6 @@ footer { max-width: 1240px; margin: 0 auto 2rem; padding: .8rem 1rem; color: var
 .install-help li { margin-bottom: .5rem; }
 .install-help .btn { background: var(--red); color: var(--paper); border-color: var(--red); }
 
-/* stat tiles: two tidy rows on wide screens (the red price card spans two rows) */
-@media (min-width: 1000px) {
-  .tiles { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-flow: dense; }
-  .tile.hero { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; justify-content: center; padding: 1.4rem 1.5rem; }
-  .tile.hero .value { font-size: 3.2rem; }
-  .tiles > .tile:last-child:nth-child(8) { grid-column: span 2; }
-}
 .tile .value { line-height: 1.25; }
 
 /* =====================================================================
@@ -287,3 +280,66 @@ footer { border: 0; background: none; }
   .page-head { padding: 2rem 1.25rem 5.5rem; clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
   .page-head + * { margin-top: -3rem; }
 }
+
+/* =====================================================================
+   Roadside Americana: desert-sunset banner, scalloped awning, flag stars,
+   and the national price shown like the window of a vintage pump.
+   ===================================================================== */
+:root { --pump: #5d9c8f; --sunset: #f3c9a8; }
+
+/* banner sky: deep blue fading to peach and pink at the horizon; the desert scene sits on top */
+.page-head {
+  background: linear-gradient(180deg, #4a7fb0 0%, #78a7cc 34%, #b9cfe0 52%, #f3d2b6 64%, #efb6a6 72%, #e7c39b 80%);
+  padding-bottom: 8.5rem;
+}
+.page-head .scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.page-head > *:not(.scene) { position: relative; z-index: 1; }
+.page-head h1 { text-shadow: 0 2px 12px rgba(31, 59, 87, .35); }
+.page-head p { text-shadow: 0 1px 6px rgba(31, 59, 87, .45); }
+.page-head .sign { filter: drop-shadow(0 6px 10px rgba(31, 59, 87, .25)); }
+
+/* red-and-cream scalloped awning hanging under the nav bar */
+.topbar { position: sticky; }
+.topbar::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 16px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, #c8322b 0 26px, #fffaf0 26px 52px);
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% 5px no-repeat, radial-gradient(circle 13px at 50% 3px, #000 98%, transparent 100%) 0 0 / 26px 16px repeat-x;
+          mask: linear-gradient(#000 0 0) top / 100% 5px no-repeat, radial-gradient(circle 13px at 50% 3px, #000 98%, transparent 100%) 0 0 / 26px 16px repeat-x;
+  filter: drop-shadow(0 3px 3px rgba(60, 30, 10, .18));
+}
+
+/* section markers: little red stars */
+.card > h2::before { width: 15px; height: 15px; border-radius: 0; box-shadow: none; background: var(--red);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+/* the national price: a vintage pump's price window, emphasized but in keeping */
+.tile.hero {
+  background: #fffaf0; color: var(--ink); border: 0; padding: 1.4rem 1.2rem .95rem; overflow: hidden;
+  box-shadow: inset 0 0 0 2px rgba(93, 156, 143, .55), 0 12px 28px -16px rgba(31, 59, 87, .35);
+}
+.tile.hero::before { /* awning stripe across the top */
+  display: block; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px; border-radius: 0;
+  background: repeating-linear-gradient(90deg, #c8322b 0 18px, #fffaf0 18px 36px);
+}
+.tile.hero .label { color: var(--red); }
+.tile.hero .value { color: var(--sky-ink); font-size: 2.5rem; line-height: 1.05; }
+.tile.hero .value::after { content: " /gal"; font-family: var(--type); font-size: .85rem; color: var(--muted); letter-spacing: .02em; }
+.tile.hero .sub { color: var(--ink-2); }
+.tile.hero .sub .up { color: var(--up); }
+.tile.hero .sub .down { color: var(--down); }
+
+/* stat tiles: five across on wide screens, the price window two columns wide */
+@media (min-width: 1000px) {
+  .tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .tile.hero { grid-column: span 2; grid-row: auto; display: block; }
+  .tiles > .tile:last-child:nth-child(8) { grid-column: span 2; }
+}
+
+/* footer: a small stars-and-stripes ribbon above the byline */
+footer::before { content: ""; display: block; width: 132px; height: 14px; margin: 0 auto .9rem; border-radius: 3px;
+  background:
+    radial-gradient(circle at 7px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 17px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 27px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 37px 4px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 12px 9px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 22px 9px, #fffaf0 1.3px, transparent 1.8px), radial-gradient(circle at 32px 9px, #fffaf0 1.3px, transparent 1.8px),
+    linear-gradient(#1f3b57, #1f3b57) 0 0 / 44px 100% no-repeat,
+    repeating-linear-gradient(180deg, #c8322b 0 2px, #fffaf0 2px 4px);
+  box-shadow: 0 2px 6px rgba(31, 59, 87, .15); }
+@media (max-width: 700px) { .page-head { padding-bottom: 6rem; } }
