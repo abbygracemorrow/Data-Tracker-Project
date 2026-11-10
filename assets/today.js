@@ -17,6 +17,24 @@
   document.getElementById("prev-date").textContent = data.prevDate ? fmtDate(data.prevDate) : "none yet";
 
   // ------------------------------------------------------------- tiles
+  // new_today / gone_today from the status file, described in terms of gas-price coverage
+  const listNames = (items) => {
+    const names = items.map((i) => esc(i.item.replace(/ \(EIA weekly\)$/, " (EIA)")));
+    return names.slice(0, 3).join(", ") + (names.length > 3 ? ` and ${names.length - 3} more` : "");
+  };
+  function coverageNew() {
+    if (!data.prevDate) return "first run: every area is new, so nothing to compare yet";
+    if (!st.new_today.length) return `no areas started reporting prices since ${fmtDate(data.prevDate)}`;
+    return `started reporting prices: ${listNames(st.new_today)}`;
+  }
+  function coverageGone() {
+    if (!data.prevDate) return "first run: nothing to compare yet";
+    const before = data.prev.size;
+    if (!st.gone_today.length) return `all ${before} areas from ${fmtDate(data.prevDate)} reported prices again`;
+    const failed = st.sources.filter((x) => !x.ok).map((x) => esc(x.name));
+    return `no prices today for ${listNames(st.gone_today)}` +
+      (failed.length ? ` (failed source${failed.length > 1 ? "s" : ""}: ${failed.slice(0, 3).join(", ")}${failed.length > 3 ? "…" : ""})` : " (dropped from the source's list)");
+  }
   const shortDate = (iso) => (iso ? d3.timeFormat("%b %-d")(d3.timeParse("%Y-%m-%d")(iso)) : "–");
   const nat = data.latest.get("US") || data.latest.get("EIA-US");   // EIA is the backup if AAA failed
   const natChange = GP.change(data, "US");
@@ -32,8 +50,8 @@
     { label: "Items in latest run", value: st.items, sub: "1 national, states and metro areas" },
     { label: "Days with data", value: st.days_with_success, sub: `<span id="first-run">since ${fmtDate(st.first_run_date)} (UTC)</span>` },
     { label: "Sources OK", value: `${okSources} / ${st.sources.length}`, sub: okSources === st.sources.length ? "all sources succeeded" : `${st.sources.length - okSources} failed` },
-    { label: "New today", value: st.new_today.length, sub: st.new_today.slice(0, 3).map((i) => esc(i.item)).join(", ") || "no items appeared" },
-    { label: "Gone today", value: st.gone_today.length, sub: st.gone_today.slice(0, 3).map((i) => esc(i.item)).join(", ") || "no items disappeared" },
+    { label: "New on the price board", value: st.new_today.length, sub: coverageNew() },
+    { label: "Missing from today's run", value: st.gone_today.length, sub: coverageGone() },
   ];
   document.getElementById("tiles").innerHTML = tiles.map((t) =>
     `<div class="tile ${t.cls || ""}"><div class="label">${t.label}</div><div class="value" ${t.small ? 'style="font-size:1.05rem"' : ""}>${t.value}</div><div class="sub">${t.sub}</div></div>`).join("");
