@@ -37,6 +37,8 @@
   }
   const shortDate = (iso) => (iso ? d3.timeFormat("%b %-d")(d3.timeParse("%Y-%m-%d")(iso)) : "–");
   const nat = data.latest.get("US") || data.latest.get("EIA-US");   // EIA is the backup if AAA failed
+  // the vintage pump in the banner shows the real U.S. average
+  document.querySelectorAll(".pump-price").forEach((el) => { if (nat && nat.regular != null) el.textContent = "$" + nat.regular.toFixed(2); });
   const natChange = GP.change(data, "US");
   const okSources = st.sources.filter((s) => s.ok).length;
   const tiles = [

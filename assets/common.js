@@ -31,12 +31,12 @@
   const DIVERGING = ["#1d5a85", "#4f8fbd", "#a9cbe2", "#efe7d6", "#efb3a6", "#d5574a", "#9c2420"];
   const UP = "#c8322b", DOWN = "#2c7bb6", NODATA = "#e9e0cc";
 
-  /** An original motel-style sign: letters in round discs, alternating sky blue and pink.
+  /** An original motel-style sign: letters in round discs, alternating sky blue and cream with red rims.
       vertical: stacked on a pole with a starburst on top (for page banners);
       horizontal: a row of discs (for the logo). */
   function signSVG(word, vertical) {
     const letters = [...word];
-    const fills = ["#b3cfdd", "#efc9c3"];
+    const fills = ["#b3cfdd", "#f6eedf"];
     if (!vertical) {
       const r = 17, gap = 3, w = letters.length * (2 * r + gap) + 4;
       return `<svg viewBox="0 0 ${w} ${2 * r + 6}" aria-hidden="true">` + letters.map((ch, i) => {
@@ -75,7 +75,7 @@
       <rect x="22" y="78" width="96" height="200" rx="16" fill="#5d9c8f" stroke="#fffaf0" stroke-width="3"/>
       <rect x="34" y="94" width="72" height="168" rx="8" fill="#fffaf0"/>
       <rect x="42" y="104" width="56" height="34" rx="5" fill="#2b3a40"/>
-      <text x="70" y="121" dy="0.36em" text-anchor="middle" font-family="Special Elite, monospace" font-size="15" fill="#f6e7c1">$4.00</text>
+      <text class="pump-price" x="70" y="121" dy="0.36em" text-anchor="middle" font-family="Special Elite, monospace" font-size="15" fill="#f6e7c1">$–.––</text>
       <rect x="44" y="148" width="52" height="16" rx="8" fill="#5d9c8f"/>
       <text x="70" y="156" dy="0.36em" text-anchor="middle" font-family="Righteous, sans-serif" font-size="10" fill="#fffaf0">REGULAR</text>
       <rect x="48" y="178" width="44" height="52" rx="6" fill="none" stroke="#c8322b" stroke-width="2.5"/>
@@ -149,7 +149,7 @@
   function sceneSVG() {
     return `<svg class="scene" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
-        <radialGradient id="sun" cx="0.72" cy="0.66" r="0.32"><stop offset="0" stop-color="#ffe2b8" stop-opacity=".9"/><stop offset="1" stop-color="#ffe2b8" stop-opacity="0"/></radialGradient>
+        <radialGradient id="sun" cx="0.72" cy="0.66" r="0.32"><stop offset="0" stop-color="#fff3dc" stop-opacity=".85"/><stop offset="1" stop-color="#fff3dc" stop-opacity="0"/></radialGradient>
         <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7c39b"/><stop offset="1" stop-color="#d6ad84"/></linearGradient>
         <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d8a8c"/><stop offset="1" stop-color="#5f5e62"/></linearGradient>
         <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
@@ -159,8 +159,8 @@
         <ellipse cx="300" cy="60" rx="180" ry="10"/><ellipse cx="420" cy="80" rx="120" ry="7"/>
         <ellipse cx="980" cy="110" rx="200" ry="9"/><ellipse cx="1240" cy="190" rx="160" ry="7"/><ellipse cx="640" cy="220" rx="230" ry="6"/>
       </g>
-      <path d="M0 300 L120 280 L210 292 L330 262 L430 284 L560 270 L700 286 L820 256 L900 240 L960 252 L1040 238 L1130 266 L1250 250 L1340 268 L1440 258 L1440 320 L0 320 Z" fill="#c69aa8" opacity=".75"/>
-      <path d="M0 312 L90 300 L200 306 L300 290 L420 304 L520 296 L640 306 L760 292 L880 300 L1000 288 L1120 300 L1220 284 L1330 296 L1440 290 L1440 330 L0 330 Z" fill="#a98394" opacity=".8"/>
+      <path d="M0 300 L120 280 L210 292 L330 262 L430 284 L560 270 L700 286 L820 256 L900 240 L960 252 L1040 238 L1130 266 L1250 250 L1340 268 L1440 258 L1440 320 L0 320 Z" fill="#9db9cf" opacity=".85"/>
+      <path d="M0 312 L90 300 L200 306 L300 290 L420 304 L520 296 L640 306 L760 292 L880 300 L1000 288 L1120 300 L1220 284 L1330 296 L1440 290 L1440 330 L0 330 Z" fill="#7d9cb5" opacity=".9"/>
       <rect y="318" width="1440" height="122" fill="url(#sand)"/>
       <g fill="#8f9a68" opacity=".75">
         <ellipse cx="80" cy="330" rx="22" ry="7"/><ellipse cx="230" cy="338" rx="30" ry="8"/><ellipse cx="410" cy="328" rx="18" ry="6"/>

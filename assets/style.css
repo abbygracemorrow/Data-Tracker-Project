@@ -1,5 +1,5 @@
 /* One stylesheet for all three pages: one set of fonts and colors.
-   Look: vintage American road trip. Motel-sign pastels (sky blue and powder pink),
+   Look: vintage American road trip. Light sky blue and Americana red,
    cream paper, pickup-truck red, old political-map colors, light blue stripes. */
 @font-face { font-family: "Righteous"; src: url("fonts/righteous-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Special Elite"; src: url("fonts/special-elite-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
@@ -15,7 +15,7 @@
   --sky: #7ea7bf;           /* motel sky */
   --sky-2: #a9c8d9;
   --sky-ink: #1f3b57;       /* deep road-map navy */
-  --pink: #efc9c3;          /* motel sign pink */
+  --pink: #e0827a;          /* soft Americana red (accent bars) */
   --sign-blue: #b3cfdd;     /* motel sign blue */
   --red: #c8322b;           /* pickup-truck red */
   --red-dark: #9c2420;
@@ -140,7 +140,7 @@ tbody tr:hover { background: #fdeeea; }
 .star { background: none; border: 0; cursor: pointer; font-size: 1.2rem; line-height: 1; color: var(--axis); padding: 0 .2rem; }
 .star[aria-pressed="true"] { color: var(--red); }
 .tag { display: inline-block; font-family: var(--type); font-size: .7rem; padding: .02rem .5rem; border-radius: 999px; background: var(--sign-blue); color: var(--sky-ink); }
-.tag.state { background: var(--pink); color: #6b2b25; }
+.tag.state { background: #f7d9d5; color: #7a2520; }
 .tag.national { background: var(--red); color: var(--paper); }
 .tag.eia { background: #f1dfa6; color: #5b4300; }
 footer .byline { display: block; margin-top: .3rem; font-family: var(--display); color: var(--sky-ink); font-size: .95rem; }
@@ -287,9 +287,9 @@ footer { border: 0; background: none; }
    ===================================================================== */
 :root { --pump: #5d9c8f; --sunset: #f3c9a8; }
 
-/* banner sky: deep blue fading to peach and pink at the horizon; the desert scene sits on top */
+/* banner sky: clear blue fading to a pale warm horizon; the desert scene sits on top */
 .page-head {
-  background: linear-gradient(180deg, #4a7fb0 0%, #78a7cc 34%, #b9cfe0 52%, #f3d2b6 64%, #efb6a6 72%, #e7c39b 80%);
+  background: linear-gradient(180deg, #5b93c4 0%, #84b3d8 34%, #b8d4e8 52%, #e6eef2 62%, #f4ead8 70%, #e7c9a2 80%);
   padding-bottom: 8.5rem;
 }
 .page-head .scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
@@ -297,16 +297,6 @@ footer { border: 0; background: none; }
 .page-head h1 { text-shadow: 0 2px 12px rgba(31, 59, 87, .35); }
 .page-head p { text-shadow: 0 1px 6px rgba(31, 59, 87, .45); }
 .page-head .sign { filter: drop-shadow(0 6px 10px rgba(31, 59, 87, .25)); }
-
-/* red-and-cream scalloped awning hanging under the nav bar */
-.topbar { position: sticky; }
-.topbar::after {
-  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 16px; pointer-events: none;
-  background: repeating-linear-gradient(90deg, #c8322b 0 26px, #fffaf0 26px 52px);
-  -webkit-mask: linear-gradient(#000 0 0) top / 100% 5px no-repeat, radial-gradient(circle 13px at 50% 3px, #000 98%, transparent 100%) 0 0 / 26px 16px repeat-x;
-          mask: linear-gradient(#000 0 0) top / 100% 5px no-repeat, radial-gradient(circle 13px at 50% 3px, #000 98%, transparent 100%) 0 0 / 26px 16px repeat-x;
-  filter: drop-shadow(0 3px 3px rgba(60, 30, 10, .18));
-}
 
 /* section markers: little red stars */
 .card > h2::before { width: 15px; height: 15px; border-radius: 0; box-shadow: none; background: var(--red);
@@ -317,9 +307,8 @@ footer { border: 0; background: none; }
   background: #fffaf0; color: var(--ink); border: 0; padding: 1.4rem 1.2rem .95rem; overflow: hidden;
   box-shadow: inset 0 0 0 2px rgba(93, 156, 143, .55), 0 12px 28px -16px rgba(31, 59, 87, .35);
 }
-.tile.hero::before { /* awning stripe across the top */
-  display: block; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px; border-radius: 0;
-  background: repeating-linear-gradient(90deg, #c8322b 0 18px, #fffaf0 18px 36px);
+.tile.hero::before { /* a solid red accent line across the top */
+  display: block; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px; border-radius: 0; background: var(--red);
 }
 .tile.hero .label { color: var(--red); }
 .tile.hero .value { color: var(--sky-ink); font-size: 2.5rem; line-height: 1.05; }
