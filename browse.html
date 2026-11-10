@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse · Gas Price Tracker</title>
+<meta name="description" content="Daily AAA gas prices for every U.S. state and 470+ metro areas.">
+<meta name="theme-color" content="#0d366b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html"><img src="assets/icons/icon-192.png" alt="">Gas Price Tracker</a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Today</a>
+      <a href="browse.html" aria-current="page">Browse</a>
+      <a href="trends.html">Trends</a>
+    </nav>
+    <button id="install-btn" type="button">Install app</button>
+  </div>
+</header>
+<div class="offline-banner">You are offline. Showing the data this device loaded last time.</div>
+<main>
+  <div class="page-head">
+    <h1>Browse every item</h1>
+    <p>The latest prices for the national average, every state and every AAA metro area. Search by name, filter, sort by any number, and star items to keep them on your shortlist. The shortlist is saved in this browser.</p>
+  </div>
+
+  <section class="card">
+    <h2>Shortlist <span class="muted small" id="short-count"></span></h2>
+    <div class="chips" id="shortlist"></div>
+  </section>
+
+  <section class="card">
+    <div class="controls">
+      <label>Search <input type="search" id="q" placeholder="City or state name…" autocomplete="off"></label>
+      <label>Level
+        <select id="f-level"><option value="">All</option><option value="national">National</option><option value="state">State</option><option value="metro">Metro area</option></select>
+      </label>
+      <label>State <select id="f-state"><option value="">All states</option></select></label>
+      <label>Since previous run
+        <select id="f-dir"><option value="">Any</option><option value="up">Rose</option><option value="down">Fell</option><option value="flat">Unchanged</option><option value="none">No comparison</option></select>
+      </label>
+      <label>Max regular price <input type="text" id="f-max" inputmode="decimal" size="6" placeholder="e.g. 3.50"></label>
+      <label><input type="checkbox" id="f-starred"> Starred only</label>
+      <label>Sort
+        <select id="sort-col"></select>
+        <select id="sort-dir"><option value="desc">High → low</option><option value="asc">Low → high</option></select>
+      </label>
+      <button class="btn" type="button" id="reset">Reset</button>
+    </div>
+    <p class="muted small" id="count"></p>
+    <div class="table-wrap" style="max-height:70vh"><table id="table"></table></div>
+  </section>
+</main>
+<footer>Prices: <a href="https://gasprices.aaa.com/">AAA Gas Prices</a>, collected once a day by a GitHub Actions pipeline. Every number on this site is computed in your browser from <a href="data/history.csv">data/history.csv</a> and <a href="data/status.json">data/status.json</a>.</footer>
+<script src="assets/vendor/d3.min.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/browse.js"></script>
+</body>
+</html>
