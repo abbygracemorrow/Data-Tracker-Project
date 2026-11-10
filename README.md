@@ -23,6 +23,8 @@ run at 20:47 UTC). Each run:
    run: a failed source writes no raw file that day, and every result (ok or failed, item count,
    bytes, error) is recorded in `data/source_log.csv` and `data/status.json`. A page that downloads
    but contains no prices counts as a failure.
+   Requests are spaced 2 seconds apart, and when a site answers "too many requests" (HTTP 429)
+   the pipeline waits (for the time the site asks, or 20, 40, 60 seconds) and tries again.
 2. **Builds `data/history.csv` from the raw files alone** (every day, every source), so running the
    build again gives the same file and a change to a parsing rule applies to the whole history.
 3. **Writes `data/status.json`.**

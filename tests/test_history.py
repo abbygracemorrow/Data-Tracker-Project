@@ -141,3 +141,22 @@ def test_eia_outage_leaves_aaa_untouched(tmp_path, pages):
     results, rows = run_day(tmp_path, pages, "2026-11-10", fail=["eia_gasdiesel"], names=ALL)
     assert [r["name"] for r in results if not r["ok"]] == ["eia_gasdiesel"]
     assert len(rows) == 55 and not any(r["source"] == "eia_gasdiesel" for r in rows)
+
+
+def test_download_waits_and_retries_when_the_site_says_too_many_requests(monkeypatch):
+    import io
+    import urllib.error
+    from tracker import sources
+
+    calls, sleeps = [], []
+
+    def fake_urlopen(req, timeout):
+        calls.append(req.full_url)
+        if len(calls) == 1:
+            raise urllib.error.HTTPError(req.full_url, 429, "Too Many Requests", {"Retry-After": "7"}, None)
+        return io.BytesIO(b"<html>ok</html>")
+
+    monkeypatch.setattr(sources.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(sources.time, "sleep", sleeps.append)
+    assert sources.download("https://example.test/") == b"<html>ok</html>"
+    assert len(calls) == 2 and sleeps == [7]

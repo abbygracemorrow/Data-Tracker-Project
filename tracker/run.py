@@ -20,6 +20,7 @@ import gzip
 import os
 import pathlib
 import shutil
+import time
 
 from . import build as build_mod
 from .issue import publish
@@ -31,15 +32,23 @@ SOURCE_LOG = build_mod.DATA / "source_log.csv"
 LOG_COLUMNS = ["date", "run_time", "source", "ok", "count", "bytes", "error"]
 
 
+# Seconds to wait between two requests to the same site, so the run does not look like a flood.
+PAUSE = 2.0
+
+
 def fetch_all(date: str, raw_dir: pathlib.Path = build_mod.RAW, downloader=download,
-              names: list[str] | None = None) -> list[dict]:
+              names: list[str] | None = None, pause: float | None = None) -> list[dict]:
     """Download every source into raw_dir/<date>/. One failure never stops the others."""
+    if pause is None:
+        pause = PAUSE if downloader is download else 0.0
     day = raw_dir / date
     if day.exists():  # a second run on the same day replaces that day's raw files
         shutil.rmtree(day)
     day.mkdir(parents=True)
     results = []
-    for name in names or source_names():
+    for i, name in enumerate(names or source_names()):
+        if i and pause:
+            time.sleep(pause)
         result = {"name": name, "ok": False, "count": 0, "bytes": 0, "error": ""}
         try:
             body = downloader(source_url(name))

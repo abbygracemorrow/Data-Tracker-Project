@@ -20,6 +20,7 @@ import datetime as dt
 import html
 import re
 import time
+import urllib.error
 import urllib.request
 
 STATES = {
@@ -73,8 +74,9 @@ def source_format(name: str) -> str:
     return "html"
 
 
-def download(url: str, timeout: int = 30, tries: int = 3) -> bytes:
-    """Download a URL, retrying a couple of times on network errors."""
+def download(url: str, timeout: int = 30, tries: int = 4) -> bytes:
+    """Download a URL, retrying on network errors. When the server says "slow down"
+    (HTTP 429 or 503) it waits for the Retry-After time, or 20, 40, 60 seconds."""
     last = None
     for attempt in range(tries):
         try:
@@ -85,9 +87,20 @@ def download(url: str, timeout: int = 30, tries: int = 3) -> bytes:
             })
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return resp.read()
-        except Exception as exc:  # noqa: BLE001 - any failure is retried, then reported
+        except urllib.error.HTTPError as exc:
             last = exc
-            time.sleep(2 * (attempt + 1))
+            if attempt == tries - 1:
+                break
+            if exc.code in (429, 503):
+                retry_after = exc.headers.get("Retry-After", "") if exc.headers else ""
+                wait = int(retry_after) if retry_after.isdigit() else 20 * (attempt + 1)
+                time.sleep(min(wait, 90))
+            else:
+                time.sleep(3 * (attempt + 1))
+        except Exception as exc:  # noqa: BLE001 - any other failure is retried, then reported
+            last = exc
+            if attempt < tries - 1:
+                time.sleep(3 * (attempt + 1))
     raise RuntimeError(f"download failed: {last!r}")
 
 
