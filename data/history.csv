@@ -1109,3 +1109,558 @@ date,item_id,item,source,level,state,regular,midgrade,premium,diesel,regular_yes
 2026-11-11,WY,Wyoming,aaa_states,state,WY,4.0647,4.3591,4.6636,6.1499,,,,,,2026-11-11
 2026-11-11,WY-casper,"Casper, WY",aaa_wy,metro,WY,3.7634,4.1115,4.4045,6.0825,3.7852,4.0167,4.1678,2.5045,3.3990,2026-11-11
 2026-11-11,WY-cheyenne,"Cheyenne, WY",aaa_wy,metro,WY,3.7072,4.1193,4.3928,6.0507,3.7943,3.9928,4.2298,2.8106,3.6438,2026-11-11
+2026-11-12,AK,Alaska,aaa_states,state,AK,4.5075,4.6892,4.9315,6.2701,,,,,,2026-11-12
+2026-11-12,AK-anchorage,"Anchorage, AK",aaa_ak,metro,AK,4.2434,4.5861,4.8267,6.1751,4.3017,4.5201,4.9402,3.8257,4.0441,2026-11-12
+2026-11-12,AK-fairbanks,"Fairbanks, AK",aaa_ak,metro,AK,4.5202,4.9298,5.0784,6.3186,4.5532,4.7978,5.0200,3.6437,4.1498,2026-11-12
+2026-11-12,AK-juneau,"Juneau, AK",aaa_ak,metro,AK,4.7100,4.7903,4.8928,6.4378,4.5482,4.7082,4.7123,3.7980,4.5123,2026-11-12
+2026-11-12,AL,Alabama,aaa_states,state,AL,3.5457,4.0216,4.4372,5.7270,,,,,,2026-11-12
+2026-11-12,AL-anniston-oxford,"Anniston-Oxford, AL",aaa_al,metro,AL,3.4934,3.9065,4.3303,5.5993,3.5036,3.6560,3.9045,2.6391,3.3175,2026-11-12
+2026-11-12,AL-auburn,"Auburn, AL",aaa_al,metro,AL,3.5257,3.9301,4.4017,5.6530,3.5649,3.6999,3.9408,2.7310,3.4392,2026-11-12
+2026-11-12,AL-birmingham,"Birmingham, AL",aaa_al,metro,AL,3.5564,4.0706,4.4831,5.7720,3.5804,3.6953,3.9791,2.7192,3.5047,2026-11-12
+2026-11-12,AL-daphne-fairhope-foley,"Daphne-Fairhope-Foley, AL",aaa_al,metro,AL,3.4042,3.8900,4.3362,5.6019,3.4423,3.5817,3.9408,2.7635,3.5161,2026-11-12
+2026-11-12,AL-decatur,"Decatur, AL",aaa_al,metro,AL,3.4921,3.9953,4.3918,5.7138,3.5157,3.6150,3.9206,2.6278,3.3077,2026-11-12
+2026-11-12,AL-dothan,"Dothan, AL",aaa_al,metro,AL,3.5248,3.9498,4.3960,5.7596,3.5489,3.6619,4.0029,2.7159,3.5851,2026-11-12
+2026-11-12,AL-florence-muscle-shoals,"Florence-Muscle Shoals, AL",aaa_al,metro,AL,3.4329,3.8717,4.2406,5.7059,3.4753,3.6281,3.8971,2.6638,3.2877,2026-11-12
+2026-11-12,AL-gadsden,"Gadsden, AL",aaa_al,metro,AL,3.4414,3.9436,4.4022,5.6567,3.4694,3.5812,3.9576,2.6600,3.3209,2026-11-12
+2026-11-12,AL-huntsville,"Huntsville, AL",aaa_al,metro,AL,3.5434,4.0574,4.3923,5.7272,3.5578,3.6782,3.9334,2.6651,3.3796,2026-11-12
+2026-11-12,AL-mobile,"Mobile, AL",aaa_al,metro,AL,3.4284,3.8950,4.3185,5.6217,3.4562,3.5882,3.9835,2.6973,3.5428,2026-11-12
+2026-11-12,AL-montgomery,"Montgomery, AL",aaa_al,metro,AL,3.5851,4.0996,4.4684,5.6785,3.6138,3.7362,3.9822,2.7420,3.4789,2026-11-12
+2026-11-12,AL-russell-county,"Russell County, AL",aaa_al,metro,AL,3.6279,4.2428,4.6717,5.7490,3.6254,3.7531,3.9940,2.7432,3.4222,2026-11-12
+2026-11-12,AL-tuscaloosa,"Tuscaloosa, AL",aaa_al,metro,AL,3.5154,3.9359,4.3431,5.7726,3.5486,3.6863,3.9873,2.7014,3.4386,2026-11-12
+2026-11-12,AR,Arkansas,aaa_states,state,AR,3.5560,4.0650,4.4571,5.7064,,,,,,2026-11-12
+2026-11-12,AR-fayetteville-springdale-rogers,"Fayetteville-Springdale-Rogers, AR",aaa_ar,metro,AR,3.4643,3.9060,4.1979,5.6489,3.5035,3.6549,4.0250,2.6997,3.4595,2026-11-12
+2026-11-12,AR-fort-smith-ar-only,"Fort Smith (AR only), AR",aaa_ar,metro,AR,3.6716,4.1686,4.5748,5.7878,3.6921,3.7859,3.9984,2.6028,3.4063,2026-11-12
+2026-11-12,AR-hot-springs,"Hot Springs, AR",aaa_ar,metro,AR,3.2985,3.8359,4.3503,5.6225,3.3269,3.4581,3.8366,2.5370,3.3124,2026-11-12
+2026-11-12,AR-jonesboro,"Jonesboro, AR",aaa_ar,metro,AR,3.4884,3.9553,4.3833,5.6677,3.5035,3.6390,3.9399,2.6164,3.4228,2026-11-12
+2026-11-12,AR-little-rock-north-little-rock,"Little Rock-North Little Rock, AR",aaa_ar,metro,AR,3.4785,4.0141,4.3545,5.6384,3.5066,3.6445,3.8944,2.5946,3.3427,2026-11-12
+2026-11-12,AR-pine-bluff,"Pine Bluff, AR",aaa_ar,metro,AR,3.6397,4.1975,4.5776,5.7160,3.6683,3.7999,3.9848,2.6370,3.3822,2026-11-12
+2026-11-12,AR-texarkana-ar-only,"Texarkana (AR only), AR",aaa_ar,metro,AR,3.6857,4.3265,4.7146,5.5584,3.7304,3.8000,3.9745,2.6880,3.3669,2026-11-12
+2026-11-12,AR-west-memphis,"West Memphis, AR",aaa_ar,metro,AR,3.5941,4.0227,4.6884,5.7916,3.6137,3.7350,3.9883,2.6335,3.5250,2026-11-12
+2026-11-12,AZ,Arizona,aaa_states,state,AZ,4.1477,4.5057,4.8504,6.1574,,,,,,2026-11-12
+2026-11-12,AZ-east-valley,"East Valley, AZ",aaa_az,metro,AZ,4.2536,4.6779,4.9957,6.1558,4.2892,4.4366,4.8022,3.6258,3.7045,2026-11-12
+2026-11-12,AZ-flagstaff,"Flagstaff, AZ",aaa_az,metro,AZ,4.3498,4.6468,5.0392,6.3153,4.4336,4.6522,4.8618,3.2391,3.7897,2026-11-12
+2026-11-12,AZ-glendale,"Glendale, AZ",aaa_az,metro,AZ,4.0879,4.4740,4.8569,6.0687,4.1071,4.3147,4.6550,3.5585,3.6710,2026-11-12
+2026-11-12,AZ-lake-havasu-kingman,"Lake Havasu-Kingman, AZ",aaa_az,metro,AZ,4.4091,4.6734,5.0575,6.4029,4.4573,4.6086,4.8451,3.2553,3.8099,2026-11-12
+2026-11-12,AZ-peoria,"Peoria, AZ",aaa_az,metro,AZ,4.0272,4.4011,4.7352,6.0936,4.0773,4.2738,4.6439,3.5709,3.6951,2026-11-12
+2026-11-12,AZ-phoenix-mesa,"Phoenix-Mesa, AZ",aaa_az,metro,AZ,4.1142,4.5306,4.8676,6.1261,4.1546,4.3349,4.7182,3.5602,3.7119,2026-11-12
+2026-11-12,AZ-phoenix-proper,"Phoenix Proper, AZ",aaa_az,metro,AZ,4.0957,4.5033,4.8418,6.1374,4.1389,4.3275,4.7130,3.5699,3.6958,2026-11-12
+2026-11-12,AZ-pima-county,"Pima County, AZ",aaa_az,metro,AZ,3.8588,4.2034,4.5559,5.9905,3.9049,4.0732,4.5725,3.0851,3.5512,2026-11-12
+2026-11-12,AZ-prescott,"Prescott, AZ",aaa_az,metro,AZ,4.5135,4.8340,5.1398,6.3557,4.5547,4.6346,4.7696,3.0967,3.7189,2026-11-12
+2026-11-12,AZ-scottsdale,"Scottsdale, AZ",aaa_az,metro,AZ,4.3649,4.7851,5.1285,6.2742,4.4222,4.6000,4.9697,3.6783,3.8139,2026-11-12
+2026-11-12,AZ-sierra-vista-douglas,"Sierra Vista-Douglas, AZ",aaa_az,metro,AZ,4.0555,4.3477,4.6951,5.9758,4.0831,4.2045,4.4386,3.0250,3.7019,2026-11-12
+2026-11-12,AZ-tucson,"Tucson, AZ",aaa_az,metro,AZ,3.8418,4.2006,4.5372,5.9677,3.8896,4.0641,4.5573,3.0891,3.5609,2026-11-12
+2026-11-12,AZ-west-valley,"West Valley, AZ",aaa_az,metro,AZ,4.0472,4.4455,4.8148,6.0843,4.0777,4.2810,4.6273,3.5350,3.6593,2026-11-12
+2026-11-12,AZ-yuma,"Yuma, AZ",aaa_az,metro,AZ,4.2462,4.5894,4.9449,6.3448,4.2691,4.4694,4.7117,3.1190,3.6880,2026-11-12
+2026-11-12,CA,California,aaa_states,state,CA,5.6349,5.8809,6.0745,8.0383,,,,,,2026-11-12
+2026-11-12,CA-bakersfield,"Bakersfield, CA",aaa_ca,metro,CA,5.8367,6.1079,6.3155,8.0545,5.8757,6.0153,6.3281,4.6251,5.1899,2026-11-12
+2026-11-12,CA-chico-paradise,"Chico-Paradise, CA",aaa_ca,metro,CA,5.4493,5.6298,5.8344,7.8888,5.4896,5.6468,6.1424,4.3380,4.9114,2026-11-12
+2026-11-12,CA-el-centro,"El Centro, CA",aaa_ca,metro,CA,5.5024,5.7032,5.9681,7.9517,5.5218,5.6575,6.0017,4.6075,5.0662,2026-11-12
+2026-11-12,CA-fresno,"Fresno, CA",aaa_ca,metro,CA,5.5883,5.8214,6.0276,8.0612,5.6179,5.7738,6.3364,4.5252,5.1869,2026-11-12
+2026-11-12,CA-hanford-corcoran,"Hanford-Corcoran, CA",aaa_ca,metro,CA,5.4824,5.7960,6.0377,7.9132,5.5380,5.7070,6.2741,4.3847,5.1194,2026-11-12
+2026-11-12,CA-los-angeles-long-beach,"Los Angeles-Long Beach, CA",aaa_ca,metro,CA,5.7040,5.9490,6.1283,8.1480,5.7456,5.9168,6.3507,4.8634,5.2015,2026-11-12
+2026-11-12,CA-madera-chowchilla,"Madera-Chowchilla, CA",aaa_ca,metro,CA,5.6052,5.8723,6.1309,8.1508,5.6218,5.7896,6.2635,4.5655,5.2293,2026-11-12
+2026-11-12,CA-merced,"Merced, CA",aaa_ca,metro,CA,5.5585,5.9263,6.1345,8.0811,5.6090,5.7763,6.2168,4.4739,5.1662,2026-11-12
+2026-11-12,CA-modesto,"Modesto, CA",aaa_ca,metro,CA,5.4064,5.7129,5.9530,8.0801,5.4585,5.6309,6.2001,4.3687,5.1139,2026-11-12
+2026-11-12,CA-napa,"Napa, CA",aaa_ca,metro,CA,5.6737,5.9149,6.0961,8.1021,5.7112,5.8673,6.3802,4.7406,5.2384,2026-11-12
+2026-11-12,CA-oakland,"Oakland, CA",aaa_ca,metro,CA,5.6263,5.9096,6.1025,8.1213,5.6623,5.8417,6.3640,4.5666,5.2419,2026-11-12
+2026-11-12,CA-orange-county,"Orange County, CA",aaa_ca,metro,CA,5.5573,5.8046,5.9599,7.9603,5.6010,5.8047,6.2807,4.8162,5.0678,2026-11-12
+2026-11-12,CA-redding,"Redding, CA",aaa_ca,metro,CA,5.3977,5.5626,5.7782,7.9029,5.4396,5.6194,6.1584,4.3731,4.9407,2026-11-12
+2026-11-12,CA-riverside,"Riverside, CA",aaa_ca,metro,CA,5.4814,5.7360,5.9192,7.9225,5.5238,5.7114,6.1984,4.7295,5.1250,2026-11-12
+2026-11-12,CA-sacramento,"Sacramento, CA",aaa_ca,metro,CA,5.5783,5.8297,6.0639,7.9823,5.6053,5.7765,6.2819,4.5012,5.1800,2026-11-12
+2026-11-12,CA-salinas,"Salinas, CA",aaa_ca,metro,CA,5.7387,5.8954,6.1460,8.3041,5.8079,5.9348,6.4643,4.6861,5.4004,2026-11-12
+2026-11-12,CA-san-bernardino,"San Bernardino, CA",aaa_ca,metro,CA,5.5421,5.7562,5.9388,7.9232,5.5788,5.7606,6.2069,4.7225,5.1207,2026-11-12
+2026-11-12,CA-san-diego,"San Diego, CA",aaa_ca,metro,CA,5.7704,6.0092,6.1896,7.9683,5.8106,5.9480,6.3349,4.9154,5.1335,2026-11-12
+2026-11-12,CA-san-francisco,"San Francisco, CA",aaa_ca,metro,CA,5.7060,5.9263,6.1153,8.0495,5.7361,5.8688,6.4540,4.6371,5.3297,2026-11-12
+2026-11-12,CA-san-jose,"San Jose, CA",aaa_ca,metro,CA,5.5849,5.8233,6.0149,8.0502,5.6285,5.7826,6.2768,4.5037,5.1667,2026-11-12
+2026-11-12,CA-san-luis-obispo-atascadero-paso-robles,"San Luis Obispo-Atascadero-Paso Robles, CA",aaa_ca,metro,CA,5.7630,6.0162,6.2091,8.1695,5.8323,6.0316,6.5175,4.9175,5.4649,2026-11-12
+2026-11-12,CA-san-rafael,"San Rafael, CA",aaa_ca,metro,CA,5.6328,5.8920,6.0738,7.9148,5.6690,5.8402,6.4000,4.6601,5.3368,2026-11-12
+2026-11-12,CA-santa-barbara-santa-maria-lompoc,"Santa Barbara-Santa Maria-Lompoc, CA",aaa_ca,metro,CA,5.7297,5.9325,6.1531,8.0658,5.7640,5.9529,6.3404,4.7603,5.1805,2026-11-12
+2026-11-12,CA-santa-cruz-watsonville,"Santa Cruz-Watsonville, CA",aaa_ca,metro,CA,5.7092,5.9824,6.1639,8.2826,5.7466,5.8968,6.3706,4.6183,5.2653,2026-11-12
+2026-11-12,CA-santa-rosa,"Santa Rosa, CA",aaa_ca,metro,CA,5.7496,5.9817,6.1603,8.0122,5.7855,5.9453,6.4995,4.6939,5.3290,2026-11-12
+2026-11-12,CA-stockton-lodi,"Stockton-Lodi, CA",aaa_ca,metro,CA,5.4473,5.7253,5.9537,7.9149,5.4797,5.6407,6.1698,4.3746,5.0667,2026-11-12
+2026-11-12,CA-vallejo-fairfield,"Vallejo-Fairfield, CA",aaa_ca,metro,CA,5.5079,5.7793,5.9675,7.9650,5.5384,5.7119,6.2795,4.5099,5.1595,2026-11-12
+2026-11-12,CA-ventura,"Ventura, CA",aaa_ca,metro,CA,5.6527,5.9185,6.0948,8.1302,5.6866,5.8659,6.2779,4.8608,5.2404,2026-11-12
+2026-11-12,CA-visalia-tulare-porterville,"Visalia-Tulare-Porterville, CA",aaa_ca,metro,CA,5.5665,5.7625,6.0048,8.0556,5.6173,5.7544,6.2862,4.4826,5.1027,2026-11-12
+2026-11-12,CA-yolo,"Yolo, CA",aaa_ca,metro,CA,5.5445,5.7993,6.0206,7.8099,5.5717,5.7676,6.2615,4.4783,5.1134,2026-11-12
+2026-11-12,CA-yuba-city,"Yuba City, CA",aaa_ca,metro,CA,5.2655,5.5120,5.8373,7.8671,5.2750,5.4303,6.0744,4.2670,4.9490,2026-11-12
+2026-11-12,CO,Colorado,aaa_states,state,CO,3.7328,4.1153,4.4406,6.0347,,,,,,2026-11-12
+2026-11-12,CO-boulder-longmont,"Boulder-Longmont, CO",aaa_co,metro,CO,3.7924,4.2729,4.6124,6.2155,3.8971,4.1528,4.2165,2.8984,3.6425,2026-11-12
+2026-11-12,CO-colorado-springs,"Colorado Springs, CO",aaa_co,metro,CO,3.5087,3.8993,4.2183,5.9022,3.5797,3.8807,4.1126,2.7520,3.6386,2026-11-12
+2026-11-12,CO-denver,"Denver, CO",aaa_co,metro,CO,3.5513,3.9942,4.3166,5.9043,3.6006,3.8989,4.1704,2.7871,3.6411,2026-11-12
+2026-11-12,CO-durango,"Durango, CO",aaa_co,metro,CO,4.4412,4.6669,4.9676,6.1090,4.4914,4.5463,4.7915,2.9457,3.7123,2026-11-12
+2026-11-12,CO-fort-collins-loveland,"Fort Collins-Loveland, CO",aaa_co,metro,CO,3.7805,4.1668,4.4762,5.9965,3.8470,4.1174,4.1817,2.7955,3.6031,2026-11-12
+2026-11-12,CO-glenwood-springs,"Glenwood Springs, CO",aaa_co,metro,CO,4.5498,5.1915,5.2881,6.7165,4.5498,4.7223,4.8472,3.0682,3.9268,2026-11-12
+2026-11-12,CO-grand-junction-co-only,"Grand Junction (CO only), CO",aaa_co,metro,CO,4.0375,4.3823,4.7822,6.3571,4.0671,4.3228,4.4225,2.9834,3.7917,2026-11-12
+2026-11-12,CO-greeley,"Greeley, CO",aaa_co,metro,CO,3.3698,3.7512,4.0567,5.7244,3.4487,3.8294,4.1194,2.7488,3.5913,2026-11-12
+2026-11-12,CO-pueblo,"Pueblo, CO",aaa_co,metro,CO,3.6301,4.0188,4.4033,5.9343,3.6985,4.0011,4.0649,2.7097,3.5358,2026-11-12
+2026-11-12,CO-vail,"Vail, CO",aaa_co,metro,CO,4.5126,4.8870,5.2330,6.5447,4.5581,4.6254,4.7180,3.3581,3.9476,2026-11-12
+2026-11-12,CT,Connecticut,aaa_states,state,CT,4.0743,4.7739,5.1746,6.2768,,,,,,2026-11-12
+2026-11-12,CT-bridgeport,"Bridgeport, CT",aaa_ct,metro,CT,4.1620,4.8830,5.2669,6.3224,4.1845,4.3184,4.5017,3.1688,3.8580,2026-11-12
+2026-11-12,CT-hartford,"Hartford, CT",aaa_ct,metro,CT,4.0453,4.7617,5.1933,6.2847,4.0767,4.1973,4.3730,3.0521,3.8237,2026-11-12
+2026-11-12,CT-lower-fairfield-county,"Lower Fairfield County, CT",aaa_ct,metro,CT,4.1082,4.8145,5.2017,6.3230,4.1396,4.2565,4.4860,3.1477,3.8323,2026-11-12
+2026-11-12,CT-new-haven-meriden,"New Haven-Meriden, CT",aaa_ct,metro,CT,4.0301,4.7349,5.0999,6.2579,4.0575,4.1599,4.3712,3.0316,3.7950,2026-11-12
+2026-11-12,CT-new-london-norwich-ct-only,"New London-Norwich (CT only), CT",aaa_ct,metro,CT,4.0624,4.7300,5.1196,6.2769,4.0843,4.1810,4.4023,3.0195,3.7681,2026-11-12
+2026-11-12,CT-windham,"Windham, CT",aaa_ct,metro,CT,4.1492,4.7609,5.1528,6.2598,4.1845,4.3209,4.4609,3.0877,3.8136,2026-11-12
+2026-11-12,DC,District of Columbia,aaa_states,state,DC,4.2017,4.8914,5.2805,6.4804,,,,,,2026-11-12
+2026-11-12,DC-washington-dc-only,"Washington (DC only), DC",aaa_dc,metro,DC,4.2017,4.8914,5.2805,6.4804,4.2313,4.2767,4.4506,3.2061,3.8602,2026-11-12
+2026-11-12,DC-washington-entire-metro-average,"Washington (Entire Metro Average), DC",aaa_dc,metro,DC,3.9404,4.5184,4.8966,6.2400,3.9592,4.0441,4.2712,3.0422,3.7313,2026-11-12
+2026-11-12,DE,Delaware,aaa_states,state,DE,3.7956,4.3736,4.6865,6.1068,,,,,,2026-11-12
+2026-11-12,DE-dover,"Dover, DE",aaa_de,metro,DE,3.7737,4.2772,4.6253,6.1001,3.7963,3.9184,4.2776,3.0534,3.7579,2026-11-12
+2026-11-12,DE-milford-seaford,"Milford-Seaford, DE",aaa_de,metro,DE,3.7556,4.1808,4.5539,6.0324,3.7912,3.9103,4.2593,3.0689,3.7483,2026-11-12
+2026-11-12,DE-wilmington-newark-de-only,"Wilmington-Newark (DE only), DE",aaa_de,metro,DE,3.8291,4.5174,4.7788,6.1584,3.8530,3.9327,4.2367,3.0333,3.7258,2026-11-12
+2026-11-12,EIA-US,United States (EIA weekly),eia_gasdiesel,eia,,3.9950,,,6.1270,,4.1530,,3.0560,3.8370,2026-11-09
+2026-11-12,EIA-boston,Boston (EIA weekly),eia_gasdiesel,eia,MA,4.0200,,,,,4.1270,,2.9690,,2026-11-09
+2026-11-12,EIA-california,California (EIA weekly),eia_gasdiesel,eia,CA,5.5620,,,7.8970,,5.7480,,4.5000,4.9880,2026-11-09
+2026-11-12,EIA-central-atlantic-padd1b,Central Atlantic (PADD1B) (EIA weekly),eia_gasdiesel,eia,,4.1460,,,6.4120,,4.2320,,3.0950,3.9560,2026-11-09
+2026-11-12,EIA-chicago,Chicago (EIA weekly),eia_gasdiesel,eia,IL,4.4610,,,,,4.7060,,3.3320,,2026-11-09
+2026-11-12,EIA-cleveland,Cleveland (EIA weekly),eia_gasdiesel,eia,OH,3.8100,,,,,4.0970,,3.0210,,2026-11-09
+2026-11-12,EIA-colorado,Colorado (EIA weekly),eia_gasdiesel,eia,CO,3.7460,,,,,4.0680,,2.6360,,2026-11-09
+2026-11-12,EIA-denver,Denver (EIA weekly),eia_gasdiesel,eia,CO,3.6420,,,,,4.0160,,2.5760,,2026-11-09
+2026-11-12,EIA-east-coast-padd1,East Coast (PADD1) (EIA weekly),eia_gasdiesel,eia,,3.8470,,,5.9200,,3.9360,,2.9120,3.8230,2026-11-09
+2026-11-12,EIA-florida,Florida (EIA weekly),eia_gasdiesel,eia,FL,3.7260,,,,,3.7910,,2.7780,,2026-11-09
+2026-11-12,EIA-gulf-coast-padd3,Gulf Coast (PADD3) (EIA weekly),eia_gasdiesel,eia,,3.4810,,,5.7410,,3.6360,,2.5990,3.4360,2026-11-09
+2026-11-12,EIA-houston,Houston (EIA weekly),eia_gasdiesel,eia,TX,3.4890,,,,,3.6250,,2.5020,,2026-11-09
+2026-11-12,EIA-los-angeles,Los Angeles (EIA weekly),eia_gasdiesel,eia,CA,5.5590,,,,,5.7420,,4.5230,,2026-11-09
+2026-11-12,EIA-lower-atlantic-padd1c,Lower Atlantic (PADD1C) (EIA weekly),eia_gasdiesel,eia,,3.6090,,,5.6940,,3.6950,,2.7820,3.7610,2026-11-09
+2026-11-12,EIA-massachusetts,Massachusetts (EIA weekly),eia_gasdiesel,eia,MA,4.0070,,,,,4.1040,,2.9540,,2026-11-09
+2026-11-12,EIA-miami,Miami (EIA weekly),eia_gasdiesel,eia,FL,3.7910,,,,,3.8720,,2.8140,,2026-11-09
+2026-11-12,EIA-midwest-padd2,Midwest (PADD2) (EIA weekly),eia_gasdiesel,eia,,3.8680,,,6.2010,,4.1020,,2.9100,3.8910,2026-11-09
+2026-11-12,EIA-minnesota,Minnesota (EIA weekly),eia_gasdiesel,eia,MN,3.8490,,,,,4.0170,,2.9660,,2026-11-09
+2026-11-12,EIA-new-england-padd1a,New England (PADD1A) (EIA weekly),eia_gasdiesel,eia,,4.0600,,,6.3490,,4.1450,,2.9720,3.9550,2026-11-09
+2026-11-12,EIA-new-york,New York (EIA weekly),eia_gasdiesel,eia,NY,4.1160,,,,,4.2170,,3.0350,,2026-11-09
+2026-11-12,EIA-new-york-city,New York City (EIA weekly),eia_gasdiesel,eia,NY,4.0120,,,,,4.1140,,2.9480,,2026-11-09
+2026-11-12,EIA-ohio,Ohio (EIA weekly),eia_gasdiesel,eia,OH,3.7680,,,,,4.0900,,3.0430,,2026-11-09
+2026-11-12,EIA-rocky-mountain-padd4,Rocky Mountain (PADD4) (EIA weekly),eia_gasdiesel,eia,,3.9460,,,6.2060,,4.2130,,2.9090,3.8030,2026-11-09
+2026-11-12,EIA-san-francisco,San Francisco (EIA weekly),eia_gasdiesel,eia,CA,5.4470,,,,,5.6990,,4.4650,,2026-11-09
+2026-11-12,EIA-seattle,Seattle (EIA weekly),eia_gasdiesel,eia,WA,5.0700,,,,,5.2830,,4.3480,,2026-11-09
+2026-11-12,EIA-texas,Texas (EIA weekly),eia_gasdiesel,eia,TX,3.4080,,,,,3.5780,,2.5870,,2026-11-09
+2026-11-12,EIA-washington,Washington (EIA weekly),eia_gasdiesel,eia,WA,4.8740,,,,,5.0950,,4.1170,,2026-11-09
+2026-11-12,EIA-west-coast-less-california,West Coast less California (EIA weekly),eia_gasdiesel,eia,,4.5840,,,6.4290,,4.7710,,3.7830,4.1610,2026-11-09
+2026-11-12,EIA-west-coast-padd5,West Coast (PADD5) (EIA weekly),eia_gasdiesel,eia,,5.1100,,,7.1100,,5.2960,,4.1590,4.5450,2026-11-09
+2026-11-12,FL,Florida,aaa_states,state,FL,3.7147,4.2016,4.5425,5.8276,,,,,,2026-11-12
+2026-11-12,FL-bradenton-sarasota-venice,"Bradenton-Sarasota-Venice, FL",aaa_fl,metro,FL,3.6820,4.2040,4.5413,5.7908,3.7165,3.8028,3.9807,2.9748,3.7364,2026-11-12
+2026-11-12,FL-crestview-fort-walton-beach,"Crestview-Fort Walton Beach, FL",aaa_fl,metro,FL,3.4222,3.9518,4.3108,5.5630,3.4546,3.6429,4.0704,2.7356,3.4825,2026-11-12
+2026-11-12,FL-daytona-beach,"Daytona Beach, FL",aaa_fl,metro,FL,3.7343,4.1936,4.5776,5.8524,3.7647,3.8529,4.0666,2.9805,3.7218,2026-11-12
+2026-11-12,FL-fort-lauderdale,"Fort Lauderdale, FL",aaa_fl,metro,FL,3.7878,4.2805,4.5726,5.9161,3.8135,3.8950,4.1475,2.9828,3.6731,2026-11-12
+2026-11-12,FL-fort-myers-cape-coral,"Fort Myers-Cape Coral, FL",aaa_fl,metro,FL,3.6904,4.1815,4.5171,5.8285,3.7196,3.8059,4.0570,2.9740,3.7300,2026-11-12
+2026-11-12,FL-gainesville,"Gainesville, FL",aaa_fl,metro,FL,3.8710,4.3724,4.7761,5.9796,3.8915,3.9557,4.1362,2.9992,3.7373,2026-11-12
+2026-11-12,FL-homosassa-springs,"Homosassa Springs, FL",aaa_fl,metro,FL,3.7359,4.1422,4.5096,5.8596,3.7636,3.8630,4.0824,2.9971,3.7755,2026-11-12
+2026-11-12,FL-jacksonville,"Jacksonville, FL",aaa_fl,metro,FL,3.6889,4.1543,4.5461,5.7677,3.7136,3.8137,4.0567,2.9517,3.7325,2026-11-12
+2026-11-12,FL-lakeland-winter-haven,"Lakeland-Winter Haven, FL",aaa_fl,metro,FL,3.6997,4.1692,4.5380,5.7824,3.7318,3.8233,4.0140,2.9673,3.7045,2026-11-12
+2026-11-12,FL-melbourne-titusville,"Melbourne-Titusville, FL",aaa_fl,metro,FL,3.6240,4.1053,4.4832,5.8253,3.6521,3.7534,4.0459,2.9525,3.7426,2026-11-12
+2026-11-12,FL-miami,"Miami, FL",aaa_fl,metro,FL,3.7753,4.2751,4.5253,5.8397,3.8003,3.8944,4.1183,2.9599,3.6260,2026-11-12
+2026-11-12,FL-naples,"Naples, FL",aaa_fl,metro,FL,3.7983,4.2387,4.5936,5.8611,3.8197,3.9025,4.1563,3.0171,3.8071,2026-11-12
+2026-11-12,FL-ocala,"Ocala, FL",aaa_fl,metro,FL,3.7419,4.1863,4.5819,5.8415,3.7774,3.8771,4.0395,2.9893,3.7625,2026-11-12
+2026-11-12,FL-orlando,"Orlando, FL",aaa_fl,metro,FL,3.7286,4.1803,4.5180,5.8838,3.7611,3.8311,3.9924,2.9780,3.7324,2026-11-12
+2026-11-12,FL-panama-city,"Panama City, FL",aaa_fl,metro,FL,3.4027,3.8700,4.2585,5.5467,3.4376,3.6042,4.0301,2.7473,3.5219,2026-11-12
+2026-11-12,FL-pensacola,"Pensacola, FL",aaa_fl,metro,FL,3.3983,3.8663,4.2579,5.5665,3.4384,3.6017,3.9571,2.7546,3.5488,2026-11-12
+2026-11-12,FL-port-st-lucie,"Port St. Lucie, FL",aaa_fl,metro,FL,3.6877,4.1933,4.5093,5.8979,3.7094,3.7839,4.1008,2.9903,3.7465,2026-11-12
+2026-11-12,FL-punta-gorda,"Punta Gorda, FL",aaa_fl,metro,FL,3.6736,4.2125,4.5769,5.7863,3.7120,3.8026,4.0197,2.9495,3.7221,2026-11-12
+2026-11-12,FL-sebastian-vero-beach,"Sebastian-Vero Beach, FL",aaa_fl,metro,FL,3.6769,4.1840,4.6349,5.9245,3.6929,3.7735,4.1021,2.9621,3.7421,2026-11-12
+2026-11-12,FL-sebring,"Sebring, FL",aaa_fl,metro,FL,3.6626,4.1815,4.4790,5.8118,3.6940,3.7849,4.0647,2.9753,3.7111,2026-11-12
+2026-11-12,FL-tallahassee,"Tallahassee, FL",aaa_fl,metro,FL,3.6403,4.1380,4.5032,5.6954,3.6759,3.8049,4.1193,2.7982,3.5873,2026-11-12
+2026-11-12,FL-tampa-st-petersburg-clearwater,"Tampa-St. Petersburg-Clearwater, FL",aaa_fl,metro,FL,3.7132,4.1968,4.5396,5.8422,3.7472,3.8180,4.0092,2.9810,3.7522,2026-11-12
+2026-11-12,FL-the-villages,"The Villages, FL",aaa_fl,metro,FL,3.6678,4.1245,4.4923,5.6848,3.6870,3.7749,4.0310,2.9823,3.7561,2026-11-12
+2026-11-12,FL-west-palm-beach-boca-raton,"West Palm Beach-Boca Raton, FL",aaa_fl,metro,FL,3.9028,4.4391,4.7444,5.9328,3.9264,3.9915,4.2556,3.1263,3.7669,2026-11-12
+2026-11-12,GA,Georgia,aaa_states,state,GA,3.4067,3.9081,4.3522,5.5655,,,,,,2026-11-12
+2026-11-12,GA-albany,"Albany, GA",aaa_ga,metro,GA,3.2424,3.7262,4.2218,5.3807,3.2721,3.3699,3.7117,2.7955,3.5637,2026-11-12
+2026-11-12,GA-athens,"Athens, GA",aaa_ga,metro,GA,3.4418,3.9107,4.2764,5.5831,3.4639,3.5622,3.7955,2.7687,3.4614,2026-11-12
+2026-11-12,GA-atlanta,"Atlanta, GA",aaa_ga,metro,GA,3.4466,3.9774,4.4434,5.6270,3.4710,3.5715,3.8198,2.7949,3.5149,2026-11-12
+2026-11-12,GA-augusta-aiken-ga-only,"Augusta-Aiken (GA only), GA",aaa_ga,metro,GA,3.2731,3.7691,4.1256,5.4189,3.3150,3.4546,3.7523,2.7587,3.5267,2026-11-12
+2026-11-12,GA-brunswick,"Brunswick, GA",aaa_ga,metro,GA,3.2954,3.7281,4.0992,5.5122,3.3308,3.4072,3.7671,2.8308,3.5785,2026-11-12
+2026-11-12,GA-catoosa-dade-walker,"Catoosa-Dade-Walker, GA",aaa_ga,metro,GA,3.2439,3.6687,4.0866,5.4146,3.2752,3.4147,3.7086,2.7487,3.4326,2026-11-12
+2026-11-12,GA-columbus-ga-only,"Columbus (GA only), GA",aaa_ga,metro,GA,3.3157,3.7529,4.1946,5.5345,3.3398,3.4956,3.7860,2.8047,3.5555,2026-11-12
+2026-11-12,GA-dalton,"Dalton, GA",aaa_ga,metro,GA,3.3047,3.8099,4.2801,5.4184,3.3276,3.4623,3.7323,2.7706,3.4686,2026-11-12
+2026-11-12,GA-gainesville,"Gainesville, GA",aaa_ga,metro,GA,3.4631,3.9744,4.4652,5.5821,3.4799,3.5855,3.7925,2.7489,3.4768,2026-11-12
+2026-11-12,GA-hinesville-fort-stewart,"Hinesville-Fort Stewart, GA",aaa_ga,metro,GA,3.4392,3.8050,4.1359,5.5412,3.4562,3.5279,3.8884,2.8820,3.5406,2026-11-12
+2026-11-12,GA-macon,"Macon, GA",aaa_ga,metro,GA,3.4548,3.8820,4.3572,5.6152,3.4929,3.5870,3.8394,2.8359,3.5652,2026-11-12
+2026-11-12,GA-rome,"Rome, GA",aaa_ga,metro,GA,3.3931,3.8878,4.3314,5.5420,3.3991,3.4915,3.8018,2.7237,3.4625,2026-11-12
+2026-11-12,GA-savannah,"Savannah, GA",aaa_ga,metro,GA,3.4417,3.9095,4.3245,5.5130,3.4699,3.5855,3.9001,2.9642,3.6110,2026-11-12
+2026-11-12,GA-valdosta,"Valdosta, GA",aaa_ga,metro,GA,3.4240,3.8525,4.3019,5.4206,3.4394,3.5278,3.7130,2.8529,3.5303,2026-11-12
+2026-11-12,GA-warner-robins,"Warner Robins, GA",aaa_ga,metro,GA,3.2626,3.6851,4.1248,5.4797,3.2895,3.4548,3.7245,2.7716,3.5157,2026-11-12
+2026-11-12,HI,Hawaii,aaa_states,state,HI,5.6362,5.8891,6.1565,7.2588,,,,,,2026-11-12
+2026-11-12,HI-hilo,"Hilo, HI",aaa_hi,metro,HI,5.6514,5.9228,6.2090,7.3350,5.6766,5.6864,5.7080,4.6413,5.1998,2026-11-12
+2026-11-12,HI-honolulu,"Honolulu, HI",aaa_hi,metro,HI,5.5804,5.8552,6.1424,7.0955,5.5622,5.5924,5.5500,4.3832,5.1380,2026-11-12
+2026-11-12,HI-kahului,"Kahului, HI",aaa_hi,metro,HI,5.7509,5.9377,6.0634,7.4717,5.6979,5.7221,5.7447,4.4655,5.3719,2026-11-12
+2026-11-12,HI-lihue-kauai,"Lihue (Kauai), HI",aaa_hi,metro,HI,5.7877,6.1015,6.3576,7.4910,5.7934,5.8517,5.8784,4.9621,5.6710,2026-11-12
+2026-11-12,HI-wailuku,"Wailuku, HI",aaa_hi,metro,HI,5.7509,5.9377,6.0634,7.4717,5.6979,5.7221,5.7447,4.4655,5.3719,2026-11-12
+2026-11-12,IA,Iowa,aaa_states,state,IA,3.7513,4.1128,4.6356,5.7766,,,,,,2026-11-12
+2026-11-12,IA-ames,"Ames, IA",aaa_ia,metro,IA,3.7351,4.2457,4.6408,5.4216,3.8210,3.9579,4.2517,2.8987,3.8914,2026-11-12
+2026-11-12,IA-cedar-rapids,"Cedar Rapids, IA",aaa_ia,metro,IA,3.6891,4.2384,4.6667,5.7908,3.7216,3.8888,4.2371,2.7720,3.7903,2026-11-12
+2026-11-12,IA-council-bluffs,"Council Bluffs, IA",aaa_ia,metro,IA,3.8705,4.2650,4.8368,5.9729,3.8700,4.0376,4.1708,2.7078,3.6663,2026-11-12
+2026-11-12,IA-davenport-moline-rock-island-ia-only,"Davenport-Moline-Rock Island (IA only), IA",aaa_ia,metro,IA,3.7710,4.1852,4.7706,6.0145,3.8108,3.9317,4.2673,2.6632,3.8425,2026-11-12
+2026-11-12,IA-des-moines,"Des Moines, IA",aaa_ia,metro,IA,3.5183,4.0195,4.3897,5.4593,3.5791,3.7887,4.1970,2.6935,3.8449,2026-11-12
+2026-11-12,IA-dubuque,"Dubuque, IA",aaa_ia,metro,IA,3.8853,4.1100,4.9502,5.8008,3.9141,4.0909,4.4029,2.8859,3.8403,2026-11-12
+2026-11-12,IA-iowa-city,"Iowa City, IA",aaa_ia,metro,IA,3.8342,4.2365,4.8148,5.8201,3.8921,4.0047,4.2282,2.8555,3.7990,2026-11-12
+2026-11-12,IA-sioux-city-ia-only,"Sioux City (IA only), IA",aaa_ia,metro,IA,3.5675,4.0033,4.4226,5.9925,3.6886,3.8347,4.2388,2.6282,3.6196,2026-11-12
+2026-11-12,IA-waterloo-cedar-falls,"Waterloo-Cedar Falls, IA",aaa_ia,metro,IA,3.6598,3.9820,4.5636,5.8264,3.6991,3.8387,4.2201,2.8086,3.9359,2026-11-12
+2026-11-12,ID,Idaho,aaa_states,state,ID,4.1838,4.5062,4.7750,6.2533,,,,,,2026-11-12
+2026-11-12,ID-boise-city,"Boise City, ID",aaa_id,metro,ID,4.3115,4.5740,4.8202,6.1586,4.4041,4.5397,4.9526,3.3585,3.8350,2026-11-12
+2026-11-12,ID-coeur-d-alene,"Coeur D'Alene, ID",aaa_id,metro,ID,3.7260,4.0636,4.3914,6.1130,3.7876,4.0571,4.5322,3.2257,3.8648,2026-11-12
+2026-11-12,ID-franklin,"Franklin, ID",aaa_id,metro,ID,4.3103,4.5590,4.8315,6.3190,4.3823,4.4668,4.8740,3.1779,3.7950,2026-11-12
+2026-11-12,ID-idaho-falls,"Idaho Falls, ID",aaa_id,metro,ID,4.1494,4.5290,4.7867,6.1802,4.1786,4.3666,4.9179,3.2544,3.7839,2026-11-12
+2026-11-12,ID-lewiston,"Lewiston, ID",aaa_id,metro,ID,4.0538,4.3613,4.6265,6.2415,4.0633,4.2285,4.5620,3.1500,3.9575,2026-11-12
+2026-11-12,ID-pocatello,"Pocatello, ID",aaa_id,metro,ID,4.1654,4.5796,4.8419,6.2631,4.1880,4.4000,4.9103,3.2950,3.7974,2026-11-12
+2026-11-12,ID-twin-falls,"Twin Falls, ID",aaa_id,metro,ID,4.2027,4.4718,4.7342,6.3361,4.2093,4.4269,4.9758,3.3297,3.8262,2026-11-12
+2026-11-12,IL,Illinois,aaa_states,state,IL,4.3292,4.9677,5.5293,6.3984,,,,,,2026-11-12
+2026-11-12,IL-alexander-county,"Alexander County, IL",aaa_il,metro,IL,5.1490,0.0000,0.0000,0.0000,5.1490,5.1490,4.7990,3.4990,0.0000,2026-11-12
+2026-11-12,IL-bloomington-normal,"Bloomington-Normal, IL",aaa_il,metro,IL,4.1839,4.7587,5.3192,6.3152,4.2379,4.4387,4.5202,3.1997,3.7699,2026-11-12
+2026-11-12,IL-carbondale-marion,"Carbondale-Marion, IL",aaa_il,metro,IL,4.2126,4.7586,5.2699,6.3293,4.3068,4.4645,4.5651,3.1314,3.8925,2026-11-12
+2026-11-12,IL-champaign-urbana,"Champaign-Urbana, IL",aaa_il,metro,IL,4.2799,4.8032,5.3922,6.2115,4.3633,4.4649,4.5610,3.1501,3.7525,2026-11-12
+2026-11-12,IL-chicago-metro,"Chicago Metro, IL",aaa_il,metro,IL,4.4078,5.0646,5.6632,6.5092,4.4675,4.7284,4.8358,3.4007,3.9401,2026-11-12
+2026-11-12,IL-city-of-chicago,"City of Chicago, IL",aaa_il,metro,IL,4.7277,5.4892,6.0866,6.8899,4.7891,5.0045,5.0730,3.6008,4.1091,2026-11-12
+2026-11-12,IL-danville,"Danville, IL",aaa_il,metro,IL,4.3396,4.8975,5.4630,6.2703,4.3940,4.5999,4.5090,3.1378,3.8277,2026-11-12
+2026-11-12,IL-davenport-moline-rock-island-il-only,"Davenport-Moline-Rock Island (IL only), IL",aaa_il,metro,IL,4.4243,4.9163,5.4604,6.4317,4.4701,4.5970,4.6991,3.1855,3.8376,2026-11-12
+2026-11-12,IL-decatur,"Decatur, IL",aaa_il,metro,IL,4.1110,4.7090,5.2659,6.3022,4.1908,4.4625,4.4968,3.1223,3.7521,2026-11-12
+2026-11-12,IL-east-saint-louis,"East Saint Louis, IL",aaa_il,metro,IL,4.1355,4.6354,5.0249,6.3457,4.1817,4.3154,4.5692,3.1651,3.7908,2026-11-12
+2026-11-12,IL-elgin,"Elgin, IL",aaa_il,metro,IL,4.2779,4.9316,5.5218,6.4483,4.3376,4.6182,4.6874,3.2839,3.8438,2026-11-12
+2026-11-12,IL-kankakee-bradley,"Kankakee-Bradley, IL",aaa_il,metro,IL,4.2402,4.8554,5.4080,6.3963,4.2919,4.5650,4.5864,3.1503,3.8321,2026-11-12
+2026-11-12,IL-lake-county,"Lake County, IL",aaa_il,metro,IL,4.3518,5.0393,5.6248,6.4131,4.4093,4.6656,4.7394,3.2956,3.7613,2026-11-12
+2026-11-12,IL-peoria-pekin,"Peoria-Pekin, IL",aaa_il,metro,IL,4.4981,5.1449,5.7068,6.4852,4.5308,4.6553,4.6778,3.2119,3.7930,2026-11-12
+2026-11-12,IL-quincy,"Quincy, IL",aaa_il,metro,IL,4.3290,4.8890,5.4890,6.3333,4.4198,4.4640,4.5550,3.2376,3.7457,2026-11-12
+2026-11-12,IL-rockford,"Rockford, IL",aaa_il,metro,IL,4.3061,4.9164,5.4706,6.3721,4.3523,4.6274,4.5874,3.1586,3.7767,2026-11-12
+2026-11-12,IL-springfield,"Springfield, IL",aaa_il,metro,IL,4.2466,4.9423,5.4633,6.1738,4.3090,4.5397,4.5084,3.1422,3.7028,2026-11-12
+2026-11-12,IN,Indiana,aaa_states,state,IN,3.4750,4.1011,4.6319,6.5084,,,,,,2026-11-12
+2026-11-12,IN-bloomington,"Bloomington, IN",aaa_in,metro,IN,3.5662,4.2015,4.7570,6.6220,3.6374,3.8157,3.9714,3.1338,3.9837,2026-11-12
+2026-11-12,IN-clarksville,"Clarksville, IN",aaa_in,metro,IN,3.5932,4.1071,4.6006,6.3881,3.6543,3.7908,3.8611,2.8845,3.7909,2026-11-12
+2026-11-12,IN-columbus,"Columbus, IN",aaa_in,metro,IN,3.5243,4.1104,4.6830,6.5148,3.5624,3.7024,3.9706,3.0810,3.8478,2026-11-12
+2026-11-12,IN-dearborn-franklin-ohio-union,"Dearborn-Franklin-Ohio-Union, IN",aaa_in,metro,IN,3.7267,4.2846,4.8790,6.5843,3.7729,3.9451,3.8780,3.0256,3.7640,2026-11-12
+2026-11-12,IN-elkhart,"Elkhart, IN",aaa_in,metro,IN,3.4624,4.1050,4.6567,6.5534,3.5192,3.7267,3.9298,3.0628,3.8951,2026-11-12
+2026-11-12,IN-evansville,"Evansville, IN",aaa_in,metro,IN,3.3091,3.8960,4.2987,6.4332,3.3410,3.4684,3.7337,2.7996,3.7468,2026-11-12
+2026-11-12,IN-fort-wayne,"Fort Wayne, IN",aaa_in,metro,IN,3.3930,3.9840,4.5891,6.5547,3.4385,3.6605,3.9629,3.1132,3.9598,2026-11-12
+2026-11-12,IN-gary,"Gary, IN",aaa_in,metro,IN,3.3904,3.9670,4.4667,6.4189,3.4425,3.6874,3.8680,2.9881,4.0162,2026-11-12
+2026-11-12,IN-indianapolis,"Indianapolis, IN",aaa_in,metro,IN,3.4720,4.1601,4.7089,6.5566,3.5212,3.7236,3.9362,3.0527,3.9301,2026-11-12
+2026-11-12,IN-kokomo,"Kokomo, IN",aaa_in,metro,IN,3.4799,4.1761,4.6840,6.6190,3.5349,3.7615,3.9017,3.0267,3.9228,2026-11-12
+2026-11-12,IN-lafayette,"Lafayette, IN",aaa_in,metro,IN,3.3969,3.9955,4.5734,6.4849,3.4193,3.6313,3.9404,3.1515,4.0006,2026-11-12
+2026-11-12,IN-michigan-city-la-porte,"Michigan City-La Porte, IN",aaa_in,metro,IN,3.4363,4.0586,4.5592,6.3919,3.4717,3.6424,3.9258,3.0488,3.9611,2026-11-12
+2026-11-12,IN-muncie,"Muncie, IN",aaa_in,metro,IN,3.4260,4.0044,4.5813,6.5201,3.4548,3.6702,3.8904,2.9961,3.9214,2026-11-12
+2026-11-12,IN-south-bend,"South Bend, IN",aaa_in,metro,IN,3.5050,4.1345,4.7280,6.7162,3.5439,3.7162,3.9221,3.0643,3.9757,2026-11-12
+2026-11-12,IN-terre-haute,"Terre Haute, IN",aaa_in,metro,IN,3.5280,4.1703,4.6616,6.2815,3.5677,3.7625,3.9149,2.9885,3.9293,2026-11-12
+2026-11-12,KS,Kansas,aaa_states,state,KS,3.6562,4.0261,4.3925,5.6776,,,,,,2026-11-12
+2026-11-12,KS-kansas-city-ks-only,"Kansas City (KS only), KS",aaa_ks,metro,KS,3.6804,4.0838,4.4831,5.7863,3.6982,3.8099,4.0055,2.8127,3.4937,2026-11-12
+2026-11-12,KS-lawrence,"Lawrence, KS",aaa_ks,metro,KS,3.5634,3.9468,4.4115,5.6223,3.6013,3.7738,4.0323,2.8248,3.5678,2026-11-12
+2026-11-12,KS-manhattan,"Manhattan, KS",aaa_ks,metro,KS,3.3590,3.8236,4.2896,5.5284,3.4193,3.7490,4.1094,2.6571,3.4355,2026-11-12
+2026-11-12,KS-topeka,"Topeka, KS",aaa_ks,metro,KS,3.5286,3.9447,4.3107,5.5328,3.5527,3.7284,3.9829,2.6829,3.4871,2026-11-12
+2026-11-12,KS-wichita,"Wichita, KS",aaa_ks,metro,KS,3.6962,3.9781,4.2240,5.6912,3.7508,3.8469,3.9955,2.7712,3.4302,2026-11-12
+2026-11-12,KY,Kentucky,aaa_states,state,KY,3.6621,4.2601,4.6940,5.9760,,,,,,2026-11-12
+2026-11-12,KY-bowling-green,"Bowling Green, KY",aaa_ky,metro,KY,3.3978,3.9306,4.3246,5.6011,3.4308,3.5920,3.9141,2.6916,3.4857,2026-11-12
+2026-11-12,KY-covington,"Covington, KY",aaa_ky,metro,KY,3.8202,4.4111,4.9192,6.0880,3.8479,4.0631,4.1116,2.9945,3.6062,2026-11-12
+2026-11-12,KY-elizabethtown-fort-knox,"Elizabethtown-Fort Knox, KY",aaa_ky,metro,KY,3.5998,4.2026,4.6939,5.8546,3.6355,3.7746,4.0208,2.5858,3.4316,2026-11-12
+2026-11-12,KY-henderson,"Henderson, KY",aaa_ky,metro,KY,3.2464,3.8182,4.2105,5.6819,3.2660,3.4520,3.6863,2.5202,3.2966,2026-11-12
+2026-11-12,KY-hopkinsville,"Hopkinsville, KY",aaa_ky,metro,KY,3.4006,3.8149,4.1406,5.7614,3.4701,3.6056,3.9012,2.5486,3.5925,2026-11-12
+2026-11-12,KY-huntington-ashland-ky-only,"Huntington-Ashland (KY only), KY",aaa_ky,metro,KY,3.9586,4.5378,4.9878,6.3073,3.9842,4.0286,4.1580,2.9357,3.6731,2026-11-12
+2026-11-12,KY-lexington,"Lexington, KY",aaa_ky,metro,KY,3.6803,4.2878,4.7067,6.0493,3.7095,3.8436,4.0551,2.7488,3.6076,2026-11-12
+2026-11-12,KY-louisville-ky-only,"Louisville (KY only), KY",aaa_ky,metro,KY,3.6814,4.3035,4.7479,5.9405,3.7086,3.8595,4.0525,2.7985,3.5856,2026-11-12
+2026-11-12,KY-owensboro,"Owensboro, KY",aaa_ky,metro,KY,3.3474,4.1222,4.5869,5.9419,3.4006,3.5902,3.8069,2.5641,3.4438,2026-11-12
+2026-11-12,LA,Louisiana,aaa_states,state,LA,3.4991,4.0055,4.3937,5.5955,,,,,,2026-11-12
+2026-11-12,LA-alexandria,"Alexandria, LA",aaa_la,metro,LA,3.6010,4.0935,4.5473,5.6754,3.6130,3.7068,3.9391,2.5762,3.3946,2026-11-12
+2026-11-12,LA-baton-rouge,"Baton Rouge, LA",aaa_la,metro,LA,3.4072,3.9304,4.3399,5.5253,3.4379,3.5788,3.9161,2.6433,3.3634,2026-11-12
+2026-11-12,LA-hammond,"Hammond, LA",aaa_la,metro,LA,3.3942,3.8268,4.2380,5.5459,3.4646,3.5680,3.9190,2.6480,3.4041,2026-11-12
+2026-11-12,LA-houma-thibodaux,"Houma-Thibodaux, LA",aaa_la,metro,LA,3.6239,4.0668,4.4397,5.6033,3.6531,3.8048,3.9610,2.6573,3.2482,2026-11-12
+2026-11-12,LA-lafayette,"Lafayette, LA",aaa_la,metro,LA,3.4947,3.9667,4.3679,5.6106,3.5247,3.6572,3.9350,2.6546,3.3196,2026-11-12
+2026-11-12,LA-lake-charles,"Lake Charles, LA",aaa_la,metro,LA,3.6429,4.2239,4.5738,5.6376,3.6739,3.8135,4.0039,2.6944,3.2401,2026-11-12
+2026-11-12,LA-monroe,"Monroe, LA",aaa_la,metro,LA,3.3559,3.8486,4.2422,5.5825,3.3898,3.5669,3.9003,2.5568,3.3436,2026-11-12
+2026-11-12,LA-new-orleans,"New Orleans, LA",aaa_la,metro,LA,3.4471,4.0941,4.4190,5.5747,3.4754,3.6060,3.8988,2.6264,3.3417,2026-11-12
+2026-11-12,LA-shreveport-bossier-city,"Shreveport-Bossier City, LA",aaa_la,metro,LA,3.4606,3.9072,4.3107,5.5432,3.4878,3.6374,3.9252,2.5891,3.3790,2026-11-12
+2026-11-12,MA,Massachusetts,aaa_states,state,MA,4.0213,4.7044,5.0943,6.1956,,,,,,2026-11-12
+2026-11-12,MA-barnstable-yarmouth,"Barnstable-Yarmouth, MA",aaa_ma,metro,MA,4.0764,4.7074,5.0740,6.1945,4.0966,4.1991,4.3698,3.0506,3.8380,2026-11-12
+2026-11-12,MA-boston-ma-only,"Boston (MA only), MA",aaa_ma,metro,MA,4.0188,4.7391,5.1213,6.1564,4.0349,4.1487,4.3494,3.0041,3.8218,2026-11-12
+2026-11-12,MA-cambridge-newton-framingham,"Cambridge-Newton-Framingham, MA",aaa_ma,metro,MA,4.0440,4.7262,5.1283,6.2649,4.0631,4.1794,4.3718,3.0670,3.8739,2026-11-12
+2026-11-12,MA-pittsfield,"Pittsfield, MA",aaa_ma,metro,MA,4.2728,4.9665,5.3353,6.2949,4.2896,4.3421,4.3902,3.0640,3.9405,2026-11-12
+2026-11-12,MA-seekonk,"Seekonk, MA",aaa_ma,metro,MA,3.8643,4.5330,4.8889,6.0089,3.8801,3.9894,4.1622,2.8885,3.6885,2026-11-12
+2026-11-12,MA-springfield,"Springfield, MA",aaa_ma,metro,MA,3.9339,4.6002,4.9728,6.1742,3.9490,4.0222,4.1256,2.9140,3.7638,2026-11-12
+2026-11-12,MA-worcester,"Worcester, MA",aaa_ma,metro,MA,4.0458,4.7248,5.1432,6.2287,4.0612,4.1622,4.3326,3.0226,3.8082,2026-11-12
+2026-11-12,MD,Maryland,aaa_states,state,MD,3.8327,4.4668,4.7704,6.1384,,,,,,2026-11-12
+2026-11-12,MD-annapolis,"Annapolis, MD",aaa_md,metro,MD,3.7887,4.4648,4.7687,6.1086,3.8223,3.9190,4.2696,3.1260,3.7677,2026-11-12
+2026-11-12,MD-baltimore,"Baltimore, MD",aaa_md,metro,MD,3.7812,4.3793,4.6831,6.0911,3.8134,3.9153,4.2581,3.1209,3.7507,2026-11-12
+2026-11-12,MD-bowie-st-charles,"Bowie-St. Charles, MD",aaa_md,metro,MD,3.8642,4.6389,4.9064,6.2030,3.8802,3.9642,4.2485,3.1029,3.7956,2026-11-12
+2026-11-12,MD-cumberland-md-only,"Cumberland (MD Only), MD",aaa_md,metro,MD,4.1607,4.6505,5.0681,6.3202,4.1900,4.2927,4.4307,3.1687,3.8749,2026-11-12
+2026-11-12,MD-frederick,"Frederick, MD",aaa_md,metro,MD,3.8338,4.3528,4.6932,6.0970,3.8577,3.9492,4.2169,3.0728,3.7451,2026-11-12
+2026-11-12,MD-hagerstown,"Hagerstown, MD",aaa_md,metro,MD,3.7537,4.1966,4.6021,6.1085,3.7758,3.8949,4.1144,3.0633,3.7403,2026-11-12
+2026-11-12,MD-salisbury,"Salisbury, MD",aaa_md,metro,MD,3.7873,4.3723,4.6398,6.0867,3.8300,3.9172,4.2738,3.1331,3.7597,2026-11-12
+2026-11-12,MD-washington-md-only,"Washington (MD only), MD",aaa_md,metro,MD,3.9332,4.5835,4.9207,6.1982,3.9477,4.0403,4.2995,3.1117,3.7705,2026-11-12
+2026-11-12,ME,Maine,aaa_states,state,ME,4.0910,4.6913,5.1665,6.2648,,,,,,2026-11-12
+2026-11-12,ME-bangor,"Bangor, ME",aaa_me,metro,ME,4.0812,4.6812,5.1798,6.2508,4.0979,4.2380,4.3981,3.0000,3.8839,2026-11-12
+2026-11-12,ME-lewiston-auburn,"Lewiston-Auburn, ME",aaa_me,metro,ME,4.1016,4.7333,5.1422,6.3590,4.1171,4.2235,4.3939,3.0355,4.0349,2026-11-12
+2026-11-12,ME-portland,"Portland, ME",aaa_me,metro,ME,4.0890,4.7182,5.1456,6.3239,4.1092,4.2091,4.3731,3.0284,3.9738,2026-11-12
+2026-11-12,MI,Michigan,aaa_states,state,MI,3.9502,4.6469,5.2503,6.3908,,,,,,2026-11-12
+2026-11-12,MI-ann-arbor,"Ann Arbor, MI",aaa_mi,metro,MI,4.0665,4.7550,5.3772,6.4302,4.1145,4.4360,4.6755,3.1331,3.8861,2026-11-12
+2026-11-12,MI-benton-harbor,"Benton Harbor, MI",aaa_mi,metro,MI,4.0274,4.7018,5.2923,6.4630,4.0868,4.4269,4.6802,3.0543,3.9139,2026-11-12
+2026-11-12,MI-flint,"Flint, MI",aaa_mi,metro,MI,3.8162,4.4872,5.1029,6.2773,3.8675,4.1806,4.6541,2.9997,3.9206,2026-11-12
+2026-11-12,MI-grand-rapids-muskegon-holland,"Grand Rapids-Muskegon-Holland, MI",aaa_mi,metro,MI,3.9222,4.5909,5.1855,6.3123,3.9947,4.3235,4.7242,3.0650,3.8465,2026-11-12
+2026-11-12,MI-jackson,"Jackson, MI",aaa_mi,metro,MI,3.9056,4.5747,5.1511,6.4996,3.9679,4.3376,4.7258,3.1087,3.8460,2026-11-12
+2026-11-12,MI-lansing-east-lansing,"Lansing-East Lansing, MI",aaa_mi,metro,MI,3.8170,4.5218,5.0933,6.3257,3.8698,4.2113,4.7238,3.0932,3.9735,2026-11-12
+2026-11-12,MI-marquette,"Marquette, MI",aaa_mi,metro,MI,4.0165,4.9447,5.4390,6.2671,4.0778,4.3711,4.3163,2.8748,3.7550,2026-11-12
+2026-11-12,MI-metro-detroit,"Metro Detroit, MI",aaa_mi,metro,MI,3.9322,4.7111,5.3305,6.4480,3.9897,4.3231,4.6036,3.0527,3.8265,2026-11-12
+2026-11-12,MI-saginaw-bay-city-midland,"Saginaw-Bay City-Midland, MI",aaa_mi,metro,MI,3.7927,4.4984,5.0655,6.3544,3.8514,4.2569,4.7276,3.0656,3.9584,2026-11-12
+2026-11-12,MI-traverse-city,"Traverse City, MI",aaa_mi,metro,MI,4.0326,4.7035,5.2490,6.2379,4.1383,4.3290,4.6940,2.8121,3.9957,2026-11-12
+2026-11-12,MN,Minnesota,aaa_states,state,MN,3.7951,4.2794,4.8054,5.9329,,,,,,2026-11-12
+2026-11-12,MN-duluth-superior-mn-only,"Duluth-Superior (MN only), MN",aaa_mn,metro,MN,4.0026,4.4617,4.9257,6.1852,4.0329,4.1636,4.2585,2.7634,3.8455,2026-11-12
+2026-11-12,MN-houston-county,"Houston County, MN",aaa_mn,metro,MN,3.9098,4.1490,5.0240,5.9615,3.8721,4.1015,4.2357,2.8212,3.8990,2026-11-12
+2026-11-12,MN-mankato,"Mankato, MN",aaa_mn,metro,MN,3.7401,4.1790,4.7729,5.5247,3.7870,3.9945,4.2815,2.8292,3.9455,2026-11-12
+2026-11-12,MN-minneapolis-st-paul-mn-only,"Minneapolis-St. Paul (MN only), MN",aaa_mn,metro,MN,3.8128,4.3254,4.8305,6.0151,3.8528,4.0149,4.2648,3.1332,3.8959,2026-11-12
+2026-11-12,MN-moorhead,"Moorhead, MN",aaa_mn,metro,MN,3.6012,3.8790,4.6076,5.5945,3.6220,3.8008,3.9898,2.6940,3.5735,2026-11-12
+2026-11-12,MN-polk-county,"Polk County, MN",aaa_mn,metro,MN,3.7990,4.2340,5.0147,5.9217,3.8609,4.0065,4.2240,2.7958,3.5552,2026-11-12
+2026-11-12,MN-rochester,"Rochester, MN",aaa_mn,metro,MN,3.8513,4.2157,4.9295,5.9370,3.8882,4.0454,4.3055,3.0163,3.9144,2026-11-12
+2026-11-12,MN-st-cloud,"St. Cloud, MN",aaa_mn,metro,MN,3.6000,4.0884,4.6407,5.6367,3.6479,3.8391,4.2188,2.9833,3.8336,2026-11-12
+2026-11-12,MO,Missouri,aaa_states,state,MO,3.6086,4.0121,4.3624,5.8329,,,,,,2026-11-12
+2026-11-12,MO-cape-girardeau,"Cape Girardeau, MO",aaa_mo,metro,MO,3.8883,4.3668,4.6710,5.9874,3.9111,3.9531,4.1006,2.7102,3.4249,2026-11-12
+2026-11-12,MO-columbia,"Columbia, MO",aaa_mo,metro,MO,3.6909,4.1208,4.4630,5.9207,3.7101,3.8083,4.0471,2.6747,3.4134,2026-11-12
+2026-11-12,MO-jefferson-city,"Jefferson City, MO",aaa_mo,metro,MO,3.7539,4.1125,4.4781,5.9605,3.7732,3.8757,4.1202,2.8051,3.4271,2026-11-12
+2026-11-12,MO-joplin,"Joplin, MO",aaa_mo,metro,MO,3.4214,3.7761,4.1187,5.6717,3.4633,3.6858,3.9005,2.5969,3.4155,2026-11-12
+2026-11-12,MO-kansas-city-mo-only,"Kansas City (MO only), MO",aaa_mo,metro,MO,3.6946,4.0891,4.4746,5.7935,3.7186,3.8106,4.0152,2.8031,3.4955,2026-11-12
+2026-11-12,MO-springfield,"Springfield, MO",aaa_mo,metro,MO,3.3405,3.7484,4.0727,5.6429,3.3840,3.6197,3.8738,2.6563,3.4805,2026-11-12
+2026-11-12,MO-st-joseph,"St. Joseph, MO",aaa_mo,metro,MO,3.6783,4.2204,4.5411,5.7315,3.6979,3.7992,4.0209,2.7706,3.4382,2026-11-12
+2026-11-12,MO-st-louis-mo-only,"St. Louis (MO only), MO",aaa_mo,metro,MO,3.5386,3.9651,4.2985,5.9143,3.5616,3.6873,3.9110,2.6698,3.3626,2026-11-12
+2026-11-12,MS,Mississippi,aaa_states,state,MS,3.5995,4.0781,4.4817,5.6852,,,,,,2026-11-12
+2026-11-12,MS-biloxi-gulfport-pascagoula,"Biloxi-Gulfport-Pascagoula, MS",aaa_ms,metro,MS,3.3722,3.8378,4.2575,5.5415,3.4121,3.5549,3.8796,2.5572,3.3203,2026-11-12
+2026-11-12,MS-hattiesburg,"Hattiesburg, MS",aaa_ms,metro,MS,3.4631,3.9275,4.3048,5.4986,3.4930,3.5956,3.8489,2.5841,3.2408,2026-11-12
+2026-11-12,MS-jackson,"Jackson, MS",aaa_ms,metro,MS,3.6257,4.1091,4.5137,5.6483,3.6384,3.7382,3.9008,2.6203,3.2679,2026-11-12
+2026-11-12,MS-south-haven-olive-branch,"South Haven - Olive Branch, MS",aaa_ms,metro,MS,3.5926,4.2489,4.6033,5.7659,3.6252,3.7649,3.9625,2.5560,3.3333,2026-11-12
+2026-11-12,MT,Montana,aaa_states,state,MT,3.8649,4.2068,4.5627,5.9518,,,,,,2026-11-12
+2026-11-12,MT-billings,"Billings, MT",aaa_mt,metro,MT,3.8629,4.2568,4.6261,5.9274,3.9244,4.2091,4.4965,2.9999,3.4929,2026-11-12
+2026-11-12,MT-great-falls,"Great Falls, MT",aaa_mt,metro,MT,3.7822,4.1263,4.4669,5.9175,3.8680,4.2116,4.4638,2.9977,3.5365,2026-11-12
+2026-11-12,MT-missoula,"Missoula, MT",aaa_mt,metro,MT,3.8961,4.2117,4.5371,5.9736,3.9675,4.2632,4.5021,3.0228,3.5493,2026-11-12
+2026-11-12,NC,North Carolina,aaa_states,state,NC,3.1831,3.6370,4.0731,5.3841,,,,,,2026-11-12
+2026-11-12,NC-asheville,"Asheville, NC",aaa_nc,metro,NC,3.4053,3.9128,4.3337,5.5180,3.4274,3.5132,4.0448,2.8345,3.5048,2026-11-12
+2026-11-12,NC-burlington,"Burlington, NC",aaa_nc,metro,NC,3.1963,3.6882,4.0734,5.3509,3.2156,3.3407,3.8591,2.8883,3.6213,2026-11-12
+2026-11-12,NC-charlotte-gastonia-rock-hill-nc-only,"Charlotte-Gastonia-Rock Hill (NC only), NC",aaa_nc,metro,NC,3.1889,3.6875,4.0987,5.3291,3.2214,3.3477,3.8976,2.8086,3.4843,2026-11-12
+2026-11-12,NC-durham-chapel-hill,"Durham-Chapel Hill, NC",aaa_nc,metro,NC,3.2748,3.6745,4.1116,5.5142,3.3180,3.4171,3.9916,2.9269,3.5827,2026-11-12
+2026-11-12,NC-fayetteville,"Fayetteville, NC",aaa_nc,metro,NC,2.9452,3.3635,3.8224,5.2133,2.9796,3.1644,3.7665,2.9002,3.5632,2026-11-12
+2026-11-12,NC-goldsboro,"Goldsboro, NC",aaa_nc,metro,NC,2.9802,3.4228,3.8907,5.1634,3.0117,3.1826,3.7907,2.9045,3.5751,2026-11-12
+2026-11-12,NC-greensboro,"Greensboro, NC",aaa_nc,metro,NC,3.2389,3.6432,4.1054,5.5074,3.2567,3.3799,3.9311,2.8615,3.5650,2026-11-12
+2026-11-12,NC-hickory-lenoir-morganton,"Hickory-Lenoir-Morganton, NC",aaa_nc,metro,NC,3.0568,3.4535,3.9169,5.3029,3.0880,3.2550,3.8629,2.8128,3.4690,2026-11-12
+2026-11-12,NC-jacksonville,"Jacksonville, NC",aaa_nc,metro,NC,3.0985,3.6197,4.0602,5.2986,3.1266,3.2726,3.8334,2.8497,3.4909,2026-11-12
+2026-11-12,NC-new-bern,"New Bern, NC",aaa_nc,metro,NC,3.1255,3.6199,4.0626,5.2930,3.1330,3.3007,3.8876,2.8132,3.5246,2026-11-12
+2026-11-12,NC-norfolk-virginia-beach-newport-news,"Norfolk-Virginia Beach-Newport News, NC",aaa_nc,metro,NC,3.4405,3.7940,4.3726,5.4477,3.4398,3.5736,4.1162,2.9713,3.4757,2026-11-12
+2026-11-12,NC-raleigh,"Raleigh, NC",aaa_nc,metro,NC,3.2043,3.6559,4.0812,5.4683,3.2240,3.3572,3.9121,2.9055,3.6110,2026-11-12
+2026-11-12,NC-rocky-mount,"Rocky Mount, NC",aaa_nc,metro,NC,3.0352,3.5241,3.8732,5.3145,3.0484,3.2192,3.8473,2.9027,3.5884,2026-11-12
+2026-11-12,NC-wilmington,"Wilmington, NC",aaa_nc,metro,NC,2.9844,3.5823,4.0181,5.3049,3.0063,3.2204,3.8014,2.9172,3.5355,2026-11-12
+2026-11-12,NC-winston-salem,"Winston-Salem, NC",aaa_nc,metro,NC,3.1590,3.6162,4.0796,5.4008,3.1789,3.2948,3.9055,2.8924,3.5509,2026-11-12
+2026-11-12,ND,North Dakota,aaa_states,state,ND,3.7798,4.2070,4.6558,5.8388,,,,,,2026-11-12
+2026-11-12,ND-bismarck,"Bismarck, ND",aaa_nd,metro,ND,3.8132,4.2732,4.6634,5.8571,3.8281,3.9897,4.2119,2.9114,3.5653,2026-11-12
+2026-11-12,ND-fargo-moorhead-nd-only,"Fargo-Moorhead (ND only), ND",aaa_nd,metro,ND,3.5355,3.9306,4.4309,5.5250,3.5804,3.7027,3.8896,2.7354,3.6412,2026-11-12
+2026-11-12,ND-grand-forks-nd-only,"Grand Forks (ND only), ND",aaa_nd,metro,ND,3.7749,4.1050,4.5257,5.8905,3.7914,3.8831,4.1263,2.7957,3.6784,2026-11-12
+2026-11-12,ND-minot,"Minot, ND",aaa_nd,metro,ND,3.8707,4.3170,4.7790,5.9171,3.8995,4.0496,4.1916,2.9228,3.5534,2026-11-12
+2026-11-12,NE,Nebraska,aaa_states,state,NE,3.8586,4.1331,4.6320,5.8192,,,,,,2026-11-12
+2026-11-12,NE-columbus,"Columbus, NE",aaa_ne,metro,NE,3.4707,4.4490,4.2890,6.1140,3.5853,3.7868,4.2860,2.7550,3.4223,2026-11-12
+2026-11-12,NE-grand-island,"Grand Island, NE",aaa_ne,metro,NE,3.9161,4.1682,4.6601,5.8773,3.9410,4.2859,4.0498,2.8687,3.4793,2026-11-12
+2026-11-12,NE-kearney,"Kearney, NE",aaa_ne,metro,NE,4.0790,4.8108,4.8190,5.8151,4.2361,4.3153,4.2120,2.7962,3.3365,2026-11-12
+2026-11-12,NE-lincoln,"Lincoln, NE",aaa_ne,metro,NE,3.9941,4.2131,4.8817,5.8657,4.0408,4.2460,4.2647,2.8356,3.4956,2026-11-12
+2026-11-12,NE-norfolk,"Norfolk, NE",aaa_ne,metro,NE,3.8862,4.2661,4.8304,6.0123,3.9212,4.2049,4.1028,2.7743,3.3079,2026-11-12
+2026-11-12,NE-north-platte,"North Platte, NE",aaa_ne,metro,NE,3.9514,4.4008,4.8415,5.8904,4.0272,4.3458,4.2430,2.9984,3.4759,2026-11-12
+2026-11-12,NE-omaha-ne-only,"Omaha (NE only), NE",aaa_ne,metro,NE,3.5835,3.9039,4.4697,5.5908,3.6213,3.8285,4.1394,2.6186,3.4040,2026-11-12
+2026-11-12,NH,New Hampshire,aaa_states,state,NH,4.0221,4.6470,5.1076,6.1970,,,,,,2026-11-12
+2026-11-12,NH-manchester,"Manchester, NH",aaa_nh,metro,NH,3.9908,4.6149,5.1047,6.2174,4.0141,4.1111,4.3011,2.9609,3.8167,2026-11-12
+2026-11-12,NH-portsmouth-rochester-nh-only,"Portsmouth-Rochester (NH only), NH",aaa_nh,metro,NH,4.0147,4.6250,5.0554,6.2012,4.0376,4.1150,4.2743,2.9045,3.7737,2026-11-12
+2026-11-12,NJ,New Jersey,aaa_states,state,NJ,3.9954,4.6417,4.9531,6.2150,,,,,,2026-11-12
+2026-11-12,NJ-atlantic-city,"Atlantic City, NJ",aaa_nj,metro,NJ,4.0076,4.6403,4.8857,6.2565,4.0201,4.0964,4.2944,2.9558,3.6457,2026-11-12
+2026-11-12,NJ-bergen-passaic,"Bergen-Passaic, NJ",aaa_nj,metro,NJ,3.9824,4.6659,4.9908,6.1634,4.0016,4.0985,4.2852,2.9730,3.7131,2026-11-12
+2026-11-12,NJ-cape-may,"Cape May, NJ",aaa_nj,metro,NJ,4.3060,4.7946,5.1257,6.3021,4.3295,4.3473,4.4538,3.1632,3.7465,2026-11-12
+2026-11-12,NJ-middlesex-somerset-hunterdon,"Middlesex-Somerset-Hunterdon, NJ",aaa_nj,metro,NJ,3.9883,4.6109,4.9451,6.1741,4.0061,4.0928,4.3120,2.9986,3.7071,2026-11-12
+2026-11-12,NJ-monmouth-ocean,"Monmouth-Ocean, NJ",aaa_nj,metro,NJ,4.0142,4.6486,4.9441,6.3022,4.0356,4.1096,4.3553,3.0266,3.7435,2026-11-12
+2026-11-12,NJ-newark,"Newark, NJ",aaa_nj,metro,NJ,4.0441,4.7233,5.0692,6.2511,4.0534,4.1481,4.3560,3.0210,3.7691,2026-11-12
+2026-11-12,NJ-parsippany-troy-hills,"Parsippany-Troy Hills, NJ",aaa_nj,metro,NJ,3.9548,4.6187,4.9334,6.2105,3.9782,4.0718,4.3204,2.9772,3.6911,2026-11-12
+2026-11-12,NJ-philadelphia-nj-only,"Philadelphia (NJ Only), NJ",aaa_nj,metro,NJ,3.9762,4.6240,4.8708,6.2182,3.9932,4.0521,4.2728,2.9234,3.6655,2026-11-12
+2026-11-12,NJ-trenton,"Trenton, NJ",aaa_nj,metro,NJ,3.9784,4.6137,4.9726,6.2241,3.9998,4.0754,4.2556,2.9730,3.7242,2026-11-12
+2026-11-12,NJ-vineland,"Vineland, NJ",aaa_nj,metro,NJ,4.0706,4.5799,4.8579,6.2624,4.0785,4.1150,4.3157,2.9310,3.6976,2026-11-12
+2026-11-12,NJ-warren-county,"Warren County, NJ",aaa_nj,metro,NJ,3.9098,4.4790,4.8616,6.1695,3.9375,3.9986,4.2763,2.9388,3.6600,2026-11-12
+2026-11-12,NM,New Mexico,aaa_states,state,NM,3.7453,4.1559,4.4973,5.7607,,,,,,2026-11-12
+2026-11-12,NM-albuquerque,"Albuquerque, NM",aaa_nm,metro,NM,3.5697,4.0253,4.3649,5.6845,3.6233,3.8812,4.4206,2.8249,3.5678,2026-11-12
+2026-11-12,NM-farmington,"Farmington, NM",aaa_nm,metro,NM,4.1664,4.5183,4.8364,5.8606,4.1860,4.3093,4.6986,2.8293,3.7158,2026-11-12
+2026-11-12,NM-las-cruces,"Las Cruces, NM",aaa_nm,metro,NM,3.8540,4.3786,4.6904,5.6479,3.8942,4.1321,4.4476,2.8046,3.4838,2026-11-12
+2026-11-12,NM-santa-fe,"Santa Fe, NM",aaa_nm,metro,NM,3.7155,4.1849,4.5316,5.8431,3.7753,3.9543,4.4731,2.7985,3.4240,2026-11-12
+2026-11-12,NV,Nevada,aaa_states,state,NV,4.9676,5.2997,5.5876,6.7069,,,,,,2026-11-12
+2026-11-12,NV-las-vegas-nv-only,"Las Vegas (NV only), NV",aaa_nv,metro,NV,5.0391,5.4326,5.7278,6.7752,5.0780,5.2642,5.4696,4.0392,4.0069,2026-11-12
+2026-11-12,NV-reno,"Reno, NV",aaa_nv,metro,NV,5.1069,5.2907,5.5140,6.7326,5.1342,5.2764,5.6687,3.9585,4.2344,2026-11-12
+2026-11-12,NY,New York,aaa_states,state,NY,4.1894,4.7608,5.1546,6.3879,,,,,,2026-11-12
+2026-11-12,NY-albany-schenectady-troy,"Albany-Schenectady-Troy, NY",aaa_ny,metro,NY,4.1189,4.7082,5.1732,6.2337,4.1368,4.2483,4.4157,3.1113,3.7286,2026-11-12
+2026-11-12,NY-batavia,"Batavia, NY",aaa_ny,metro,NY,4.2677,4.8590,5.1035,6.4047,4.2538,4.3020,4.3973,3.1124,3.9404,2026-11-12
+2026-11-12,NY-binghamton,"Binghamton, NY",aaa_ny,metro,NY,4.2396,4.7149,5.1323,6.3794,4.2562,4.3576,4.4772,3.1216,3.9567,2026-11-12
+2026-11-12,NY-buffalo-niagara-falls,"Buffalo-Niagara Falls, NY",aaa_ny,metro,NY,4.2606,4.7989,5.1779,6.3130,4.2759,4.3298,4.3941,3.1672,3.8893,2026-11-12
+2026-11-12,NY-dutchess-putnam-county,"Dutchess-Putnam County, NY",aaa_ny,metro,NY,4.1934,4.8648,5.2171,6.3486,4.2299,4.3606,4.4669,3.1463,3.7717,2026-11-12
+2026-11-12,NY-elmira,"Elmira, NY",aaa_ny,metro,NY,4.0282,4.4638,4.8957,6.1940,4.0314,4.0976,4.3396,3.0085,3.6554,2026-11-12
+2026-11-12,NY-glens-falls,"Glens Falls, NY",aaa_ny,metro,NY,4.1893,4.7501,5.2364,6.2297,4.1989,4.3003,4.4697,3.2068,3.8083,2026-11-12
+2026-11-12,NY-ithaca,"Ithaca, NY",aaa_ny,metro,NY,4.3080,4.8166,5.2143,6.3961,4.3207,4.3723,4.4197,3.2173,3.8836,2026-11-12
+2026-11-12,NY-kingston,"Kingston, NY",aaa_ny,metro,NY,4.0882,4.6848,5.1154,6.3206,4.1107,4.2223,4.3937,3.0712,3.7388,2026-11-12
+2026-11-12,NY-nassau-suffolk,"Nassau-Suffolk, NY",aaa_ny,metro,NY,4.0620,4.6283,4.9963,6.4106,4.0781,4.1904,4.4100,3.0189,3.8436,2026-11-12
+2026-11-12,NY-new-york,"New York, NY",aaa_ny,metro,NY,4.1905,4.7655,5.1421,6.5791,4.2182,4.3313,4.5302,3.1332,4.1359,2026-11-12
+2026-11-12,NY-rochester,"Rochester, NY",aaa_ny,metro,NY,4.2805,4.7984,5.1695,6.4000,4.2908,4.3471,4.4107,3.1724,3.9580,2026-11-12
+2026-11-12,NY-syracuse,"Syracuse, NY",aaa_ny,metro,NY,4.1621,4.7239,5.1342,6.3159,4.1945,4.2806,4.3687,3.0569,3.8292,2026-11-12
+2026-11-12,NY-utica-rome,"Utica-Rome, NY",aaa_ny,metro,NY,4.2658,4.7446,5.2646,6.2789,4.2767,4.3657,4.4746,3.1415,3.8357,2026-11-12
+2026-11-12,NY-watertown-fort-drum,"Watertown-Fort Drum, NY",aaa_ny,metro,NY,4.1426,4.6290,5.0995,6.3690,4.1615,4.3541,4.5111,3.1251,3.9199,2026-11-12
+2026-11-12,NY-white-plains,"White Plains, NY",aaa_ny,metro,NY,4.3138,5.0073,5.3891,6.5244,4.3332,4.4389,4.5760,3.2326,4.0169,2026-11-12
+2026-11-12,OH,Ohio,aaa_states,state,OH,3.6367,4.2273,4.7672,6.1917,,,,,,2026-11-12
+2026-11-12,OH-akron,"Akron, OH",aaa_oh,metro,OH,3.6129,4.1638,4.6917,6.2222,3.6777,3.9946,3.8193,2.9788,3.8323,2026-11-12
+2026-11-12,OH-belmont-county,"Belmont County, OH",aaa_oh,metro,OH,3.6904,4.4148,4.8625,6.2382,3.7234,3.9475,3.9122,2.9634,3.8405,2026-11-12
+2026-11-12,OH-canton-massillon,"Canton-Massillon, OH",aaa_oh,metro,OH,3.7092,4.2362,4.7447,6.2381,3.7710,4.0611,3.8278,2.9122,3.9181,2026-11-12
+2026-11-12,OH-cincinnati-oh-only,"Cincinnati (OH only), OH",aaa_oh,metro,OH,3.6023,4.1603,4.7122,6.1195,3.6607,3.9690,3.8925,2.9651,3.8048,2026-11-12
+2026-11-12,OH-cleveland-lorain-elyria,"Cleveland-Lorain-Elyria, OH",aaa_oh,metro,OH,3.6971,4.4002,4.9773,6.4104,3.7562,4.0263,3.9025,3.0155,3.8596,2026-11-12
+2026-11-12,OH-columbus,"Columbus, OH",aaa_oh,metro,OH,3.6449,4.2001,4.7348,6.3157,3.7011,4.0132,3.8925,2.9265,3.9030,2026-11-12
+2026-11-12,OH-dayton,"Dayton, OH",aaa_oh,metro,OH,3.5488,4.1164,4.6495,6.0415,3.6083,3.9032,3.8565,2.9030,3.8220,2026-11-12
+2026-11-12,OH-lawerence-county,"Lawerence County, OH",aaa_oh,metro,OH,3.8355,4.3081,4.8098,5.9911,3.8531,4.0258,3.8833,3.0519,3.9240,2026-11-12
+2026-11-12,OH-lima,"Lima, OH",aaa_oh,metro,OH,3.2612,3.8190,4.4642,5.9106,3.3820,3.7079,3.8202,2.8434,3.8000,2026-11-12
+2026-11-12,OH-mansfield,"Mansfield, OH",aaa_oh,metro,OH,3.7025,4.2711,4.8259,6.1860,3.7408,3.9846,3.8684,3.0298,3.8434,2026-11-12
+2026-11-12,OH-springfield,"Springfield, OH",aaa_oh,metro,OH,3.6528,4.2216,4.7427,6.0253,3.6979,3.9790,3.9222,2.9538,3.8613,2026-11-12
+2026-11-12,OH-steubenville-weirton-oh-only,"Steubenville-Weirton (OH only), OH",aaa_oh,metro,OH,3.7829,4.2899,4.7748,6.2719,3.8472,4.1169,3.9683,3.0424,3.8725,2026-11-12
+2026-11-12,OH-toledo,"Toledo, OH",aaa_oh,metro,OH,3.5507,4.1295,4.6662,6.1103,3.6170,3.9270,3.8173,2.9480,3.8207,2026-11-12
+2026-11-12,OH-youngstown-warren,"Youngstown-Warren, OH",aaa_oh,metro,OH,3.6981,4.3715,4.9164,6.1589,3.7568,3.9745,3.8581,2.8903,3.8409,2026-11-12
+2026-11-12,OK,Oklahoma,aaa_states,state,OK,3.4948,3.9339,4.2332,5.5792,,,,,,2026-11-12
+2026-11-12,OK-lawton,"Lawton, OK",aaa_ok,metro,OK,3.2803,3.6987,4.0166,5.5808,3.4032,3.5968,3.8800,2.3876,3.2910,2026-11-12
+2026-11-12,OK-le-flore-sequoyah,"Le Flore-Sequoyah, OK",aaa_ok,metro,OK,3.6500,4.1543,4.5260,5.6501,3.6974,3.7884,3.9768,2.5590,3.2640,2026-11-12
+2026-11-12,OK-oklahoma-city,"Oklahoma City, OK",aaa_ok,metro,OK,3.3340,3.8087,4.0822,5.4245,3.3903,3.6123,4.0020,2.5114,3.2582,2026-11-12
+2026-11-12,OK-tulsa,"Tulsa, OK",aaa_ok,metro,OK,3.4295,3.7572,4.0972,5.6490,3.4794,3.6635,4.0003,2.5370,3.4353,2026-11-12
+2026-11-12,OR,Oregon,aaa_states,state,OR,4.5398,4.8110,5.0975,6.5606,,,,,,2026-11-12
+2026-11-12,OR-albany,"Albany, OR",aaa_or,metro,OR,4.2290,4.5281,4.7412,6.3322,4.2945,4.4357,4.8147,3.4121,4.1505,2026-11-12
+2026-11-12,OR-bend,"Bend, OR",aaa_or,metro,OR,4.4601,4.7421,5.0266,6.5706,4.5226,4.6162,4.8823,3.6612,4.2401,2026-11-12
+2026-11-12,OR-corvallis,"Corvallis, OR",aaa_or,metro,OR,4.2296,4.4701,4.8398,6.3572,4.2796,4.3753,4.7690,3.2617,4.0690,2026-11-12
+2026-11-12,OR-eugene-springfield,"Eugene-Springfield, OR",aaa_or,metro,OR,4.4853,4.6506,4.9147,6.5262,4.5297,4.6897,4.9998,3.6290,4.2480,2026-11-12
+2026-11-12,OR-grants-pass,"Grants Pass, OR",aaa_or,metro,OR,4.7982,4.7361,5.1526,6.7371,4.8305,4.9352,5.1490,3.8177,4.3170,2026-11-12
+2026-11-12,OR-medford-ashland,"Medford-Ashland, OR",aaa_or,metro,OR,4.5426,4.7109,5.0493,6.5931,4.5882,4.7609,4.9890,3.7040,4.3351,2026-11-12
+2026-11-12,OR-pendleton,"Pendleton, OR",aaa_or,metro,OR,4.6567,5.0358,5.3462,6.4738,4.6810,4.8145,4.9902,3.8060,4.1351,2026-11-12
+2026-11-12,OR-portland-vancouver-or-only,"Portland-Vancouver (OR only), OR",aaa_or,metro,OR,4.5757,4.8701,5.1295,6.5708,4.6040,4.7872,5.0547,3.9860,4.4439,2026-11-12
+2026-11-12,OR-salem,"Salem, OR",aaa_or,metro,OR,4.3856,4.6784,4.9804,6.4708,4.4320,4.6023,4.8321,3.6950,4.3620,2026-11-12
+2026-11-12,PA,Pennsylvania,aaa_states,state,PA,4.2926,4.7317,5.1738,6.5148,,,,,,2026-11-12
+2026-11-12,PA-allentown-bethlehem-easton,"Allentown-Bethlehem-Easton, PA",aaa_pa,metro,PA,4.1045,4.6208,5.0004,6.4774,4.1350,4.2482,4.3686,3.1897,3.9973,2026-11-12
+2026-11-12,PA-altoona,"Altoona, PA",aaa_pa,metro,PA,4.3778,4.5987,5.2087,6.4787,4.3933,4.4562,4.5510,3.4501,3.9673,2026-11-12
+2026-11-12,PA-bloomsburg-berwick,"Bloomsburg-Berwick, PA",aaa_pa,metro,PA,4.0240,4.3555,4.8578,6.3808,4.0497,4.1601,4.2978,3.1448,3.9955,2026-11-12
+2026-11-12,PA-chambersburg-waynesboro,"Chambersburg-Waynesboro, PA",aaa_pa,metro,PA,4.0301,4.3209,4.8506,6.4575,4.0511,4.0986,4.1833,3.2344,4.0086,2026-11-12
+2026-11-12,PA-east-stroudsburg,"East Stroudsburg, PA",aaa_pa,metro,PA,4.1828,4.7390,5.1146,6.5132,4.2134,4.3147,4.4194,3.1567,3.9392,2026-11-12
+2026-11-12,PA-erie,"Erie, PA",aaa_pa,metro,PA,4.4286,4.8451,5.3165,6.5208,4.4495,4.5509,4.6295,3.4596,4.1792,2026-11-12
+2026-11-12,PA-gettysburg,"Gettysburg, PA",aaa_pa,metro,PA,4.2233,4.5806,5.0358,6.5271,4.2476,4.3187,4.3777,3.2422,4.0173,2026-11-12
+2026-11-12,PA-harrisburg,"Harrisburg, PA",aaa_pa,metro,PA,4.1463,4.5156,5.0115,6.4855,4.1675,4.2540,4.2912,3.2431,4.0561,2026-11-12
+2026-11-12,PA-johnstown,"Johnstown, PA",aaa_pa,metro,PA,4.3492,4.5123,5.1783,6.4945,4.3741,4.4464,4.5578,3.4563,3.9567,2026-11-12
+2026-11-12,PA-lancaster,"Lancaster, PA",aaa_pa,metro,PA,4.2212,4.6055,5.0785,6.5548,4.2420,4.3288,4.3881,3.3095,4.0304,2026-11-12
+2026-11-12,PA-lebanon,"Lebanon, PA",aaa_pa,metro,PA,4.1360,4.5390,5.0211,6.4868,4.1627,4.2575,4.3013,3.2481,4.1078,2026-11-12
+2026-11-12,PA-mercer-county,"Mercer County, PA",aaa_pa,metro,PA,4.4203,4.8395,5.3867,6.5961,4.4840,4.5939,4.5356,3.3855,4.1290,2026-11-12
+2026-11-12,PA-philadelphia-pa-only,"Philadelphia (PA only), PA",aaa_pa,metro,PA,4.2488,4.8635,5.1648,6.5280,4.2793,4.3423,4.4402,3.1757,3.9809,2026-11-12
+2026-11-12,PA-pittsburgh,"Pittsburgh, PA",aaa_pa,metro,PA,4.5307,4.9226,5.4525,6.5700,4.5437,4.6151,4.6282,3.4355,4.1205,2026-11-12
+2026-11-12,PA-reading,"Reading, PA",aaa_pa,metro,PA,4.2285,4.6367,5.0499,6.5223,4.2575,4.3680,4.4456,3.2752,4.0047,2026-11-12
+2026-11-12,PA-scranton-wilkes-barre-hazleton,"Scranton--Wilkes-Barre--Hazleton, PA",aaa_pa,metro,PA,4.2099,4.5964,5.0798,6.5286,4.2344,4.3478,4.4272,3.1746,4.0243,2026-11-12
+2026-11-12,PA-state-college,"State College, PA",aaa_pa,metro,PA,4.3378,4.6480,5.1633,6.4904,4.3738,4.4796,4.5164,3.3671,4.1290,2026-11-12
+2026-11-12,PA-williamsport,"Williamsport, PA",aaa_pa,metro,PA,4.1529,4.5547,5.0344,6.4942,4.1750,4.3452,4.3520,3.1953,3.9486,2026-11-12
+2026-11-12,PA-york,"York, PA",aaa_pa,metro,PA,4.2340,4.6074,5.0377,6.5351,4.2417,4.3433,4.3396,3.3003,4.0538,2026-11-12
+2026-11-12,RI,Rhode Island,aaa_states,state,RI,3.9186,4.6854,5.0790,6.0882,,,,,,2026-11-12
+2026-11-12,RI-providence-fall-river-warwick-ri-only,"Providence-Fall River-Warwick (RI only), RI",aaa_ri,metro,RI,3.9186,4.6854,5.0790,6.0882,3.9444,4.0828,4.2881,2.9689,3.8092,2026-11-12
+2026-11-12,SC,South Carolina,aaa_states,state,SC,3.4556,3.9152,4.3151,5.6132,,,,,,2026-11-12
+2026-11-12,SC-aiken-edgfield-county,"Aiken-Edgfield County, SC",aaa_sc,metro,SC,3.2729,3.6628,4.1092,5.5435,3.3054,3.5389,3.9995,2.7617,3.3873,2026-11-12
+2026-11-12,SC-charleston-north-charleston,"Charleston-North Charleston, SC",aaa_sc,metro,SC,3.4549,3.9641,4.3681,5.7028,3.4766,3.6252,3.9979,2.8201,3.5561,2026-11-12
+2026-11-12,SC-columbia,"Columbia, SC",aaa_sc,metro,SC,3.4601,3.9246,4.3215,5.6494,3.4901,3.6153,4.0127,2.7549,3.4351,2026-11-12
+2026-11-12,SC-florence,"Florence, SC",aaa_sc,metro,SC,3.4610,3.9317,4.3564,5.5493,3.5102,3.7028,3.9573,2.7142,3.4847,2026-11-12
+2026-11-12,SC-greenville,"Greenville, SC",aaa_sc,metro,SC,3.4292,3.8907,4.2617,5.5811,3.4356,3.4614,3.9821,2.6982,3.3251,2026-11-12
+2026-11-12,SC-hilton-head-bluffton,"Hilton Head-Bluffton, SC",aaa_sc,metro,SC,3.6884,4.1755,4.5120,5.7949,3.7092,3.8134,4.0780,2.8250,3.5393,2026-11-12
+2026-11-12,SC-myrtle-beach,"Myrtle Beach, SC",aaa_sc,metro,SC,3.3379,3.8126,4.2285,5.5820,3.3752,3.5392,3.8523,2.7925,3.5029,2026-11-12
+2026-11-12,SC-rock-hill,"Rock Hill, SC",aaa_sc,metro,SC,3.3096,3.7600,4.1480,5.5151,3.3423,3.5113,3.9877,2.6960,3.4162,2026-11-12
+2026-11-12,SC-spartanburg,"Spartanburg, SC",aaa_sc,metro,SC,3.3708,3.8373,4.2376,5.4361,3.3995,3.5051,3.9784,2.7318,3.3754,2026-11-12
+2026-11-12,SC-sumter,"Sumter, SC",aaa_sc,metro,SC,3.6998,4.1777,4.5567,5.7528,3.7275,3.8223,4.0382,2.7878,3.4099,2026-11-12
+2026-11-12,SD,South Dakota,aaa_states,state,SD,3.8372,4.0543,4.5993,5.7021,,,,,,2026-11-12
+2026-11-12,SD-north-sioux-city,"North Sioux City, SD",aaa_sd,metro,SD,3.6490,3.4523,4.2630,5.6481,3.6973,3.9290,4.0900,2.7844,3.4490,2026-11-12
+2026-11-12,SD-rapid-city,"Rapid City, SD",aaa_sd,metro,SD,3.8522,4.0648,4.6242,5.8474,3.8631,4.0281,4.1413,2.9474,3.6550,2026-11-12
+2026-11-12,SD-sioux-falls,"Sioux Falls, SD",aaa_sd,metro,SD,3.7161,4.2145,4.6678,5.4400,3.7761,3.9467,4.1621,2.7227,3.3812,2026-11-12
+2026-11-12,TN,Tennessee,aaa_states,state,TN,3.5177,3.9885,4.4015,5.7794,,,,,,2026-11-12
+2026-11-12,TN-chattanooga-tn-only,"Chattanooga (TN only), TN",aaa_tn,metro,TN,3.2259,3.6792,4.0194,5.4183,3.2729,3.4718,3.8258,2.6568,3.3018,2026-11-12
+2026-11-12,TN-clarksville-hopkinsville-tn-only,"Clarksville-Hopkinsville (TN only), TN",aaa_tn,metro,TN,3.3013,3.7616,4.1250,5.7013,3.3415,3.4742,3.8722,2.5777,3.5194,2026-11-12
+2026-11-12,TN-cleveland,"Cleveland, TN",aaa_tn,metro,TN,3.3287,3.7761,4.2132,5.6247,3.3703,3.5234,3.8587,2.7102,3.4624,2026-11-12
+2026-11-12,TN-jackson,"Jackson, TN",aaa_tn,metro,TN,3.6607,4.2685,4.6701,5.9147,3.6920,3.8210,4.0675,2.7076,3.5822,2026-11-12
+2026-11-12,TN-johnson-city,"Johnson City, TN",aaa_tn,metro,TN,3.5361,4.0532,4.4636,5.7448,3.5604,3.6712,3.8991,2.6731,3.3578,2026-11-12
+2026-11-12,TN-kingsport-bristol,"Kingsport-Bristol, TN",aaa_tn,metro,TN,3.4963,3.9317,4.3444,5.7088,3.5205,3.6605,3.8756,2.5878,3.3086,2026-11-12
+2026-11-12,TN-knoxville,"Knoxville, TN",aaa_tn,metro,TN,3.5850,3.9865,4.4663,5.8483,3.6092,3.7309,3.9259,2.6428,3.3257,2026-11-12
+2026-11-12,TN-memphis-tn-only,"Memphis (TN only), TN",aaa_tn,metro,TN,3.6858,4.3446,4.7487,5.9145,3.7021,3.8274,4.0238,2.6407,3.4644,2026-11-12
+2026-11-12,TN-morristown,"Morristown, TN",aaa_tn,metro,TN,3.4937,3.8890,4.3752,5.7016,3.5315,3.6494,3.8842,2.5978,3.3520,2026-11-12
+2026-11-12,TN-nashville,"Nashville, TN",aaa_tn,metro,TN,3.4599,3.9566,4.3670,5.8163,3.5002,3.6460,3.9341,2.7631,3.5608,2026-11-12
+2026-11-12,TX,Texas,aaa_states,state,TX,3.3869,3.9051,4.2787,5.5066,,,,,,2026-11-12
+2026-11-12,TX-abilene,"Abilene, TX",aaa_tx,metro,TX,3.4257,3.8292,4.1838,5.5175,3.4691,3.6662,3.7708,2.6753,3.2517,2026-11-12
+2026-11-12,TX-amarillo,"Amarillo, TX",aaa_tx,metro,TX,3.4654,3.8531,4.2840,5.5587,3.5091,3.8369,3.9252,2.5805,3.2850,2026-11-12
+2026-11-12,TX-austin-san-marcos,"Austin-San Marcos, TX",aaa_tx,metro,TX,3.2819,3.7756,4.1322,5.4848,3.3255,3.5426,3.7320,2.6801,3.1906,2026-11-12
+2026-11-12,TX-beaumont-port-arthur,"Beaumont-Port Arthur, TX",aaa_tx,metro,TX,3.5047,4.0487,4.4156,5.5174,3.5417,3.6538,3.8403,2.5522,3.1433,2026-11-12
+2026-11-12,TX-brownsville-harlingen,"Brownsville-Harlingen, TX",aaa_tx,metro,TX,3.3519,3.9467,4.3602,5.2980,3.3717,3.3110,3.8035,2.7341,3.4808,2026-11-12
+2026-11-12,TX-college-station-bryan,"College Station-Bryan, TX",aaa_tx,metro,TX,3.5494,4.0754,4.4957,5.6630,3.5707,3.6888,3.9065,2.6309,3.2324,2026-11-12
+2026-11-12,TX-corpus-christi,"Corpus Christi, TX",aaa_tx,metro,TX,3.3573,3.9328,4.3512,5.2156,3.3866,3.3685,3.8046,2.7292,3.4280,2026-11-12
+2026-11-12,TX-dallas,"Dallas, TX",aaa_tx,metro,TX,3.2238,3.6647,4.0192,5.4812,3.2539,3.4487,3.7696,2.6056,3.2593,2026-11-12
+2026-11-12,TX-el-paso,"El Paso, TX",aaa_tx,metro,TX,3.7754,4.3119,4.6350,5.6193,3.8110,4.0283,4.3457,2.7564,3.3640,2026-11-12
+2026-11-12,TX-fort-worth-arlington,"Fort Worth-Arlington, TX",aaa_tx,metro,TX,3.2635,3.7128,4.0684,5.4895,3.2911,3.4654,3.7727,2.6085,3.2463,2026-11-12
+2026-11-12,TX-galveston-texas-city,"Galveston-Texas City, TX",aaa_tx,metro,TX,3.4542,4.0809,4.4304,5.5588,3.4801,3.6122,3.8509,2.5771,3.1991,2026-11-12
+2026-11-12,TX-houston,"Houston, TX",aaa_tx,metro,TX,3.4351,4.1210,4.5344,5.5109,3.4667,3.5965,3.8126,2.5612,3.1472,2026-11-12
+2026-11-12,TX-killeen-temple-fort-hood,"Killeen-Temple-Fort Hood, TX",aaa_tx,metro,TX,3.3022,3.7324,4.0944,5.3709,3.3444,3.5845,3.7091,2.5786,3.1413,2026-11-12
+2026-11-12,TX-laredo,"Laredo, TX",aaa_tx,metro,TX,3.3530,3.9620,4.3400,5.3216,3.3890,3.4052,3.8125,2.7273,3.4358,2026-11-12
+2026-11-12,TX-longview,"Longview, TX",aaa_tx,metro,TX,3.4691,3.9467,4.3235,5.5738,3.5090,3.6400,3.8395,2.5862,3.2675,2026-11-12
+2026-11-12,TX-lubbock,"Lubbock, TX",aaa_tx,metro,TX,3.4349,3.9282,4.2386,5.5893,3.4713,3.7277,3.8980,2.4779,3.2420,2026-11-12
+2026-11-12,TX-mcallen-edinburg-mission,"McAllen-Edinburg-Mission, TX",aaa_tx,metro,TX,3.3551,3.9426,4.3510,5.1656,3.3752,3.2883,3.7745,2.7398,3.4489,2026-11-12
+2026-11-12,TX-midland,"Midland, TX",aaa_tx,metro,TX,3.4183,4.0016,4.2637,5.5707,3.4651,3.7316,3.7959,2.6970,3.3708,2026-11-12
+2026-11-12,TX-odessa,"Odessa, TX",aaa_tx,metro,TX,3.4445,4.0464,4.3638,5.6080,3.4924,3.7042,3.8282,2.6482,3.3719,2026-11-12
+2026-11-12,TX-san-angelo,"San Angelo, TX",aaa_tx,metro,TX,3.4550,3.9693,4.3252,5.5480,3.4876,3.7650,3.8013,2.8158,3.4062,2026-11-12
+2026-11-12,TX-san-antonio,"San Antonio, TX",aaa_tx,metro,TX,3.2117,3.7133,4.0838,5.4128,3.2639,3.5230,3.7339,2.6491,3.1490,2026-11-12
+2026-11-12,TX-sherman-denison,"Sherman-Denison, TX",aaa_tx,metro,TX,3.1801,3.5665,3.9425,5.4386,3.2141,3.3807,3.7513,2.5384,3.1885,2026-11-12
+2026-11-12,TX-texarkana-tx-only,"Texarkana (TX only), TX",aaa_tx,metro,TX,3.6590,4.1649,4.5364,5.6257,3.6796,3.7820,3.9182,2.5910,3.2651,2026-11-12
+2026-11-12,TX-tyler,"Tyler, TX",aaa_tx,metro,TX,3.4172,3.8339,4.1734,5.5555,3.4406,3.5959,3.7877,2.5199,3.1722,2026-11-12
+2026-11-12,TX-victoria,"Victoria, TX",aaa_tx,metro,TX,3.4377,3.8875,4.2261,5.3968,3.4374,3.5483,3.8205,2.6337,3.2835,2026-11-12
+2026-11-12,TX-waco,"Waco, TX",aaa_tx,metro,TX,3.3639,3.7841,4.1119,5.4137,3.4021,3.5979,3.7522,2.6636,3.1974,2026-11-12
+2026-11-12,TX-wichita-falls,"Wichita Falls, TX",aaa_tx,metro,TX,3.5576,4.0413,4.4329,5.6605,3.5815,3.7613,3.9092,2.5626,3.3125,2026-11-12
+2026-11-12,US,United States (national average),aaa_states,national,,3.9081,,,,,,,,,2026-11-12
+2026-11-12,UT,Utah,aaa_states,state,UT,4.2265,4.5127,4.7579,6.2080,,,,,,2026-11-12
+2026-11-12,UT-logan,"Logan, UT",aaa_ut,metro,UT,4.2565,4.5317,4.7540,6.2122,4.3049,4.4865,4.8623,3.1832,3.8282,2026-11-12
+2026-11-12,UT-ogden,"Ogden, UT",aaa_ut,metro,UT,4.1362,4.4756,4.7014,6.1402,4.1776,4.3856,4.7727,3.1735,3.8073,2026-11-12
+2026-11-12,UT-provo-orem,"Provo-Orem, UT",aaa_ut,metro,UT,4.1566,4.4603,4.7081,6.1710,4.1895,4.4456,4.8024,3.1671,3.8305,2026-11-12
+2026-11-12,UT-salt-lake-city,"Salt Lake City, UT",aaa_ut,metro,UT,4.0588,4.3616,4.6145,6.1738,4.1143,4.4237,4.6953,3.1945,3.8465,2026-11-12
+2026-11-12,UT-st-george,"St. George, UT",aaa_ut,metro,UT,4.4359,4.7047,4.9572,6.2637,4.4614,4.6639,4.9034,3.3678,3.8223,2026-11-12
+2026-11-12,VA,Virginia,aaa_states,state,VA,3.7852,4.2935,4.7128,6.0958,,,,,,2026-11-12
+2026-11-12,VA-blacksburg-christiansburg-radford,"Blacksburg-Christiansburg-Radford, VA",aaa_va,metro,VA,3.6978,4.1679,4.6263,5.8882,3.7214,3.8659,4.1317,2.8929,3.5282,2026-11-12
+2026-11-12,VA-bristol-scott-washington,"Bristol-Scott-Washington, VA",aaa_va,metro,VA,3.6942,4.2232,4.5527,5.8603,3.7315,3.8727,4.1153,2.8297,3.5567,2026-11-12
+2026-11-12,VA-charlottesville,"Charlottesville, VA",aaa_va,metro,VA,3.8447,4.3458,4.7748,6.2437,3.8713,3.9766,4.2464,2.9463,3.6067,2026-11-12
+2026-11-12,VA-fredericksburg,"Fredericksburg, VA",aaa_va,metro,VA,3.7835,4.2123,4.6170,6.1671,3.7896,3.8582,4.1292,2.9786,3.6458,2026-11-12
+2026-11-12,VA-harrisonburg,"Harrisonburg, VA",aaa_va,metro,VA,3.5835,3.9129,4.3766,5.9316,3.6194,3.7139,4.1029,2.8908,3.5790,2026-11-12
+2026-11-12,VA-lynchburg,"Lynchburg, VA",aaa_va,metro,VA,3.6822,4.1397,4.5645,5.9543,3.7069,3.8577,4.1453,2.8353,3.5390,2026-11-12
+2026-11-12,VA-norfolk-virginia-beach-newport-news,"Norfolk-Virginia Beach-Newport News, VA",aaa_va,metro,VA,3.8641,4.3532,4.7563,6.1551,3.8849,3.9671,4.1766,2.9611,3.5546,2026-11-12
+2026-11-12,VA-richmond-petersburg,"Richmond-Petersburg, VA",aaa_va,metro,VA,3.7616,4.2588,4.6732,6.0568,3.7811,3.9006,4.1420,2.9423,3.6128,2026-11-12
+2026-11-12,VA-roanoke,"Roanoke, VA",aaa_va,metro,VA,3.6697,4.1675,4.6289,6.0217,3.6927,3.8481,4.1264,2.8358,3.6029,2026-11-12
+2026-11-12,VA-staunton-waynesboro,"Staunton-Waynesboro, VA",aaa_va,metro,VA,3.4473,3.8331,4.2933,5.8452,3.4913,3.6646,4.0012,2.7885,3.5506,2026-11-12
+2026-11-12,VA-washington-dc-va-only,"Washington, DC, (VA Only), VA",aaa_va,metro,VA,3.9192,4.4715,4.8680,6.2639,3.9361,4.0213,4.2395,2.9889,3.7020,2026-11-12
+2026-11-12,VA-winchester,"Winchester, VA",aaa_va,metro,VA,3.5730,3.9209,4.4492,6.1262,3.6076,3.7203,4.0797,2.9530,3.6341,2026-11-12
+2026-11-12,VT,Vermont,aaa_states,state,VT,4.1999,4.7729,5.2691,6.2265,,,,,,2026-11-12
+2026-11-12,VT-burlington,"Burlington, VT",aaa_vt,metro,VT,4.2238,4.8271,5.3244,6.2708,4.2533,4.3335,4.4848,3.1676,3.8500,2026-11-12
+2026-11-12,WA,Washington,aaa_states,state,WA,4.9068,5.1817,5.4487,7.0902,,,,,,2026-11-12
+2026-11-12,WA-bellingham,"Bellingham, WA",aaa_wa,metro,WA,4.7048,4.9726,5.3224,6.7846,4.7402,4.9627,5.2628,3.9112,4.7910,2026-11-12
+2026-11-12,WA-bremerton,"Bremerton, WA",aaa_wa,metro,WA,4.9869,5.2381,5.5490,7.0848,5.0430,5.2246,5.5411,4.2364,4.9809,2026-11-12
+2026-11-12,WA-clarkson,"Clarkson, WA",aaa_wa,metro,WA,4.5323,0.0000,4.9540,6.2990,4.6323,4.7157,5.0657,3.8240,4.0590,2026-11-12
+2026-11-12,WA-longview,"Longview, WA",aaa_wa,metro,WA,4.7362,5.1190,5.3399,6.9860,4.8001,5.0099,5.3233,4.1499,4.8951,2026-11-12
+2026-11-12,WA-mount-vernon-anacortes,"Mount Vernon-Anacortes, WA",aaa_wa,metro,WA,4.6488,4.9723,5.1334,6.8599,4.6994,4.8749,5.2406,3.9375,4.7105,2026-11-12
+2026-11-12,WA-olympia,"Olympia, WA",aaa_wa,metro,WA,4.7924,4.9620,5.2116,7.1012,4.8142,5.0677,5.4024,4.1677,5.1599,2026-11-12
+2026-11-12,WA-richland-kennewick-pasco,"Richland-Kennewick-Pasco, WA",aaa_wa,metro,WA,4.8788,5.1968,5.4462,7.1220,4.9027,5.0182,5.3077,3.8843,4.7620,2026-11-12
+2026-11-12,WA-seattle-bellevue-everett,"Seattle-Bellevue-Everett, WA",aaa_wa,metro,WA,5.0818,5.3345,5.5905,7.1955,5.1183,5.2972,5.6265,4.4929,5.0967,2026-11-12
+2026-11-12,WA-spokane,"Spokane, WA",aaa_wa,metro,WA,4.5282,4.8191,5.1349,7.0128,4.5770,4.7919,5.1438,3.7658,4.7006,2026-11-12
+2026-11-12,WA-tacoma,"Tacoma, WA",aaa_wa,metro,WA,4.9260,5.1709,5.4287,7.1253,4.9560,5.1403,5.4827,4.2788,5.0485,2026-11-12
+2026-11-12,WA-vancouver,"Vancouver, WA",aaa_wa,metro,WA,4.7983,5.0794,5.3217,6.9100,4.8234,4.9848,5.2853,4.1415,4.7497,2026-11-12
+2026-11-12,WA-walla-walla,"Walla Walla, WA",aaa_wa,metro,WA,4.9394,5.3579,5.5079,7.2276,4.9786,5.1449,5.4895,4.1066,4.9684,2026-11-12
+2026-11-12,WA-wenatchee,"Wenatchee, WA",aaa_wa,metro,WA,4.6761,4.8500,5.0786,7.0254,4.6716,4.9473,5.3762,4.0002,4.8796,2026-11-12
+2026-11-12,WA-yakima,"Yakima, WA",aaa_wa,metro,WA,4.7033,5.0234,5.3430,6.9523,4.7398,4.9411,5.2617,3.9471,4.7252,2026-11-12
+2026-11-12,WI,Wisconsin,aaa_states,state,WI,3.7822,4.4124,4.9910,6.0053,,,,,,2026-11-12
+2026-11-12,WI-appleton,"Appleton, WI",aaa_wi,metro,WI,3.6805,4.3010,4.9413,5.9356,3.7276,3.9761,4.0689,2.7670,3.7688,2026-11-12
+2026-11-12,WI-eau-claire,"Eau Claire, WI",aaa_wi,metro,WI,3.5606,4.0312,4.5650,6.0171,3.6173,3.8262,4.1935,2.7184,3.8245,2026-11-12
+2026-11-12,WI-fond-du-lac,"Fond du Lac, WI",aaa_wi,metro,WI,3.6623,4.2397,5.0233,5.9637,3.7382,3.9498,4.0422,2.8073,3.7036,2026-11-12
+2026-11-12,WI-green-bay,"Green Bay, WI",aaa_wi,metro,WI,3.8303,4.4819,5.0670,5.9311,3.8754,4.1198,4.1271,2.8471,3.7651,2026-11-12
+2026-11-12,WI-janesville-beloit,"Janesville-Beloit, WI",aaa_wi,metro,WI,3.6332,4.3494,4.9269,5.9630,3.7060,4.2460,4.0738,2.7355,3.6644,2026-11-12
+2026-11-12,WI-kenosha-county,"Kenosha County, WI",aaa_wi,metro,WI,3.6689,4.3240,4.7814,6.1759,3.7211,4.0294,4.1664,2.8049,3.8104,2026-11-12
+2026-11-12,WI-la-crosse-wi-only,"La Crosse (WI only), WI",aaa_wi,metro,WI,3.7819,3.9490,4.9953,5.9110,3.8196,3.9799,4.1893,2.7721,4.0058,2026-11-12
+2026-11-12,WI-madison,"Madison, WI",aaa_wi,metro,WI,3.7550,4.5001,5.0593,5.9556,3.8234,4.1245,4.1441,2.8487,3.8136,2026-11-12
+2026-11-12,WI-milwaukee-waukesha,"Milwaukee-Waukesha, WI",aaa_wi,metro,WI,3.8310,4.4774,4.9726,6.0789,3.8851,4.1523,4.0833,2.7848,3.7166,2026-11-12
+2026-11-12,WI-oshkosh,"Oshkosh, WI",aaa_wi,metro,WI,3.8113,4.4748,5.0542,5.9529,3.8428,4.1237,4.0890,2.7390,3.7724,2026-11-12
+2026-11-12,WI-pierce-st-croix-county,"Pierce -St. Croix County, WI",aaa_wi,metro,WI,3.8306,4.3274,4.8100,6.1234,3.9000,4.0852,4.2361,2.8538,3.8573,2026-11-12
+2026-11-12,WI-racine,"Racine, WI",aaa_wi,metro,WI,3.7252,4.3209,4.9196,6.0587,3.7722,4.0248,4.0365,2.7991,3.6985,2026-11-12
+2026-11-12,WI-sheboygan,"Sheboygan, WI",aaa_wi,metro,WI,3.6205,4.4473,4.8906,6.0667,3.7129,4.0851,4.0833,2.8309,3.7797,2026-11-12
+2026-11-12,WI-superior,"Superior, WI",aaa_wi,metro,WI,3.9090,4.3440,4.9012,6.2133,3.9560,4.1120,4.4096,2.7430,4.0111,2026-11-12
+2026-11-12,WI-wausau,"Wausau, WI",aaa_wi,metro,WI,3.9231,4.6195,5.1587,6.0374,3.9451,4.1830,4.2178,2.8406,3.8135,2026-11-12
+2026-11-12,WV,West Virginia,aaa_states,state,WV,3.9700,4.4096,4.8645,6.2588,,,,,,2026-11-12
+2026-11-12,WV-beckley,"Beckley, WV",aaa_wv,metro,WV,4.0230,4.4723,4.9547,6.0811,4.0502,4.2266,4.3279,3.0683,3.6751,2026-11-12
+2026-11-12,WV-charleston,"Charleston, WV",aaa_wv,metro,WV,3.9856,4.4350,4.9147,6.2786,4.0137,4.1558,4.3081,3.0724,3.7116,2026-11-12
+2026-11-12,WV-hampshire-county,"Hampshire County, WV",aaa_wv,metro,WV,3.9875,4.4323,4.6990,6.0865,3.9982,4.1698,4.2740,3.0528,3.5365,2026-11-12
+2026-11-12,WV-huntington,"Huntington, WV",aaa_wv,metro,WV,3.9458,4.3825,4.8498,6.3442,3.9805,4.0888,4.2442,3.0147,3.7888,2026-11-12
+2026-11-12,WV-jefferson-county,"Jefferson County, WV",aaa_wv,metro,WV,3.8228,4.2490,4.6652,6.0903,3.8638,3.9512,4.2894,2.9729,3.7905,2026-11-12
+2026-11-12,WV-mineral-county,"Mineral County, WV",aaa_wv,metro,WV,3.8265,4.0190,4.6323,5.7657,3.8678,4.0140,4.1390,2.9915,3.6150,2026-11-12
+2026-11-12,WV-morgantown,"Morgantown, WV",aaa_wv,metro,WV,4.1077,4.5313,5.0019,6.3381,4.1270,4.2490,4.4487,3.0267,3.8755,2026-11-12
+2026-11-12,WV-parkersburg-marietta-wv-only,"Parkersburg-Marietta (WV only), WV",aaa_wv,metro,WV,3.9577,4.4297,4.8763,6.5511,4.0053,4.1405,4.1821,3.1067,3.7572,2026-11-12
+2026-11-12,WV-steubenville-weirton-wv-only,"Steubenville-Weirton (WV only), WV",aaa_wv,metro,WV,3.8734,4.3160,4.8836,6.2890,3.9038,4.1250,4.0954,3.0226,3.8334,2026-11-12
+2026-11-12,WV-washington-dc-wv-only,"Washington, DC (WV Only), WV",aaa_wv,metro,WV,3.7082,4.1218,4.5118,5.8667,3.7375,3.8685,4.1860,3.1351,3.8552,2026-11-12
+2026-11-12,WV-wheeling-wv-only,"Wheeling (WV only), WV",aaa_wv,metro,WV,3.6542,4.1907,4.6251,6.1504,3.7030,4.0020,3.9430,2.8960,3.7205,2026-11-12
+2026-11-12,WY,Wyoming,aaa_states,state,WY,4.0334,4.3155,4.6260,6.1201,,,,,,2026-11-12
+2026-11-12,WY-casper,"Casper, WY",aaa_wy,metro,WY,3.7337,4.0885,4.4265,6.0844,3.7634,3.9787,4.1700,2.5311,3.4373,2026-11-12
+2026-11-12,WY-cheyenne,"Cheyenne, WY",aaa_wy,metro,WY,3.6654,4.0408,4.3369,6.0040,3.7072,3.9164,4.2166,2.7978,3.6322,2026-11-12
