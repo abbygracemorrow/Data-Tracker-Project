@@ -1,9 +1,9 @@
 {
-  "run_time": "2026-11-14T16:47:17Z",
+  "run_time": "2026-11-15T17:30:04Z",
   "first_run_date": "2026-11-10",
-  "days_with_success": 5,
-  "latest_date": "2026-11-14",
-  "previous_date": "2026-11-13",
+  "days_with_success": 6,
+  "latest_date": "2026-11-15",
+  "previous_date": "2026-11-14",
   "items": 555,
   "new_today": [],
   "gone_today": [],
